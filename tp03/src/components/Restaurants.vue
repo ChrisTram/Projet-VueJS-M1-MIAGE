@@ -48,17 +48,21 @@
 <script>
 export default {
   name: "Restaurants",
-      data: {
+
+  data: function() {
+  return {
+    
             restaurants: [],
             nbRestaurants:0,
             nom: '',
             cuisine: '',
-            apiBaseURL:"http://localhost:8080/api/restaurants",
+            apiBaseURL:"http://localhost:8081/api/restaurants",
             page:0,
             pagesize:10,
             nomRecherche:"",
-            apiURL : "http://localhost:8080/api/restaurants"
-        },
+            apiURL : "http://localhost:8081/api/restaurants"
+  };
+},
   props: {
     msg: String
   },
