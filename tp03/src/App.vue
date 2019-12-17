@@ -1,36 +1,32 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App {{name}}"/>
-    <Restaurant>
+    <img alt="Vue logo" src="./assets/logo.png" />
+    <h1>{{nom}}</h1>
+    <Restaurants></Restaurants>
+    <HelloWorld msg="Welcome" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-import Restaurant from './components/Restaurant.vue'
-
+import HelloWorld from "./components/HelloWorld.vue";
+import Restaurants from "./components/Restaurants.vue";
 export default {
-  name: 'app',
+  name: "app",
   components: {
     HelloWorld,
-    Restaurant
+    Restaurants
   },
-
   data: function() {
     return {
-      name: "Msg",
-      name2: "Msg2"
+      nom: "Dex"
     };
-  },
-  
+  }
 };
-
 </script>
 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
