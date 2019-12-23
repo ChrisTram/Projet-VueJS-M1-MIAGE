@@ -1,22 +1,24 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <h1>{{nom}}</h1>
-    <Restaurants></Restaurants>
+    <router-link to="/">[Home]</router-link>
+    <router-link to="/restaurants">[Restaurants]</router-link>
+     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Restaurants from "./components/Restaurants.vue";
+
 export default {
   name: "app",
   components: {
-    Restaurants
   },
   data: function() {
     return {
-      nom: "Dex"
+      nom: "buffa"
     };
+  },
+  mounted()  {
+    console.log("avant affichage");
   }
 };
 </script>
