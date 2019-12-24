@@ -2,22 +2,21 @@
   <div id="app">
     <router-link to="/">[Home]</router-link>
     <router-link to="/restaurants">[Restaurants]</router-link>
-     <router-view></router-view>
+    <router-link to="/restaurantsAdmin">[Restaurants Admin]</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-
 export default {
   name: "app",
-  components: {
-  },
+  components: {},
   data: function() {
     return {
       nom: "buffa"
     };
   },
-  mounted()  {
+  mounted() {
     console.log("avant affichage");
   }
 };
