@@ -1,0 +1,2 @@
+
+Utiliser le {numéro} de "photo" pour générer un url de type https://baconmockup.com/{numéro}/200/

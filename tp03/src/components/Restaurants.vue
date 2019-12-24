@@ -1,69 +1,76 @@
 <template>
-<div>
-  <p>
-    Rechercher par nom:
-    <input type="text" v-model="nomRecherche" v-on:input="getDataFromServer()" />
-  </p>
-  <p>
-    Nombre de restaurants par page :
-    <input
-      type="range"
-      min="2"
-      max="100"
-      value="10"
-      v-on:input="getDataFromServer()"
-      v-model="pagesize"
-    />
-    {{pagesize}}
-  </p>
-  <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
-  <button v-on:click="pagePrecedente()" v-bind:disabled="page==0">Précédent</button>
-  <button v-on:click="pageSuivante()" :disabled="page == nbPagesDeResultats">Suivant</button>
- 
-  <H1>TABLE VUE-MATERIAL</H1>
-        <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
-            <md-table-toolbar>
-                <div class="md-toolbar-section-start">
-                    <h1 class="md-title">Nom cherche</h1>
-                </div>
+  <div class="hello">
+    <h1>{{ msg }}</h1>
+    <table>
+      <tr>
+        <th>Nom</th>
+        <th>Cuisine</th>
+      </tr>
+      <tbody>
+        <tr
+          v-for="(r, index) in restaurants"
+          v-on:click="supprimerRestaurant(index)"
+          v-bind:style="{ backgroundColor: getColor(index) }"
+          v-bind:class="{ bordureRouge: index === 2 }"
+          v-bind:key="index"
+        >
+          <td>{{ r.name }}</td>
+          <td>{{ r.cuisine }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div>
+      <small>Flat</small>
+      <md-button>Default</md-button>
+      <md-button :md-ripple="false">Ripple Off</md-button>
+      <md-button class="md-primary">Primary</md-button>
+      <md-button class="md-accent">Accent</md-button>
+      <md-button disabled>Disabled</md-button>
+    </div>
 
-                <md-field md-clearable class="md-toolbar-section-end">
-                    <md-input placeholder="Search by name..." v-model="nomRecherche" @input="getDataFromServer()" />
-                </md-field>
-            </md-table-toolbar>
+    <md-field md-clearable class="md-toolbar-section-end">
+      <md-input
+        placeholder="Search by name..."
+        v-model="nomRecherche"
+        @input="getDataFromServer()"
+      />
+    </md-field>
+    <!-- </md-table-toolbar> -->
 
-            <md-table-empty-state
-        md-label="No users found"
-        :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`">
-      </md-table-empty-state>
+    <md-table-empty-state
+      md-label="No users found"
+      :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`"
+    ></md-table-empty-state>
 
-            
-
-            <md-table-row slot="md-table-row" slot-scope="{ item }">
-                <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-                <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
-                <md-table-cell md-label="Details"><router-link :to="'restaurant/'+item._id">Details</router-link></md-table-cell>
-            </md-table-row>
-        </md-table>
+    <md-table-row slot="md-table-row" slot-scope="{ item }">
+      <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
+      <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
+      <md-table-cell md-label="Details">
+        <router-link :to="'restaurant/'+item._id">Details</router-link>
+      </md-table-cell>
+    </md-table-row>
+    <!-- </md-table> -->
   </div>
 </template>
 
 <script>
 export default {
   name: "Restaurants",
-  props: {},
   data: function() {
     return {
       restaurants: [],
       nbRestaurants: 0,
       nom: "",
       cuisine: "",
+      apiBaseURL: "http://localhost:8081/api/restaurants",
       page: 0,
       pagesize: 10,
       nomRecherche: "",
-      nbPagesDeResultats: 0,
-      apiURL: "http://localhost:8080/api/restaurants"
+      apiURL: "http://localhost:8081/api/restaurants"
     };
+  },
+  props: {
+    msg: String
   },
   mounted() {
     console.log("AVANT AFFICHAGE !");
@@ -129,5 +136,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
+#app {
+  font-family: "Avenir", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 60px;
+}
 </style>
