@@ -8,9 +8,9 @@
 
 <script>
 export default {
-  name: "restaurant-map",
+  name: "RestaurantMap",
   props: {
-    coord: Array
+    coords: Array
   },
   computed: {
     // computed data, permet de définir des data "calculées"
