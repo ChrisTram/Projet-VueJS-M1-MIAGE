@@ -1,37 +1,34 @@
 <template>
   <div>
     <div class="mapouter">
-      <div class="gmap_canvas">
-        <iframe
-          width="600"
-          height="500"
-          id="gmap_canvas"
-          src="`${url}`"
-          frameborder="0"
-          scrolling="no"
-          marginheight="0"
-          marginwidth="0"
-        ></iframe>
-      </div>
+      <div class="gmap_canvas">{{url}}</div>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "RestaurantMap",
-  props: {},
+  name: "restaurant-map",
+  props: {
+    coord: Array
+  },
   computed: {
     // computed data, permet de définir des data "calculées"
-    coord() {
-      // on y accèdera par {{id}} dans le template, et par this.id
-      // dans le code
-      return this.$route.params.address.coord;
+    url: function() {
+      return `<iframe
+          width="600"
+          height="500"
+          id="gmap_canvas"
+          src="https://maps.google.com/maps?q=${this.lat},${this.long}&z=13&ie=UTF8&iwloc=&output=embed"
+          frameborder="0"
+          scrolling="no"
+          marginheight="0"
+          marginwidth="0"
+        ></iframe>`;
     }
   },
   data: function() {
     return {
-      url: "",
       lat: 0.0,
       long: 0.0
     };
@@ -48,7 +45,7 @@ export default {
       // ici on fait un fetch pour récupérer le détail du restaurant
     },
     createURL() {
-      return `https://maps.google.com/maps?q=${this.lat}&${this.long}&z=13&ie=UTF8&iwloc=&output=embed`;
+      return `https://maps.google.com/maps?q=${this.lat},${this.long}&z=13&ie=UTF8&iwloc=&output=embed`;
     },
     getCoord() {
       this.lat = this.coord[0];
