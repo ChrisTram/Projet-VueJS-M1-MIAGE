@@ -13,7 +13,7 @@ import RestaurantMap from "./";
 import RestaurantDetail from "./";
 import RestaurantEvaluation from "./";
 export default {
-  name: "RestaurantDetail",
+  name: "restaurant-list",
   components: {
     RestaurantMap,
     RestaurantDetail,

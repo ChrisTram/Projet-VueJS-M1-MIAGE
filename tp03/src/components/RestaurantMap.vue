@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "RestaurantMap",
+  name: "restaurant-map",
   props: {
     coords: Array
   },
@@ -29,8 +29,8 @@ export default {
   },
   data: function() {
     return {
-      lat: 0.0,
-      long: 0.0
+      lat: this.props.coords[0],
+      long: this.props.coords[1]
     };
   },
   mounted() {

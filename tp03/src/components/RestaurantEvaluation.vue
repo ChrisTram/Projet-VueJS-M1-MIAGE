@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "RestaurantEvaluation",
+  name: "restaurant-evaluation",
   props: {
     evals: Array
   },
