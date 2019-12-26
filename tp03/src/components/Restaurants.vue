@@ -1,38 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <table>
-      <tr>
-        <th>Nom</th>
-        <th>Cuisine</th>
-      </tr>
-      <tbody>
-        <tr
-          v-for="(r, index) in restaurants"
-          v-on:click="supprimerRestaurant(index)"
-          v-bind:style="{ backgroundColor: getColor(index) }"
-          v-bind:class="{ bordureRouge: index === 2 }"
-          v-bind:key="index"
-        >
-          <td>{{ r.name }}</td>
-          <td>{{ r.cuisine }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div>
-      <small>Flat</small>
-      <md-button>Default</md-button>
-      <md-button :md-ripple="false">Ripple Off</md-button>
-      <md-button class="md-primary">Primary</md-button>
-      <md-button class="md-accent">Accent</md-button>
-      <md-button disabled>Disabled</md-button>
-    </div>
+
 
 <div>
-  <p>
-    Rechercher par nom:
-    <input type="text" v-model="nomRecherche" v-on:input="getDataFromServer()" />
-  </p>
+
   <p>
     Nombre de restaurants par page :
     <input
@@ -45,9 +16,10 @@
     />
     {{pagesize}}
   </p>
+  
   <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
-  <button v-on:click="pagePrecedente()" v-bind:disabled="page==0">Précédent</button>
-  <button v-on:click="pageSuivante()" :disabled="page == nbPagesDeResultats">Suivant</button>
+  <md-button class="md-raised md-primary" v-on:click="pagePrecedente()" v-bind:disabled="page==0">Précédent</md-button>
+  <md-button class="md-raised md-primary" v-on:click="pageSuivante()" :disabled="page == nbPagesDeResultats">Suivant</md-button>
  
   <H1>TABLE VUE-MATERIAL</H1>
         <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
