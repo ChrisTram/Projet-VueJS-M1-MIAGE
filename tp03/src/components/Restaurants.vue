@@ -28,6 +28,33 @@
       <md-button disabled>Disabled</md-button>
     </div>
 
+<div>
+  <p>
+    Rechercher par nom:
+    <input type="text" v-model="nomRecherche" v-on:input="getDataFromServer()" />
+  </p>
+  <p>
+    Nombre de restaurants par page :
+    <input
+      type="range"
+      min="2"
+      max="100"
+      value="10"
+      v-on:input="getDataFromServer()"
+      v-model="pagesize"
+    />
+    {{pagesize}}
+  </p>
+  <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
+  <button v-on:click="pagePrecedente()" v-bind:disabled="page==0">Précédent</button>
+  <button v-on:click="pageSuivante()" :disabled="page == nbPagesDeResultats">Suivant</button>
+ 
+  <H1>TABLE VUE-MATERIAL</H1>
+        <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+            <md-table-toolbar>
+                <div class="md-toolbar-section-start">
+                    <h1 class="md-title">Nom cherche</h1>
+                </div>
     <md-field md-clearable class="md-toolbar-section-end">
       <md-input
         placeholder="Search by name..."
@@ -35,7 +62,7 @@
         @input="getDataFromServer()"
       />
     </md-field>
-    <!-- </md-table-toolbar> -->
+    </md-table-toolbar> 
 
     <md-table-empty-state
       md-label="No users found"
@@ -49,7 +76,8 @@
         <router-link :to="'restaurant/'+item._id">Details</router-link>
       </md-table-cell>
     </md-table-row>
-    <!-- </md-table> -->
+    </md-table> 
+  </div>
   </div>
 </template>
 
