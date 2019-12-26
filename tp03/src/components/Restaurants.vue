@@ -35,21 +35,20 @@
         @input="getDataFromServer()"
       />
     </md-field>
-    <!-- </md-table-toolbar> -->
+    <md-table>
+      <md-table-empty-state
+        md-label="No users found"
+        :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`"
+      ></md-table-empty-state>
 
-    <md-table-empty-state
-      md-label="No users found"
-      :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`"
-    ></md-table-empty-state>
-
-    <md-table-row slot="md-table-row" slot-scope="{ item }">
-      <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-      <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
-      <md-table-cell md-label="Details">
-        <router-link :to="'restaurant/'+item._id">Details</router-link>
-      </md-table-cell>
-    </md-table-row>
-    <!-- </md-table> -->
+      <md-table-row slot="md-table-row" slot-scope="{ item }">
+        <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
+        <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
+        <md-table-cell md-label="Details">
+          <router-link :to="'restaurant/'+item._id">Details</router-link>
+        </md-table-cell>
+      </md-table-row>
+    </md-table>
   </div>
 </template>
 
