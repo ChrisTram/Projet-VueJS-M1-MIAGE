@@ -14,7 +14,7 @@ export default {
   },
   computed: {
     // computed data, permet de définir des data "calculées"
-    url: function() {
+    url() {
       return `<iframe
           width="600"
           height="500"
@@ -27,7 +27,7 @@ export default {
         ></iframe>`;
     }
   },
-  data: function() {
+  data() {
     return {
       lat: this.props.coords[0],
       long: this.props.coords[1]

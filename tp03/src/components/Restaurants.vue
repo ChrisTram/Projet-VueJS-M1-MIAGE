@@ -4,18 +4,19 @@
     <table>
       <tr>
         <th>Nom</th>
-        <th>Cuisine</th>
+        <th>Cuisine2</th>
+        <th></th>
       </tr>
       <tbody>
         <tr
           v-for="(r, index) in restaurants"
-          v-on:click="supprimerRestaurant(index)"
           v-bind:style="{ backgroundColor: getColor(index) }"
           v-bind:class="{ bordureRouge: index === 2 }"
           v-bind:key="index"
         >
           <td>{{ r.name }}</td>
           <td>{{ r.cuisine }}</td>
+          <td v-on:click="supprimerRestaurant(index)">X</td>
         </tr>
       </tbody>
     </table>

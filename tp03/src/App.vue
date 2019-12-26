@@ -2,7 +2,7 @@
   <div id="app">
     <router-link to="/">[Home]</router-link>
     <router-link to="/restaurants">[Restaurants]</router-link>
-    <!-- <router-link to="/restaurantsAdmin">[Restaurants Admin]</router-link> -->
+    <router-link to="/restaurantsAdmin">[Restaurants Admin]</router-link>
     <router-view></router-view>
   </div>
 </template>

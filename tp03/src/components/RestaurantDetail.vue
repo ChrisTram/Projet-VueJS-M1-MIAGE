@@ -1,21 +1,12 @@
 <template>
-  <div>
-    <h1>Detail du restaurant d'id = {{id}}</h1>
-  </div>
+  <div></div>
 </template>
 
 <script>
 export default {
   name: "restaurant-detail",
   props: {},
-  computed: {
-    // computed data, permet de définir des data "calculées"
-    id() {
-      // on y accèdera par {{id}} dans le template, et par this.id
-      // dans le code
-      return this.$route.params.id;
-    }
-  },
+  computed: {},
   data: function() {
     return {};
   },
@@ -34,6 +25,5 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 </style>
