@@ -1,51 +1,82 @@
 <template>
   <div>
     <h1>Detail du restaurant d'id = {{restaurant._id}}</h1>
-    <div>
-      <router-link :to="{name :'restaurantEvaluation', params:{evals:restaurant.grades}}">Evaluation</router-link>
-    </div>
-    <div>
-      <router-link :to="{name :'restaurantMap', params:{coords:restaurant.address.coord}}">Map</router-link>
-    </div>
+
+
+    <restaurant-map :coords ="this.restaurant.address.coord"></restaurant-map>
+    <restaurant-evaluation :eval = "this.restaurant.grades"></restaurant-evaluation>  
   </div>
 </template>
 
 <script>
+
+import RestaurantMap from "./RestaurantMap.vue";
+import RestaurantEvaluation from "./RestaurantEvaluation.vue";
 export default {
   name: "restaurant-detail",
+  components: {
+    RestaurantMap,
+    RestaurantEvaluation
+  },
   props: {},
+  
   watch: {
     restaurant: {
       immediate: true,
       handler() {
+        if(!this.restaurant._id == null) {
         this.coords = this.restaurant.address.coord;
         this.grades = this.restaurant.grades;
+        }
+
       }
     }
-  },
+  },/*
   computed: {
     // computed data, permet de définir des data "calculées"
     restaurant() {
-      return this.$route.params.restaurant;
+      return this.restaurant;
     }
-  },
+  },*/
   data() {
     return {
       coords: Array,
-      grades: Array
+      grades: Array,
+      apiURL: "http://localhost:8081/api/restaurants",
+      restaurant : {}
+
     };
   },
   mounted() {
     console.log("AVANT AFFICHAGE !");
     console.log(
-      "On va chercher les détails du restaurant id = " + this.$route.params.id
+      "On va chercher les détails du restaurant nommé = " + this.$route.params.id
     );
-    console.log("ID = " + this.id);
+    this.getDataFromServer();
+
   },
   methods: {
     getDataFromServer() {
-      // ici on fait un fetch pour récupérer le détail du restaurant
-    }
+
+      // ici on fait un fetch pour récupérer détails du serveur
+      let url =
+        this.apiURL +
+        "/" +
+        this.$route.params.id;
+
+      fetch(url)
+        .then(reponseJSON => {
+          return reponseJSON.json();
+        })
+        .then(reponseJS => {
+          // ici on a la réponse sous la forme
+          // d'un objet JS
+          console.log("fin du fetch");
+          console.log(url);
+          console.log(reponseJS.restaurant);
+          this.restaurant = reponseJS.restaurant;
+        });
+      }
   }
 };
 </script>

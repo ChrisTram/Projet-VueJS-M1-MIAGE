@@ -10,7 +10,9 @@
 <script>
 export default {
   name: "restaurant-map",
-  props: {},
+  props: {
+    coords : Array,
+  },
   watch: {
     map: {
       immediate: true,
@@ -28,12 +30,6 @@ export default {
           marginwidth="0"
         ></iframe>`;
       }
-    }
-  },
-  computed: {
-    // computed data, permet de définir des data "calculées"
-    coords() {
-      return this.$route.params.coords;
     }
   },
   data() {

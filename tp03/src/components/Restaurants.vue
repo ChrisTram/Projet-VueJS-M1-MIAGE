@@ -50,7 +50,7 @@
           <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
           <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
           <md-table-cell md-label="Details">
-            <router-link :to="{name :'restaurantDetail', params:{restaurant:item}}">Details</router-link>
+            <router-link v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
           </md-table-cell>
         </md-table-row>
       </md-table>
