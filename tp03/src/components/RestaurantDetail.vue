@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>Detail du restaurant d'id = {{restaurant._id}}</h1>
+  <div v-if="typeof this.restaurant.address !== 'undefined'">
+    <h1>Bienvenue chez {{restaurant.name}}</h1>
 
-    <restaurant-map v-if="typeof this.restaurant.address !== 'undefined'" :coords = coords></restaurant-map> 
-    <restaurant-evaluation v-if="typeof this.restaurant.address !== 'undefined'" :evals = grades></restaurant-evaluation>  
+    <restaurant-map  :coords = coords></restaurant-map> 
+    <restaurant-evaluation  :evals = grades></restaurant-evaluation>  
 
   </div>
 </template>

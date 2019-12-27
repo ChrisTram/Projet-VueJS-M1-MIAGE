@@ -1,8 +1,9 @@
 <template>
   <div>
-    
+        <h1>La presse nous recommande !</h1>
+
     <h1></h1>
-    <table>
+    <table style = "margin-left:auto;margin-right:auto;" >
       <tr>
         <th>Date</th>
         <th>Grade</th>
