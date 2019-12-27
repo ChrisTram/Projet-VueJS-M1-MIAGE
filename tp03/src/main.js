@@ -31,17 +31,17 @@ const router = new VueRouter({
       component: Restaurants
     },
     {
-      path: "/restaurant/:id",
+      path: "/restaurant/details",
       name: "restaurantDetail",
       component: RestaurantDetail
     },
     {
-      path: "/restaurant/:id/map",
+      path: "/restaurant/details/map",
       name: "restaurantMap",
       component: RestaurantMap
     },
     {
-      path: "/restaurant/:id/eval",
+      path: "/restaurant/details/eval",
       name: "restaurantEvaluation",
       component: RestaurantEvaluation
     }
