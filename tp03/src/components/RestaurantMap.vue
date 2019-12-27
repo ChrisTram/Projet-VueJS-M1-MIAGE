@@ -9,17 +9,22 @@
 <script>
 export default {
   name: "restaurant-map",
-  props: {
-    coords: Array
-  },
+  props: {},
   computed: {
     // computed data, permet de définir des data "calculées"
-    url: function() {
+    coords() {
+      return this.$route.params.coord;
+    }
+  },
+  mounted: {
+    url() {
       return `<iframe
           width="600"
           height="500"
           id="gmap_canvas"
-          src="https://maps.google.com/maps?q=${this.lat},${this.long}&z=13&ie=UTF8&iwloc=&output=embed"
+          src="https://maps.google.com/maps?q=${this.coords[0]},${
+        this.coords[1]
+      }&z=13&ie=UTF8&iwloc=&output=embed"
           frameborder="0"
           scrolling="no"
           marginheight="0"
@@ -27,18 +32,11 @@ export default {
         ></iframe>`;
     }
   },
-  data: function() {
+  data() {
     return {
-      lat: this.props.coords[0],
+      lat: this.coords[0],
       long: this.props.coords[1]
     };
-  },
-  mounted() {
-    console.log("AVANT AFFICHAGE !");
-    console.log(
-      "On va chercher les détails du restaurant id = " + this.$route.params.id
-    );
-    console.log("ID = " + this.id);
   },
   methods: {
     getDataFromServer() {

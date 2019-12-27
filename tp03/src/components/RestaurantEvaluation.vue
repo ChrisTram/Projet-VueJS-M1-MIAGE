@@ -1,14 +1,31 @@
 <template>
   <div>
     <h1></h1>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Grade</th>
+        <th>Note</th>
+      </tr>
+      <tbody>
+        <tr v-for="(e, index) in evals" :key="index">
+          <td>{{ e.date | datify }}</td>
+          <td>{{ e.grade }}</td>
+          <td>{{ e.score }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </template>
 
 <script>
 export default {
   name: "restaurant-evaluation",
-  props: {
-    evals: Array
+  props: {},
+  computed: {
+    evals() {
+      return this.$route.params.evals;
+    }
   },
   data: function() {
     return {};
@@ -20,7 +37,11 @@ export default {
     );
     console.log("ID = " + this.id);
   },
-  methods: {}
+  methods: {
+    datify(value) {
+      return value.slice(0, 8);
+    }
+  }
 };
 </script>
 

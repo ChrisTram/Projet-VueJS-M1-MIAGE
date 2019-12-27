@@ -1,6 +1,12 @@
 <template>
   <div>
-    <h1>Detail du restaurant d'id = {{id}}</h1>
+    <h1>Detail du restaurant d'id = {{restaurant._id}}</h1>
+    <div>
+      <router-link :to="{name :'restaurantEvaluation', params:{evals:restaurant.grades}}">Evaluation</router-link>
+    </div>
+    <div>
+      <router-link :to="{name :'restaurantMap', params:{coords:restaurant.address.coord}}">Map</router-link>
+    </div>
   </div>
 </template>
 
@@ -8,16 +14,26 @@
 export default {
   name: "restaurant-detail",
   props: {},
-  computed: {
-    // computed data, permet de définir des data "calculées"
-    id() {
-      // on y accèdera par {{id}} dans le template, et par this.id
-      // dans le code
-      return this.$route.params.id;
+  watch: {
+    restaurant: {
+      immediate: true,
+      handler() {
+        this.coords = this.restaurant.address.coord;
+        this.grades = this.restaurant.grades;
+      }
     }
   },
-  data: function() {
-    return {};
+  computed: {
+    // computed data, permet de définir des data "calculées"
+    restaurant() {
+      return this.$route.params.restaurant;
+    }
+  },
+  data() {
+    return {
+      coords: Array,
+      grades: Array
+    };
   },
   mounted() {
     console.log("AVANT AFFICHAGE !");

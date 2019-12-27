@@ -1,55 +1,60 @@
 <template>
   <div class="hello">
+    <div>
+      <p>
+        Nombre de restaurants par page :
+        <input
+          type="range"
+          min="2"
+          max="100"
+          value="10"
+          v-on:input="getDataFromServer()"
+          v-model="pagesize"
+        />
+        {{pagesize}}
+      </p>
 
+      <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
+      <md-button
+        class="md-raised md-primary"
+        v-on:click="pagePrecedente()"
+        v-bind:disabled="page==0"
+      >Précédent</md-button>
+      <md-button
+        class="md-raised md-primary"
+        v-on:click="pageSuivante()"
+        :disabled="page == nbPagesDeResultats"
+      >Suivant</md-button>
 
-<div>
+      <H1>TABLE VUE-MATERIAL</H1>
+      <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
+        <md-table-toolbar>
+          <div class="md-toolbar-section-start">
+            <h1 class="md-title">Nom cherche</h1>
+          </div>
+          <md-field md-clearable class="md-toolbar-section-end">
+            <md-input
+              placeholder="Search by name..."
+              v-model="nomRecherche"
+              @input="getDataFromServer()"
+            />
+          </md-field>
+        </md-table-toolbar>
 
-  <p>
-    Nombre de restaurants par page :
-    <input
-      type="range"
-      min="2"
-      max="100"
-      value="10"
-      v-on:input="getDataFromServer()"
-      v-model="pagesize"
-    />
-    {{pagesize}}
-  </p>
-  
-  <h1>Nombre de restaurants : {{nbRestaurants}}</h1>
-  <md-button class="md-raised md-primary" v-on:click="pagePrecedente()" v-bind:disabled="page==0">Précédent</md-button>
-  <md-button class="md-raised md-primary" v-on:click="pageSuivante()" :disabled="page == nbPagesDeResultats">Suivant</md-button>
- 
-  <H1>TABLE VUE-MATERIAL</H1>
-        <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
-            <md-table-toolbar>
-                <div class="md-toolbar-section-start">
-                    <h1 class="md-title">Nom cherche</h1>
-                </div>
-    <md-field md-clearable class="md-toolbar-section-end">
-      <md-input
-        placeholder="Search by name..."
-        v-model="nomRecherche"
-        @input="getDataFromServer()"
-      />
-    </md-field>
-    </md-table-toolbar> 
+        <md-table-empty-state
+          md-label="No users found"
+          :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`"
+        ></md-table-empty-state>
 
-    <md-table-empty-state
-      md-label="No users found"
-      :md-description="`No user found for this '${nomRecherche}' query. Try a different search term or create a new user.`"
-    ></md-table-empty-state>
-
-    <md-table-row slot="md-table-row" slot-scope="{ item }">
-      <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
-      <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
-      <md-table-cell md-label="Details">
-        <router-link :to="'restaurant/'+item._id">Details</router-link>
-      </md-table-cell>
-    </md-table-row>
-    </md-table> 
-  </div>
+        <md-table-row slot="md-table-row" slot-scope="{ item }">
+          <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
+          <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
+          <md-table-cell md-label="Details">
+            <router-link :to="{name :'restaurantDetail', params:{restaurant:item}}">Details</router-link>
+          </md-table-cell>
+        </md-table-row>
+      </md-table>
+    </div>
   </div>
 </template>
 
@@ -66,7 +71,9 @@ export default {
       page: 0,
       pagesize: 10,
       nomRecherche: "",
-      apiURL: "http://localhost:8081/api/restaurants"
+      apiURL: "http://localhost:8081/api/restaurants",
+      nbPagesDeResultats: 0,
+      restaurant: {}
     };
   },
   props: {
@@ -129,6 +136,11 @@ export default {
       console.log("Page precedente");
       this.page--;
       this.getDataFromServer();
+    },
+    getRestaurant(item) {
+      console.log("here's something");
+      console.log(item);
+      this.restaurant = item;
     }
   }
 };
