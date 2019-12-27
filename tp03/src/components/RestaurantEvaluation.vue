@@ -21,11 +21,8 @@
 <script>
 export default {
   name: "restaurant-evaluation",
-  props: {},
-  computed: {
-    evals() {
-      return this.$route.params.evals;
-    }
+  props: {
+    evals:Array
   },
   data: function() {
     return {};

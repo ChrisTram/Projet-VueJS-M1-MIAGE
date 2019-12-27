@@ -2,9 +2,9 @@
   <div>
     <h1>Detail du restaurant d'id = {{restaurant._id}}</h1>
 
+    <restaurant-map v-if="typeof this.restaurant.address !== 'undefined'" :coords = coords></restaurant-map> 
+    <restaurant-evaluation v-if="typeof this.restaurant.address !== 'undefined'" :eval = grades></restaurant-evaluation>  
 
-    <restaurant-map :coords ="this.restaurant.address.coord"></restaurant-map>
-    <restaurant-evaluation :eval = "this.restaurant.grades"></restaurant-evaluation>  
   </div>
 </template>
 
@@ -17,31 +17,18 @@ export default {
   components: {
     RestaurantMap,
     RestaurantEvaluation
+  },  
+  computed: {
+    coords() {
+        return this.restaurant.address.coord;
+    },
+    grades() {
+      return this.restaurant.grades;
+    }
   },
   props: {},
-  
-  watch: {
-    restaurant: {
-      immediate: true,
-      handler() {
-        if(!this.restaurant._id == null) {
-        this.coords = this.restaurant.address.coord;
-        this.grades = this.restaurant.grades;
-        }
-
-      }
-    }
-  },/*
-  computed: {
-    // computed data, permet de définir des data "calculées"
-    restaurant() {
-      return this.restaurant;
-    }
-  },*/
   data() {
     return {
-      coords: Array,
-      grades: Array,
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant : {}
 
