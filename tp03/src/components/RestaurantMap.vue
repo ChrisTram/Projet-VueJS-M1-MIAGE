@@ -2,7 +2,7 @@
   <div>
     <h1>latitude : {{ lat }} longitude : {{ long }}</h1>
     <div class="mapouter">
-      <div v-html="url" class="gmap_canvas">{{url}}</div>
+      <div v-html="url" class="gmap_canvas"></div>
     </div>
   </div>
 </template>
@@ -15,13 +15,13 @@ export default {
     map: {
       immediate: true,
       handler() {
-        this.lat = this.coords[0];
-        this.long = this.coords[1];
+        this.lat = this.coords[1];
+        this.long = this.coords[0];
         this.url = `<iframe
           width="600"
           height="500"
           id="gmap_canvas"
-          src="https://maps.google.com/maps?q=${this.long},${this.lat}&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://maps.google.com/maps?q=${this.lat},${this.long}&z=15&ie=UTF8&iwloc=&output=embed"
           frameborder="0"
           scrolling="no"
           marginheight="0"

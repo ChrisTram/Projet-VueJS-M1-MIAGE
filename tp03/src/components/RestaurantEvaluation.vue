@@ -31,15 +31,11 @@ export default {
     return {};
   },
   mounted() {
-    console.log("AVANT AFFICHAGE !");
-    console.log(
-      "On va chercher les détails du restaurant id = " + this.$route.params.id
-    );
-    console.log("ID = " + this.id);
+    console.log("AVANT AFFICHAGE EVALUATION !");
   },
-  methods: {
+  filters: {
     datify(value) {
-      return value.slice(0, 8);
+      return value.slice(0, 10);
     }
   }
 };
