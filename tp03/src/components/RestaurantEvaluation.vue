@@ -1,9 +1,9 @@
 <template>
   <div>
-        <h1>La presse nous recommande !</h1>
+    <h1>La presse nous recommande !</h1>
 
     <h1></h1>
-    <table style = "margin-left:auto;margin-right:auto;" >
+    <table style="margin-left:auto;margin-right:auto;">
       <tr>
         <th>Date</th>
         <th>Grade</th>
@@ -24,7 +24,7 @@
 export default {
   name: "restaurant-evaluation",
   props: {
-    evals:Array
+    evals: Array
   },
   data: function() {
     return {};
@@ -34,7 +34,12 @@ export default {
   },
   filters: {
     datify(value) {
-      return value.slice(0, 10);
+      let re = new RegExp("([\\d]{2})-([\\d]{2})-([\\d]{2})");
+      let corresp = re.exec(value);
+      let day = corresp[3];
+      let month = corresp[2];
+      let year = corresp[1];
+      return `${day}-${month}-${year}`;
     }
   }
 };

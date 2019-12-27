@@ -1,8 +1,9 @@
 <template>
   <div>
-    <h1>latitude : {{ lat }} longitude : {{ long }}</h1>
+    <h1>{{ borough }}</h1>
+    <h1>{{ address }}</h1>
     <div class="mapouter">
-      <div v-html="url" class="gmap_canvas"></div>
+      <div v-html="url" class="gmap_canvas" @scroll="zooming"></div>
     </div>
   </div>
 </template>
@@ -11,21 +12,23 @@
 export default {
   name: "restaurant-map",
   props: {
-    coords : Array,
+    coords: Array,
+    borough: String,
+    address: Object
   },
   watch: {
     map: {
       immediate: true,
       handler() {
-        this.lat = this.coords[1];
-        this.long = this.coords[0];
+        this.lat = this.address.coord[1];
+        this.long = this.address.coord[0];
         this.url = `<iframe
           width="600"
           height="500"
           id="gmap_canvas"
-          src="https://maps.google.com/maps?q=${this.lat},${this.long}&z=15&ie=UTF8&iwloc=&output=embed"
+          src="https://maps.google.com/maps?q=${this.lat},${this.long}&z=${this.zoom}&ie=UTF8&iwloc=&output=embed"
           frameborder="0"
-          scrolling="no"
+          scrolling="yes"
           marginheight="0"
           marginwidth="0"
         ></iframe>`;
@@ -36,13 +39,13 @@ export default {
     return {
       lat: 0.0,
       long: 0.0,
-      url: ""
+      url: "",
+      zoom: 15
     };
   },
   methods: {
-    getCoord() {
-      this.lat = this.coord[0];
-      this.long = this.coord[1];
+    zooming() {
+      console.log("zooming");
     }
   }
 };
@@ -50,5 +53,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>
