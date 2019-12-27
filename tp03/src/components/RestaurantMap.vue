@@ -50,16 +50,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.mapouter {
-  position: relative;
-  text-align: right;
-  height: 500px;
-  width: 600px;
-}
-.gmap_canvas {
-  overflow: hidden;
-  background: none !important;
-  height: 500px;
-  width: 600px;
-}
+
 </style>

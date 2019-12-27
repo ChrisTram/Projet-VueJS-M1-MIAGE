@@ -3,7 +3,7 @@
     <h1>Detail du restaurant d'id = {{restaurant._id}}</h1>
 
     <restaurant-map v-if="typeof this.restaurant.address !== 'undefined'" :coords = coords></restaurant-map> 
-    <restaurant-evaluation v-if="typeof this.restaurant.address !== 'undefined'" :eval = grades></restaurant-evaluation>  
+    <restaurant-evaluation v-if="typeof this.restaurant.address !== 'undefined'" :evals = grades></restaurant-evaluation>  
 
   </div>
 </template>
