@@ -65,7 +65,7 @@
 
 
 <script>
-import data from "../../data/plats";
+import data from "@/data/plats";
 export default {
   name: "restaurant-plat",
   components: {},
@@ -123,9 +123,9 @@ export default {
       return randomPlats;
     },
     shuffle(tab) {
-      for (var i = 0; i < tab.length - 1; i++) {
-        var j = i + Math.floor(Math.random() * (tab.length - i));
-        var temp = tab[j];
+      for (let i = 0; i < tab.length - 1; i++) {
+        let j = i + Math.floor(Math.random() * (tab.length - i));
+        let temp = tab[j];
         tab[j] = tab[i];
         tab[i] = temp;
       }
