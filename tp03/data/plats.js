@@ -1,13 +1,13 @@
-export default [
+export default 
 {
-	"cols": [
+	cols : [
 		"nom",
 		"type",
 		"description",
 		"photo",
 		"prix"
 	],
-	"data": [
+	data : [
 		[
 			"elit, dictum eu,",
 			"plat",
@@ -710,4 +710,3 @@ export default [
 		]
 	]
 }
-]

@@ -39,7 +39,7 @@ export default {
       let day = corresp[3];
       let month = corresp[2];
       let year = corresp[1];
-      return `${day}-${month}-${year}`;
+      return `${day}/${month}/${year}`;
     }
   }
 };
