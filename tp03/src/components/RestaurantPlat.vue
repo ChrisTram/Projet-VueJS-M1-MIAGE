@@ -105,8 +105,8 @@ export default {
         console.log(shuffledPlats[i]);
         if (
           randomPlats.horsdoeuvres.length >= 10 &&
-          randomPlats.plats.length >= 15 &&
-          randomPlats.desserts.length >= 5
+          randomPlats.plats.length >= 10 &&
+          randomPlats.desserts.length >= 10
         )
           break;
         if (
@@ -114,12 +114,13 @@ export default {
           randomPlats.horsdoeuvres.length < 10
         )
           randomPlats.horsdoeuvres.push(shuffledPlats[i]);
-        else if (shuffledPlats[i][1] == "plat" && randomPlats.plats.length < 15)
+        else if (shuffledPlats[i][1] == "plat" && randomPlats.plats.length < 10)
           randomPlats.plats.push(shuffledPlats[i]);
-        else if (randomPlats.desserts.length < 5)
+        else if (randomPlats.desserts.length < 10)
           randomPlats.desserts.push(shuffledPlats[i]);
       }
       console.log(randomPlats);
+      this.associateRandPhotoNumber(randomPlats);
       return randomPlats;
     },
     shuffle(tab) {
@@ -132,7 +133,21 @@ export default {
       return tab;
     },
     createURL(num) {
-      return `https://baconmockup.com/${num}/200/`;
+      return `https://www.restaurants.christramier.fr/resources/${num}.jpg`;
+    },
+    associateRandPhotoNumber(obj) {
+      let randHD = this.shuffle(Array.from(Array(10), (e, i) => i + 1));
+      let randPlats = this.shuffle(Array.from(Array(10), (e, i) => i + 11));
+      let randDesserts = this.shuffle(Array.from(Array(10), (e, i) => i + 21));
+      for (let i = 0; i < randHD.length; i++) {
+        obj.horsdoeuvres[i][3] = randHD[i];
+      }
+      for (let i = 0; i < randPlats.length; i++) {
+        obj.plats[i][3] = randPlats[i];
+      }
+      for (let i = 0; i < randDesserts.length; i++) {
+        obj.desserts[i][3] = randDesserts[i];
+      }
     }
   }
 };
