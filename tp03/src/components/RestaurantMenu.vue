@@ -32,7 +32,7 @@
     <h1>
       <b>Menu Classique</b>
     </h1>
-    <table style="margin-left:auto;margin-right:auto;">
+    <md-table style="margin-left:auto;margin-right:auto;">
       <md-table-row></md-table-row>
       <tbody>
         <md-table-row>
@@ -57,10 +57,10 @@
           <md-table-cell>{{ m[4] }}</md-table-cell>
         </md-table-row>
       </tbody>
-    </table>
+    </md-table>
     <br />
     <h1>Menu Alternatif</h1>
-    <table style="margin-left:auto;margin-right:auto;">
+    <md-table style="margin-left:auto;margin-right:auto;">
       <md-table-row></md-table-row>
       <tbody>
         <md-table-row>
@@ -85,7 +85,7 @@
           <md-table-cell>{{ m[4] }}</md-table-cell>
         </md-table-row>
       </tbody>
-    </table>
+    </md-table>
   </div>
 </template>
 
