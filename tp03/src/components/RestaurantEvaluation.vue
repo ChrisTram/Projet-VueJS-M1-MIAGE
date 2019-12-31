@@ -1,7 +1,6 @@
 <template>
-
   <div>
-    <h1>La presse nous recommande !</h1>
+    <h2>La presse nous recommande !</h2>
 
     <h1></h1>
     <table style="margin-left:auto;margin-right:auto;">
@@ -42,7 +41,6 @@ export default {
       let month = corresp[2];
       let year = corresp[1];
       return `${day}/${month}/${year}`;
-
     }
   }
 };

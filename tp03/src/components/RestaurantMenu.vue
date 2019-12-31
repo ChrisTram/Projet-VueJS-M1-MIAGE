@@ -1,14 +1,11 @@
 <template>
   <div>
-
-
-          <!-- PREMIER MENU -->
-      <div class="viewport">
-
+    <!-- PREMIER MENU -->
+    <div class="viewport">
       <md-toolbar :md-elevation="1">
         <span class="md-title">Menu {{ cuisine }}</span>
       </md-toolbar>
-            <md-list class="md-double-line">
+      <md-list class="md-double-line">
         <md-subheader>Hors d'oeuvres</md-subheader>
 
         <md-list-item v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
@@ -16,14 +13,11 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-
 
         <md-divider></md-divider>
         <md-subheader>Plat</md-subheader>
@@ -32,38 +26,34 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
-<md-list-item v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">ac_unit</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-                <md-divider></md-divider>
+        <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menus[0]) }}
       </md-list>
-        </div>
-     <!-- DEUXIEME MENU -->
-     <div class = "viewport">
+    </div>
+    <!-- DEUXIEME MENU -->
+    <div class="viewport">
       <md-toolbar :md-elevation="1">
         <span class="md-title">Menu Gourmet</span>
       </md-toolbar>
-            <md-list class="md-double-line">
+      <md-list class="md-double-line">
         <md-subheader>Hors d'oeuvres</md-subheader>
 
         <md-list-item v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
@@ -71,14 +61,11 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-
 
         <md-divider></md-divider>
         <md-subheader>Plat</md-subheader>
@@ -87,38 +74,34 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
-<md-list-item v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">ac_unit</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-                <md-divider></md-divider>
+        <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menus[1]) }}
       </md-list>
-  </div>
- <!-- DEUXIEME MENU -->
-     <div class = "viewport">
+    </div>
+    <!-- DEUXIEME MENU -->
+    <div class="viewport">
       <md-toolbar :md-elevation="1">
         <span class="md-title">Menu Alternatif</span>
       </md-toolbar>
-            <md-list class="md-double-line">
+      <md-list class="md-double-line">
         <md-subheader>Hors d'oeuvres</md-subheader>
 
         <md-list-item v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
@@ -126,14 +109,11 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-
 
         <md-divider></md-divider>
         <md-subheader>Plat</md-subheader>
@@ -142,34 +122,29 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
-<md-list-item v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">ac_unit</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-              <span>Délicieux !</span>
+            <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">
-            {{ m[4] }}
-          </md-button>
+          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
-                <md-divider></md-divider>
+        <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menus[2]) }}
       </md-list>
+    </div>
   </div>
-  </div>
-
 </template>
 
 
@@ -194,7 +169,7 @@ export default {
       for (let i = 0; i < n; i++) {
         let menu = { horsdoeuvres: {}, plats: {}, desserts: {} };
         let arrLen = obj.horsdoeuvres.length;
-        let randNum = this.shuffle(Array.from(Array(arrLen), (e, i) => i));
+        let randNum = this.shuffle([...Array(arrLen).keys()]);
         let hd = [...randNum.slice(0, 3)].map(
           i => obj.horsdoeuvres[randNum[i]]
         );
@@ -237,13 +212,13 @@ export default {
 </script>
 
 <style scoped>
-  .viewport {
-    width: 320px;
-    max-width: 100%;
-    display: inline-block;
-    vertical-align: top;
-    overflow: auto;
-    border: 1px solid rgba(#000, .12);
-    margin-right: 2%;
-  }
+.viewport {
+  width: 320px;
+  max-width: 100%;
+  display: inline-block;
+  vertical-align: top;
+  overflow: auto;
+  border: 1px solid rgba(#000, 0.12);
+  margin-right: 2%;
+}
 </style>

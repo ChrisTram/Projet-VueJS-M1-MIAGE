@@ -1,14 +1,15 @@
 <template>
-
   <div v-if="typeof this.restaurant.address !== 'undefined'">
     <h1>Bienvenue chez {{restaurant.name}}</h1>
-    <restaurant-map :borough="borough" :address="address"></restaurant-map>
-    <restaurant-evaluation :evals="grades"></restaurant-evaluation>
-    <restaurant-plat :cuisine="cuisine"></restaurant-plat>
+    <h1 @click="toggleMap = !toggleMap">Nous trouver</h1>
+    <restaurant-map v-show="toggleMap" :borough="borough" :address="address"></restaurant-map>
+    <h1 @click="toggleEval = !toggleEval">Nos évaluations</h1>
+    <restaurant-evaluation v-show="toggleEval" :evals="grades"></restaurant-evaluation>
+    <h1 @click="togglePlat = !togglePlat">Nos Plats</h1>
+    <restaurant-plat v-show="togglePlat" :cuisine="cuisine"></restaurant-plat>
   </div>
 </template>
 <script>
-
 import RestaurantMap from "./RestaurantMap.vue";
 import RestaurantEvaluation from "./RestaurantEvaluation.vue";
 import RestaurantPlat from "./RestaurantPlat.vue";
@@ -37,7 +38,10 @@ export default {
   data() {
     return {
       apiURL: "http://localhost:8081/api/restaurants",
-      restaurant: {}
+      restaurant: {},
+      togglePlat: false,
+      toggleMap: false,
+      toggleEval: false
     };
   },
   mounted() {
@@ -47,7 +51,6 @@ export default {
         this.$route.params.id
     );
     this.getDataFromServer();
-
   },
   methods: {
     getDataFromServer() {

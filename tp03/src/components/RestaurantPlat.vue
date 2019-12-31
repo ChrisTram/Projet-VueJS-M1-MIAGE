@@ -1,69 +1,9 @@
 <template>
   <div>
-    <restaurant-menu :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
-    <br />
-    <h1>{{ cuisine }}</h1>
-    
-    <md-table md-card>
-            <md-table-toolbar>
-        <h1 class="md-title">Hors d'oeuvres</h1>
-      </md-table-toolbar>
-      <md-table-row>
-        <md-table-head>Nom</md-table-head>
-        <md-table-head>Prix</md-table-head>
-        <md-table-head>Description</md-table-head>
-        <md-table-head>Photo</md-table-head>
-      </md-table-row>
-        <md-table-row v-for="(p, index) in randomPlats.horsdoeuvres" :key="index">
-          <md-table-cell md-label="Nom">{{ p[0] }}</md-table-cell>
-          <md-table-cell md-label="Prix">{{ p[4] }}</md-table-cell>
-          <md-table-cell>{{ p[2] }}</md-table-cell>
-          <md-table-cell>
-            <img width="400" heigh="200" :src="createURL(p[3])" />
-          </md-table-cell>
-        </md-table-row>
-    </md-table>
-
-    <br />
-    <md-table md-card>
-            <md-table-toolbar>
-        <h1 class="md-title">Plats</h1>
-      </md-table-toolbar>
-      <md-table-row>
-        <md-table-head>Nom</md-table-head>
-        <md-table-head>Prix</md-table-head>
-        <md-table-head>Description</md-table-head>
-        <md-table-head>Photo</md-table-head>
-      </md-table-row>
-        <md-table-row v-for="(p, index) in randomPlats.plats" :key="index">
-          <md-table-cell>{{ p[0] }}</md-table-cell>
-          <md-table-cell>{{ p[4] }}</md-table-cell>
-          <md-table-cell>{{ p[2] }}</md-table-cell>
-          <md-table-cell>
-            <img width="400" heigh="200" :src="createURL(p[3])" />
-          </md-table-cell>
-        </md-table-row>
-    </md-table>
-    <br />
-    <md-table md-card >
-            <md-table-toolbar>
-        <h1 class="md-title">Desserts</h1>
-      </md-table-toolbar>
-      <md-table-row>
-        <md-table-head>Nom</md-table-head>
-        <md-table-head>Prix</md-table-head>
-        <md-table-head>Description</md-table-head>
-        <md-table-head>Photo</md-table-head>
-      </md-table-row>
-        <md-table-row v-for="(p, index) in randomPlats.desserts" :key="index">
-          <md-table-cell>{{ p[0] }}</md-table-cell>
-          <md-table-cell>{{ p[4] }}</md-table-cell>
-          <md-table-cell>{{ p[2] }}</md-table-cell>
-          <md-table-cell>
-            <img width="400" heigh="200" :src="createURL(p[3])" />
-          </md-table-cell>
-        </md-table-row>
-    </md-table>
+    <h2 @click="toggleMenu = !toggleMenu">Nos Menus</h2>
+    <restaurant-menu v-show="toggleMenu" :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
+    <h2 @click="togglePlats = !togglePlats">Plats individuels</h2>
+    <restaurant-plats v-show="togglePlats" :randomPlats="randomPlats"></restaurant-plats>
   </div>
 </template>
 
@@ -71,10 +11,12 @@
 <script>
 import data from "@/data/plats";
 import RestaurantMenu from "./RestaurantMenu";
+import RestaurantPlats from "./RestaurantPlats";
 export default {
   name: "restaurant-plat",
   components: {
-    RestaurantMenu
+    RestaurantMenu,
+    RestaurantPlats
   },
   props: {
     cuisine: String
@@ -94,7 +36,9 @@ export default {
       data,
       plats: {},
       randomPlats: {},
-      menus: []
+      menus: [],
+      toggleMenu: false,
+      togglePlats: false
     };
   },
   mounted() {
@@ -134,9 +78,6 @@ export default {
         [tab[i], tab[j]] = [tab[j], tab[i]];
       }
       return tab;
-    },
-    createURL(num) {
-      return `https://www.restaurants.christramier.fr/resources/${num}.jpg`;
     },
     associateRandPhotoNumber(obj, n) {
       let randHD = this.shuffle(Array.from(Array(n), (e, i) => i + 1));
