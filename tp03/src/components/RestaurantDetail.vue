@@ -1,4 +1,5 @@
 <template>
+
   <div v-if="typeof this.restaurant.address !== 'undefined'">
     <h1>Bienvenue chez {{restaurant.name}}</h1>
     <restaurant-map :borough="borough" :address="address"></restaurant-map>
@@ -6,8 +7,8 @@
     <restaurant-plat :cuisine="cuisine"></restaurant-plat>
   </div>
 </template>
-
 <script>
+
 import RestaurantMap from "./RestaurantMap.vue";
 import RestaurantEvaluation from "./RestaurantEvaluation.vue";
 import RestaurantPlat from "./RestaurantPlat.vue";
@@ -46,6 +47,7 @@ export default {
         this.$route.params.id
     );
     this.getDataFromServer();
+
   },
   methods: {
     getDataFromServer() {

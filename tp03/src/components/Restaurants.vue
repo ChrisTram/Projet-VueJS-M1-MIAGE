@@ -49,9 +49,11 @@
         <md-table-row slot="md-table-row" slot-scope="{ item }">
           <md-table-cell md-label="Name" md-sort-by="name">{{ item.name }}</md-table-cell>
           <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
+
           <md-table-cell md-label="Details">
             <router-link v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
           </md-table-cell>
+
         </md-table-row>
       </md-table>
     </div>
@@ -72,8 +74,10 @@ export default {
       pagesize: 10,
       nomRecherche: "",
       apiURL: "http://localhost:8081/api/restaurants",
+
       nbPagesDeResultats: 0,
       restaurant: {}
+
     };
   },
   props: {

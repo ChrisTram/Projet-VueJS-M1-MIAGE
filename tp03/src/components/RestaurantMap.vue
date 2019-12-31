@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "restaurant-map",
+  name: "RestaurantMap",
   props: {
     coords: Array,
     borough: String,
