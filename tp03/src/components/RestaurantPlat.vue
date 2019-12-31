@@ -1,90 +1,6 @@
 <template>
   <div>
-    <h1>Menu {{ cuisine }}</h1>
-    <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
-      <tbody>
-        <tr>
-          <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <h1>
-      <b>Menu Classique</b>
-    </h1>
-    <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
-      <tbody>
-        <tr>
-          <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <br />
-    <h1>Menu Alternatif</h1>
-    <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
-      <tbody>
-        <tr>
-          <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
-          <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <restaurant-menu :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
     <br />
     <h1>{{ cuisine }}</h1>
     <h1>HORS D'OEUVRES</h1>
@@ -152,9 +68,12 @@
 
 <script>
 import data from "@/data/plats";
+import RestaurantMenu from "./RestaurantMenu";
 export default {
   name: "restaurant-plat",
-  components: {},
+  components: {
+    RestaurantMenu
+  },
   props: {
     cuisine: String
   },
@@ -165,7 +84,6 @@ export default {
         this.plats = this.data.data;
         this.randomPlats = this.selectRandomPlats(this.plats, 10);
         this.associateRandPhotoNumber(this.randomPlats, 10);
-        this.menus = this.createMenus(this.randomPlats, 3);
       }
     }
   },
@@ -181,23 +99,6 @@ export default {
     console.log("AVANT AFFICHAGE PLAT!");
   },
   methods: {
-    createMenus(obj, n) {
-      let menus = [];
-      for (let i = 0; i < n; i++) {
-        let menu = { horsdoeuvres: {}, plats: {}, desserts: {} };
-        let arrLen = obj.horsdoeuvres.length;
-        let randNum = Array.from(Array(arrLen), (e, i) => i).slice(0, 3);
-        let hd = [...randNum].map(i => obj.horsdoeuvres[randNum[i]]);
-        let plats = [...randNum].map(i => obj.plats[randNum[i]]);
-        let desserts = [...randNum].map(i => obj.desserts[randNum[i]]);
-        menu.horsdoeuvres = hd;
-        menu.plats = plats;
-        menu.desserts = desserts;
-        menus.push(menu);
-      }
-      console.log(menus);
-      return menus;
-    },
     selectRandomPlats(tab, n) {
       let shuffledPlats = this.shuffle(tab);
       let randomPlats = {
@@ -241,13 +142,9 @@ export default {
       let randDesserts = this.shuffle(
         Array.from(Array(n), (e, i) => i + 2 * n + 1)
       );
-      for (let i = 0; i < randHD.length; i++) {
+      for (let i = 0; i < n; i++) {
         obj.horsdoeuvres[i][3] = randHD[i];
-      }
-      for (let i = 0; i < randPlats.length; i++) {
         obj.plats[i][3] = randPlats[i];
-      }
-      for (let i = 0; i < randDesserts.length; i++) {
         obj.desserts[i][3] = randDesserts[i];
       }
     }
