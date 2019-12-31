@@ -15,7 +15,7 @@
         <md-table-cell md-label="Prix">{{ p[4] }}</md-table-cell>
         <md-table-cell>{{ p[2] }}</md-table-cell>
         <md-table-cell>
-          <img width="400" heigh="200" :src="createURL(p[3])" />
+          <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
       </md-table-row>
     </md-table>
@@ -36,7 +36,7 @@
         <md-table-cell>{{ p[4] }}</md-table-cell>
         <md-table-cell>{{ p[2] }}</md-table-cell>
         <md-table-cell>
-          <img width="400" heigh="200" :src="createURL(p[3])" />
+          <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
       </md-table-row>
     </md-table>
@@ -56,7 +56,7 @@
         <md-table-cell>{{ p[4] }}</md-table-cell>
         <md-table-cell>{{ p[2] }}</md-table-cell>
         <md-table-cell>
-          <img width="400" heigh="200" :src="createURL(p[3])" />
+          <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
       </md-table-row>
     </md-table>

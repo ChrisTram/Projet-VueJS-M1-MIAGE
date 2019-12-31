@@ -5,7 +5,7 @@
     <restaurant-map v-show="toggleMap" :borough="borough" :address="address"></restaurant-map>
     <h1 @click="toggleEval = !toggleEval">Nos évaluations</h1>
     <restaurant-evaluation v-show="toggleEval" :evals="grades"></restaurant-evaluation>
-    <h1 @click="togglePlat = !togglePlat">Nos Plats</h1>
+    <h1 @click="togglePlat = !togglePlat">Nos plats</h1>
     <restaurant-plat v-show="togglePlat" :cuisine="cuisine"></restaurant-plat>
   </div>
 </template>

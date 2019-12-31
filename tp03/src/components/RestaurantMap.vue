@@ -1,7 +1,7 @@
 <template>
   <div>
-    <h2>{{ borough }}</h2>
-    <h2>{{ address.building }} {{ address.street }} {{ address.zipcode }}</h2>
+    <h2>New York City</h2>
+    <h2>{{ address.building }} {{ address.street }} {{ address.zipcode }} {{ borough }}</h2>
     <div class="mapouter">
       <div v-html="url" class="gmap_canvas" @scroll="zooming"></div>
     </div>
