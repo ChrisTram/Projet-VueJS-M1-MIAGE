@@ -1,127 +1,175 @@
 <template>
-  <div style="margin-left:auto;margin-right:auto; width:40%;">
-    <h1>Menu {{ cuisine }}</h1>
-    <md-table md-card>
-      <md-table-row></md-table-row>
-      <tbody>
-        <md-table-row>
-          <md-table-head>Hors d'Oeuvres</md-table-head>
-
-        </md-table-row>
-        
-        <md-table-row v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Plats</md-table-head>
-
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Desserts</md-table-head>
-
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Prix Total</md-table-head>
-
-        </md-table-row>
-        <md-table-row>
-
-           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
-        </md-table-row>
+  <div>
 
 
-      </tbody>
-    </md-table>
-    <br />
-    <h1>
-      <md-table-head>Menu Classique</md-table-head>
-    </h1>
-    <md-table md-card>
-      <md-table-row></md-table-row>
-      <tbody>
-        <md-table-row>
-          <md-table-head>Hors d'Oeuvres</md-table-head>
+          <!-- PREMIER MENU -->
+      <div class="viewport">
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Plats</md-table-head>
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">Menu {{ cuisine }}</span>
+      </md-toolbar>
+            <md-list class="md-double-line">
+        <md-subheader>Hors d'oeuvres</md-subheader>
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Desserts</md-table-head>
+        <md-list-item v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant</md-icon>
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
 
-        </md-table-row>
-                <md-table-row>
-          <md-table-head>Prix Total</md-table-head>
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
 
-        </md-table-row>
-        <md-table-row>
 
-           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
-        </md-table-row>
-      </tbody>
-    </md-table>
-    <br />
-    <h1>Menu Alternatif</h1>
-    <md-table md-card>
-      <md-table-row></md-table-row>
-      <tbody>
-        <md-table-row>
-          <md-table-head>Hors d'Oeuvres</md-table-head>
+        <md-divider></md-divider>
+        <md-subheader>Plat</md-subheader>
+        <md-list-item v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant_menu</md-icon>
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Plats</md-table-head>
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-        <md-table-row>
-          <md-table-head>Desserts</md-table-head>
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader>Dessert</md-subheader>
+<md-list-item v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">ac_unit</md-icon>
 
-        </md-table-row>
-        <md-table-row v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
-          <md-table-cell>{{ m[0] }}</md-table-cell>
-           
-        </md-table-row>
-                <md-table-row>
-          <md-table-head>Prix Total</md-table-head>
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
 
-        </md-table-row>
-        <md-table-row>
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+                <md-divider></md-divider>
+        <md-subheader>Prix total</md-subheader>
+        {{ getMenuPrice(menus[0]) }}
+      </md-list>
+        </div>
+     <!-- DEUXIEME MENU -->
+     <div class = "viewport">
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">Menu Gourmet</span>
+      </md-toolbar>
+            <md-list class="md-double-line">
+        <md-subheader>Hors d'oeuvres</md-subheader>
 
-           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
-        </md-table-row>
-      </tbody>
-    </md-table>
+        <md-list-item v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+
+
+        <md-divider></md-divider>
+        <md-subheader>Plat</md-subheader>
+        <md-list-item v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant_menu</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader>Dessert</md-subheader>
+<md-list-item v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">ac_unit</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+                <md-divider></md-divider>
+        <md-subheader>Prix total</md-subheader>
+        {{ getMenuPrice(menus[1]) }}
+      </md-list>
   </div>
+ <!-- DEUXIEME MENU -->
+     <div class = "viewport">
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">Menu Alternatif</span>
+      </md-toolbar>
+            <md-list class="md-double-line">
+        <md-subheader>Hors d'oeuvres</md-subheader>
+
+        <md-list-item v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+
+
+        <md-divider></md-divider>
+        <md-subheader>Plat</md-subheader>
+        <md-list-item v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">restaurant_menu</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-subheader>Dessert</md-subheader>
+<md-list-item v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
+          <md-icon class="md-primary">ac_unit</md-icon>
+
+          <div class="md-list-item-text">
+            <span>{{ m[0] }}</span>
+              <span>Délicieux !</span>
+          </div>
+
+          <md-button class="md-icon-button md-list-action">
+            {{ m[4] }}
+          </md-button>
+        </md-list-item>
+                <md-divider></md-divider>
+        <md-subheader>Prix total</md-subheader>
+        {{ getMenuPrice(menus[2]) }}
+      </md-list>
+  </div>
+  </div>
+
 </template>
 
 
@@ -146,10 +194,14 @@ export default {
       for (let i = 0; i < n; i++) {
         let menu = { horsdoeuvres: {}, plats: {}, desserts: {} };
         let arrLen = obj.horsdoeuvres.length;
-        let randNum = Array.from(Array(arrLen), (e, i) => i).slice(0, 3);
-        let hd = [...randNum].map(i => obj.horsdoeuvres[randNum[i]]);
-        let plats = [...randNum].map(i => obj.plats[randNum[i]]);
-        let desserts = [...randNum].map(i => obj.desserts[randNum[i]]);
+        let randNum = this.shuffle(Array.from(Array(arrLen), (e, i) => i));
+        let hd = [...randNum.slice(0, 3)].map(
+          i => obj.horsdoeuvres[randNum[i]]
+        );
+        let plats = [...randNum.slice(0, 3)].map(i => obj.plats[randNum[i]]);
+        let desserts = [...randNum.slice(0, 3)].map(
+          i => obj.desserts[randNum[i]]
+        );
         menu.horsdoeuvres = hd;
         menu.plats = plats;
         menu.desserts = desserts;
@@ -171,15 +223,27 @@ export default {
         0
       );
       let total = totalHD + totalPlats + totalDesserts;
-      return total - (total * 10) / 100 + "€";
+      return (total - (total * 10) / 100).toFixed(2) + "€";
+    },
+    huffle(tab) {
+      for (let i = 0; i < tab.length - 1; i++) {
+        let j = i + Math.floor(Math.random() * (tab.length - i));
+        [tab[i], tab[j]] = [tab[j], tab[i]];
+      }
+      return tab;
     }
   }
 };
 </script>
 
 <style scoped>
-.md-table {
-
-    display:inline-block;
-    }
+  .viewport {
+    width: 320px;
+    max-width: 100%;
+    display: inline-block;
+    vertical-align: top;
+    overflow: auto;
+    border: 1px solid rgba(#000, .12);
+    margin-right: 2%;
+  }
 </style>
