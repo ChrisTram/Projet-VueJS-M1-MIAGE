@@ -228,9 +228,7 @@ export default {
     shuffle(tab) {
       for (let i = 0; i < tab.length - 1; i++) {
         let j = i + Math.floor(Math.random() * (tab.length - i));
-        let temp = tab[j];
-        tab[j] = tab[i];
-        tab[i] = temp;
+        [tab[i], tab[j]] = [tab[j], tab[i]];
       }
       return tab;
     },
