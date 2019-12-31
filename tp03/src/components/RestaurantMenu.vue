@@ -15,8 +15,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
 
         <md-divider></md-divider>
@@ -28,8 +27,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
@@ -40,8 +38,6 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
@@ -63,8 +59,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
 
         <md-divider></md-divider>
@@ -76,8 +71,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
@@ -88,8 +82,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
@@ -111,8 +104,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
 
         <md-divider></md-divider>
@@ -124,8 +116,7 @@
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
@@ -137,7 +128,7 @@
             <span>Délicieux !</span>
           </div>
 
-          <md-button class="md-icon-button md-list-action">{{ m[4] }}</md-button>
+          <input type="checkbox" id="checkbox" v-model="checked" />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
@@ -162,6 +153,11 @@ export default {
         this.menus = this.createMenus(this.plats, 3);
       }
     }
+  },
+  data() {
+    return {
+      checkBoxes: []
+    };
   },
   methods: {
     createMenus(obj, n) {
