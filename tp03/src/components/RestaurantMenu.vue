@@ -1,88 +1,89 @@
 <template>
-  <div>
+  <div style="margin-left:auto;margin-right:auto; width:40%;">
     <h1>Menu {{ cuisine }}</h1>
-    <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
+    <md-table md-sort="name" md-sort-order="asc" md-card>
+      <md-table-row></md-table-row>
       <tbody>
-        <tr>
+        <md-table-row>
           <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        
+        <md-table-row v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
       </tbody>
-    </table>
+    </md-table>
     <br />
     <h1>
       <b>Menu Classique</b>
     </h1>
     <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
+      <md-table-row></md-table-row>
       <tbody>
-        <tr>
+        <md-table-row>
           <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
       </tbody>
     </table>
     <br />
     <h1>Menu Alternatif</h1>
     <table style="margin-left:auto;margin-right:auto;">
-      <tr></tr>
+      <md-table-row></md-table-row>
       <tbody>
-        <tr>
+        <md-table-row>
           <b>Hors d'Oeuvres</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Plats</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
-        <tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
+        <md-table-row>
           <b>Desserts</b>
-        </tr>
-        <tr v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
-          <td>{{ m[0] }}</td>
-          <td>{{ m[4] }}</td>
-        </tr>
+        </md-table-row>
+        <md-table-row v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
+          <md-table-cell>{{ m[0] }}</md-table-cell>
+          <md-table-cell>{{ m[4] }}</md-table-cell>
+        </md-table-row>
       </tbody>
     </table>
   </div>
@@ -123,3 +124,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.md-table {
+
+    display:inline-block;
+    }
+</style>
