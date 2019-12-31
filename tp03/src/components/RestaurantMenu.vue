@@ -6,32 +6,39 @@
       <tbody>
         <md-table-row>
           <md-table-head>Hors d'Oeuvres</md-table-head>
-                    <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         
         <md-table-row v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Plats</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Desserts</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
+        <md-table-row>
+          <md-table-head>Prix Total</md-table-head>
+
+        </md-table-row>
+        <md-table-row>
+
+           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
+        </md-table-row>
+
+
       </tbody>
     </md-table>
     <br />
@@ -43,30 +50,35 @@
       <tbody>
         <md-table-row>
           <md-table-head>Hors d'Oeuvres</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Plats</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Desserts</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-            <md-table-cell>{{ m[4] }}</md-table-cell>
+
+        </md-table-row>
+                <md-table-row>
+          <md-table-head>Prix Total</md-table-head>
+
+        </md-table-row>
+        <md-table-row>
+
+           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
         </md-table-row>
       </tbody>
     </md-table>
@@ -77,30 +89,35 @@
       <tbody>
         <md-table-row>
           <md-table-head>Hors d'Oeuvres</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Plats</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
         </md-table-row>
         <md-table-row>
           <md-table-head>Desserts</md-table-head>
-                              <md-table-head>Prix</md-table-head>
 
         </md-table-row>
         <md-table-row v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
           <md-table-cell>{{ m[0] }}</md-table-cell>
-          <md-table-cell>{{ m[4] }}</md-table-cell>
+           
+        </md-table-row>
+                <md-table-row>
+          <md-table-head>Prix Total</md-table-head>
+
+        </md-table-row>
+        <md-table-row>
+
+           <md-table-cell>{{ getMenuPrice(menus[2]) }}</md-table-cell>
         </md-table-row>
       </tbody>
     </md-table>
@@ -138,6 +155,22 @@ export default {
         menus.push(menu);
       }
       return menus;
+    },
+    getMenuPrice(menu) {
+      let totalHD = menu.horsdoeuvres.reduce(
+        (e, i) => e + parseFloat(i[4].slice(0, -1).replace(",", ".")),
+        0
+      );
+      let totalPlats = menu.plats.reduce(
+        (e, i) => e + parseFloat(i[4].slice(0, -1).replace(",", ".")),
+        0
+      );
+      let totalDesserts = menu.desserts.reduce(
+        (e, i) => e + parseFloat(i[4].slice(0, -1).replace(",", ".")),
+        0
+      );
+      let total = totalHD + totalPlats + totalDesserts;
+      return total - (total * 10) / 100 + "€";
     }
   }
 };
