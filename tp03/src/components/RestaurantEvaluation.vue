@@ -1,18 +1,24 @@
 <template>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Grade</th>
-      <th>Note</th>
-    </tr>
-    <tbody>
-      <tr v-for="(e, index) in evals" :key="index">
-        <td>{{ e.date | datify }}</td>
-        <td>{{ e.grade }}</td>
-        <td>{{ e.score }}</td>
+
+  <div>
+    <h1>La presse nous recommande !</h1>
+
+    <h1></h1>
+    <table style="margin-left:auto;margin-right:auto;">
+      <tr>
+        <th>Date</th>
+        <th>Grade</th>
+        <th>Note</th>
       </tr>
-    </tbody>
-  </table>
+      <tbody>
+        <tr v-for="(e, index) in evals" :key="index">
+          <td>{{ e.date | datify }}</td>
+          <td>{{ e.grade }}</td>
+          <td>{{ e.score }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </template>
 
 <script>
@@ -24,9 +30,19 @@ export default {
   data: function() {
     return {};
   },
-  methods: {
+
+  mounted() {
+    console.log("AVANT AFFICHAGE EVALUATION !");
+  },
+  filters: {
     datify(value) {
-      return value.slice(0, 8);
+      let re = new RegExp("([\\d]{2})-([\\d]{2})-([\\d]{2})");
+      let corresp = re.exec(value);
+      let day = corresp[3];
+      let month = corresp[2];
+      let year = corresp[1];
+      return `${day}/${month}/${year}`;
+
     }
   }
 };

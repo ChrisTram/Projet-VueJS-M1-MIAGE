@@ -1,47 +1,71 @@
 <template>
-  <div>
-    <h1>Detail du restaurant d'id = {{id}}</h1>
-    <h1></h1>
-    <RestaurantMap :coords="coords"></RestaurantMap>
-    <restaurant-evaluation :evals="evals"></restaurant-evaluation>
+
+  <div v-if="typeof this.restaurant.address !== 'undefined'">
+    <h1>Bienvenue chez {{restaurant.name}}</h1>
+    <restaurant-map :borough="borough" :address="address"></restaurant-map>
+    <restaurant-evaluation :evals="grades"></restaurant-evaluation>
+    <restaurant-plat :cuisine="cuisine"></restaurant-plat>
   </div>
 </template>
 <script>
-import RestaurantMap from "";
+
+import RestaurantMap from "./RestaurantMap.vue";
+import RestaurantEvaluation from "./RestaurantEvaluation.vue";
+import RestaurantPlat from "./RestaurantPlat.vue";
 export default {
-  name: "RestaurantDetail",
+  name: "restaurant-detail",
   components: {
-    RestaurantMap
-  },
-  props: {
-    restaurant: Object
+    RestaurantMap,
+    RestaurantEvaluation,
+    RestaurantPlat
   },
   computed: {
-    // computed data, permet de définir des data "calculées"
-    id: function() {
-      // on y accèdera par {{id}} dans le template, et par this.id
-      // dans le code
-      return this.$route.params.id;
+    grades() {
+      return this.restaurant.grades;
+    },
+    cuisine() {
+      return this.restaurant.cuisine;
+    },
+    borough() {
+      return this.restaurant.borough;
+    },
+    address() {
+      return this.restaurant.address;
     }
   },
-  data: function() {
+  props: {},
+  data() {
     return {
-      coords: [],
-      evals: []
+      apiURL: "http://localhost:8081/api/restaurants",
+      restaurant: {}
     };
   },
   mounted() {
-    console.log("AVANT AFFICHAGE !");
+    console.log("AVANT AFFICHAGE DETAIL!");
     console.log(
-      "On va chercher les détails du restaurant id = " + this.$route.params.id
+      "On va chercher les détails du restaurant nommé = " +
+        this.$route.params.id
     );
-    console.log("ID = " + this.id);
-    this.coords = this.restaurant.grade;
-    this.evals = this.restaurant.evals;
+    this.getDataFromServer();
+
   },
   methods: {
     getDataFromServer() {
-      // ici on fait un fetch pour récupérer le détail du restaurant
+      // ici on fait un fetch pour récupérer détails du serveur
+      let url = this.apiURL + "/" + this.$route.params.id;
+
+      fetch(url)
+        .then(reponseJSON => {
+          return reponseJSON.json();
+        })
+        .then(reponseJS => {
+          // ici on a la réponse sous la forme
+          // d'un objet JS
+          console.log("fin du fetch");
+          console.log(url);
+          console.log(reponseJS.restaurant);
+          this.restaurant = reponseJS.restaurant;
+        });
     }
   }
 };

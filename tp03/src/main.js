@@ -8,7 +8,7 @@ import Restaurants from "./components/Restaurants.vue";
 import RestaurantDetail from "./components/RestaurantDetail.vue";
 import RestaurantMap from "./components/RestaurantMap.vue";
 import RestaurantEvaluation from "./components/RestaurantEvaluation.vue";
-import HelloWorld from "./components/HelloWorld.vue";
+
 
 // configs...
 Vue.use(VueMaterial);
@@ -19,26 +19,25 @@ Vue.use(VueRouter);
 const router = new VueRouter({
   routes: [
     {
-      path: "/",
-      component: HelloWorld,
-      props: {
-        msg: " site des restaurants"
-      }
-    },
-    {
+
       path: "/restaurants",
+      name: "restaurants",
       component: Restaurants
     },
     {
-      path: "/restaurant/:id",
+      path: "/restaurant/details/:id",
+      name: "restaurantDetail",
       component: RestaurantDetail
     },
     {
-      path: "/restaurant/:id/map",
+      path: "/restaurant/details/map",
+      name: "restaurantMap",
       component: RestaurantMap
     },
     {
-      path: "/restaurant/:id/eval",
+      path: "/restaurant/details/eval",
+      name: "restaurantEvaluation",
+
       component: RestaurantEvaluation
     }
   ],
