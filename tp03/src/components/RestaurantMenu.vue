@@ -124,6 +124,7 @@
   </div>
 </template>
 
+
 <script>
 export default {
   name: "restaurant-menu",
