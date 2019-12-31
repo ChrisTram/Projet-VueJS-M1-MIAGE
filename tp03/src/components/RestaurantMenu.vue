@@ -225,7 +225,7 @@ export default {
       let total = totalHD + totalPlats + totalDesserts;
       return (total - (total * 10) / 100).toFixed(2) + "€";
     },
-    huffle(tab) {
+    shuffle(tab) {
       for (let i = 0; i < tab.length - 1; i++) {
         let j = i + Math.floor(Math.random() * (tab.length - i));
         [tab[i], tab[j]] = [tab[j], tab[i]];
