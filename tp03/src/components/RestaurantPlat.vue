@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h2 @click="toggleMenu = !toggleMenu">Nos Menus</h2>
-    <restaurant-menu v-show="toggleMenu" :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
-    <h2 @click="togglePlats = !togglePlats">Carte</h2>
-    <restaurant-plats v-show="togglePlats" :randomPlats="randomPlats"></restaurant-plats>
+    <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
+    <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
+    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
+    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats"></restaurant-plats>
   </div>
 </template>
 

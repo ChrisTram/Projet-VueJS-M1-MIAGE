@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-link to="/restaurants">[Restaurants]</router-link>
+        <md-button class="md-raised md-primary" >
+
+    <router-link style="color:white" to="/restaurants">Restaurants</router-link>
+        </md-button>
     <router-view></router-view>
   </div>
 </template>

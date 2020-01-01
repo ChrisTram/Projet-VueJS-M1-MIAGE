@@ -51,7 +51,10 @@
           <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
 
           <md-table-cell md-label="Details">
-            <router-link v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
+            <md-button
+        class="md-raised md-primary">
+            <router-link style="color:white" v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
+            </md-button>
           </md-table-cell>
 
         </md-table-row>

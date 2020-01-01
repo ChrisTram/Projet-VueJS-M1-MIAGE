@@ -1,14 +1,14 @@
 <template>
   <div>
     <!-- PREMIER MENU -->
-    <div class="viewport">
-      <md-toolbar :md-elevation="1">
+    <div  v-for="(menu, index) in menus" :key="`${index}-${menu[0]}`" class="viewport md-elevation-9">
+            <md-toolbar :md-elevation="1">
         <span class="md-title">Menu {{ cuisine }}</span>
       </md-toolbar>
       <md-list class="md-double-line">
         <md-subheader>Hors d'oeuvres</md-subheader>
 
-        <md-list-item v-for="(m, index) in menus[0].horsdoeuvres" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menu.horsdoeuvres" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">restaurant</md-icon>
 
           <div class="md-list-item-text">
@@ -20,7 +20,7 @@
 
         <md-divider></md-divider>
         <md-subheader>Plat</md-subheader>
-        <md-list-item v-for="(m, index) in menus[0].plats" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menu.plats" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">restaurant_menu</md-icon>
 
           <div class="md-list-item-text">
@@ -31,51 +31,7 @@
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
-        <md-list-item v-for="(m, index) in menus[0].desserts" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">ac_unit</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Prix total</md-subheader>
-        {{ getMenuPrice(menus[0]) }}
-      </md-list>
-    </div>
-    <!-- DEUXIEME MENU -->
-    <div class="viewport">
-      <md-toolbar :md-elevation="1">
-        <span class="md-title">Menu Gourmet</span>
-      </md-toolbar>
-      <md-list class="md-double-line">
-        <md-subheader>Hors d'oeuvres</md-subheader>
-
-        <md-list-item v-for="(m, index) in menus[1].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">restaurant</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
-        </md-list-item>
-
-        <md-divider></md-divider>
-        <md-subheader>Plat</md-subheader>
-        <md-list-item v-for="(m, index) in menus[1].plats" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">restaurant_menu</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Dessert</md-subheader>
-        <md-list-item v-for="(m, index) in menus[1].desserts" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, index) in menu.desserts" :key="`${index}-${m[0]}`">
           <md-icon class="md-primary">ac_unit</md-icon>
 
           <div class="md-list-item-text">
@@ -86,56 +42,10 @@
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
-        {{ getMenuPrice(menus[1]) }}
+        {{ getMenuPrice(menu) }}
       </md-list>
     </div>
-    <!-- DEUXIEME MENU -->
-    <div class="viewport">
-      <md-toolbar :md-elevation="1">
-        <span class="md-title">Menu Alternatif</span>
-      </md-toolbar>
-      <md-list class="md-double-line">
-        <md-subheader>Hors d'oeuvres</md-subheader>
-
-        <md-list-item v-for="(m, index) in menus[2].horsdoeuvres" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">restaurant</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
-        </md-list-item>
-
-        <md-divider></md-divider>
-        <md-subheader>Plat</md-subheader>
-        <md-list-item v-for="(m, index) in menus[2].plats" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">restaurant_menu</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Dessert</md-subheader>
-        <md-list-item v-for="(m, index) in menus[2].desserts" :key="`${index}-${m[0]}`">
-          <md-icon class="md-primary">ac_unit</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-
-          <input type="checkbox" id="checkbox" v-model="checked" />
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Prix total</md-subheader>
-        {{ getMenuPrice(menus[2]) }}
-      </md-list>
     </div>
-  </div>
 </template>
 
 
