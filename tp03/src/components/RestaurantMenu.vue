@@ -1,51 +1,76 @@
 <template>
   <div>
     <!-- PREMIER MENU -->
-    <div  v-for="(menu, index) in menus" :key="`${index}-${menu[0]}`" class="viewport md-elevation-9">
-            <md-toolbar :md-elevation="1">
-        <span class="md-title">Menu {{ cuisine }}</span>
+    <div
+      v-for="(menu, index) in menus"
+      :key="`${index}-${menu[0]}`"
+      class="viewport md-elevation-9"
+    >
+      <md-toolbar :md-elevation="1">
+        <span class="md-title">Menu {{ cuisines[index] }}</span>
       </md-toolbar>
       <md-list class="md-double-line">
         <md-subheader>Hors d'oeuvres</md-subheader>
 
-        <md-list-item v-for="(m, index) in menu.horsdoeuvres" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, i) in menu.horsdoeuvres" :key="`${i}-${m[0]}`">
           <md-icon class="md-primary">restaurant</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
+          <input
+            type="radio"
+            :id="`${index}${i}`"
+            :value="`${index}${i}`"
+            v-model="checked.horsdoeuvres"
+            @change="checking(`${index}${i}`)"
+          />
         </md-list-item>
 
         <md-divider></md-divider>
         <md-subheader>Plat</md-subheader>
-        <md-list-item v-for="(m, index) in menu.plats" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, i) in menu.plats" :key="`${i}-${m[0]}`">
           <md-icon class="md-primary">restaurant_menu</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
+          <input
+            type="radio"
+            :id="`${index}${i}`"
+            :value="`${index}${i}`"
+            v-model="checked.plats"
+            @change="checking(`${index}${i}`)"
+          />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Dessert</md-subheader>
-        <md-list-item v-for="(m, index) in menu.desserts" :key="`${index}-${m[0]}`">
+        <md-list-item v-for="(m, i) in menu.desserts" :key="`${i}-${m[0]}`">
           <md-icon class="md-primary">ac_unit</md-icon>
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
             <span>Délicieux !</span>
           </div>
-          <input type="checkbox" id="checkbox" v-model="checked" />
+          <input
+            type="radio"
+            :id="`${index}${i}`"
+            :value="`${index}${i}`"
+            v-model="checked.desserts"
+            @change="checking(`${index}${i}`)"
+          />
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menu) }}
+        <md-button @click="addMenuToCart(menu, index)">
+          <md-icon>shopping_cart</md-icon>
+        </md-button>
       </md-list>
     </div>
-    </div>
+  </div>
 </template>
 
 
@@ -61,12 +86,16 @@ export default {
       immediate: true,
       handler() {
         this.menus = this.createMenus(this.plats, 3);
+        this.cuisines = [this.cuisine, "Authentique", "Classique"];
       }
     }
   },
   data() {
     return {
-      checkBoxes: []
+      value: "",
+      cuisines: [],
+      toCart: [],
+      checked: { horsdoeuvres: [], plats: [], desserts: [] }
     };
   },
   methods: {
@@ -103,7 +132,7 @@ export default {
         (e, i) => e + parseFloat(i[4].slice(0, -1).replace(",", ".")),
         0
       );
-      let total = totalHD + totalPlats + totalDesserts;
+      let total = (totalHD + totalPlats + totalDesserts) / 3;
       return (total - (total * 10) / 100).toFixed(2) + "€";
     },
     shuffle(tab) {
@@ -112,6 +141,43 @@ export default {
         [tab[i], tab[j]] = [tab[j], tab[i]];
       }
       return tab;
+    },
+    checking() {
+      console.log(this.checked);
+      console.log(this.menus[0].desserts[0][4]);
+      if (this.checked.horsdoeuvres.length & this.checked.desserts.length)
+        if (this.checked.horsdoeuvres[0] != this.checked.desserts[0]) {
+          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
+        }
+      if (this.checked.horsdoeuvres.length & this.checked.plats.length)
+        if (this.checked.horsdoeuvres[0] != this.checked.plats[0]) {
+          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
+        }
+      if (this.checked.desserts.length & this.checked.plats.length)
+        if (this.checked.desserts[0] != this.checked.plats[0]) {
+          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
+        }
+    },
+    addMenuToCart(menu, index) {
+      console.log("adding to cart");
+      console.log(this.checked.horsdoeuvres);
+      console.log(this.checked.desserts);
+      console.log(this.checked.plats);
+      if (
+        this.checked.horsdoeuvres.length &&
+        this.checked.plats.length &&
+        this.checked.desserts.length
+      ) {
+        let addedMenuToCart = {
+          name: this.cuisines[index],
+          horsdoeuvre: [menu.horsdoeuvres[this.checked.horsdoeuvres[1]]],
+          dessert: [menu.desserts[this.checked.desserts[1]]],
+          plat: [menu.plats[this.checked.plats[1]]],
+          prix: this.getMenuPrice(menu)
+        };
+        this.toCart.push(addedMenuToCart);
+        console.log(this.toCart);
+      }
     }
   }
 };
