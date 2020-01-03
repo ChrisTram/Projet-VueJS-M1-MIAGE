@@ -72,29 +72,46 @@
           <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
         <md-table-cell>
-          <md-button @click="addPlatToCart(p, index)">
+          <md-button @click="addPlatToCart(p)">
             <md-icon>shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
     </md-table>
+    <restaurant-panier :toCartPlats="toCart"></restaurant-panier>
   </div>
 </template>
 
 <script>
+import RestaurantPanier from "./RestaurantPanier";
 export default {
   name: "restaurant-plats",
+  components: {
+    RestaurantPanier
+  },
   props: {
     randomPlats: Object
   },
+  watch: {
+    cart: {
+      immediate: true,
+      handler() {
+        this.toCart = [];
+      }
+    }
+  },
   data() {
-    return {};
+    return {
+      toCart: []
+    };
   },
   methods: {
     createURL(num) {
       return `https://www.restaurants.christramier.fr/resources/${num}.jpg`;
     },
-    addPlatToCart() {
+    addPlatToCart(p) {
+      this.toCart.push(p);
+      console.log(this.toCart);
       console.log("adding plat to cart");
     }
   }

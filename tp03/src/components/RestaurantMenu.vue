@@ -70,13 +70,18 @@
         </md-button>
       </md-list>
     </div>
+    <restaurant-panier :toCartMenus="toCart"></restaurant-panier>
   </div>
 </template>
 
 
 <script>
+import RestaurantPanier from "./RestaurantPanier";
 export default {
   name: "restaurant-menu",
+  components: {
+    RestaurantPanier
+  },
   props: {
     plats: Object,
     cuisine: String
