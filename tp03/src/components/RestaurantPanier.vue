@@ -18,8 +18,9 @@ export default {
   },
   watch: {
     total: {
+      immediate: true,
       handler() {
-        this.updateCart();
+        this.toCartMenus = [];
       }
     }
   },
@@ -43,7 +44,7 @@ export default {
     },
     updateCartMenus() {
       console.log("Update");
-      let totalMenus = this.toCarteMenus.reduce((a, b) => a.prix + b.prix, 0);
+      let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
       this.toCart.totalMenus += totalMenus;
       this.toCart.menus = this.toCartMenus;
     },
