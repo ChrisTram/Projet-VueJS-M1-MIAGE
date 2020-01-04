@@ -19,7 +19,7 @@ export default {
   watch: {
     total: {
       handler() {
-        //this.updateCart();
+        this.updateCart();
       }
     }
   },
@@ -45,13 +45,13 @@ export default {
       console.log("Update");
       let totalMenus = this.toCarteMenus.reduce((a, b) => a.prix + b.prix, 0);
       this.toCart.totalMenus += totalMenus;
-      this.toCart.menus.push(this.toCartMenus);
+      this.toCart.menus = this.toCartMenus;
     },
     updateCartPlats() {
       console.log("Update");
       let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
       this.toCart.totalPlats += totalPlats;
-      this.toCart.plats.push(this.toCartPlats);
+      this.toCart.plats = this.toCartPlats;
     },
     showCard() {
       console.log(this.toCart);
