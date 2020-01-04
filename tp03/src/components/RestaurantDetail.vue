@@ -1,18 +1,10 @@
 <template>
   <div v-if="typeof this.restaurant.address !== 'undefined'">
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
-    <md-tabs md-sync-route>
-      <md-tab id="tab-findUs" md-label="Nous trouver" @click="toggleMap = !toggleMap" exact></md-tab>
-      <md-button class="md-raised md-primary" @click="toggleMap = !toggleMap">Nous trouver</md-button>
-      <md-button class="md-raised md-primary" @click="toggleEval = !toggleEval">Nos évaluations</md-button>
-      <md-button class="md-raised md-primary" @click="togglePlat = !togglePlat">Nos plats</md-button>
-      <md-tab id="tab-plats" md-label="Nos plats">
-        <md-list>
-          <md-list-item to="/restaurant/details/menus">Nos menus</md-list-item>
-          <md-list-item to="/restaurant/details/plats">A la carte</md-list-item>
-        </md-list>
-      </md-tab>
-    </md-tabs>
+
+    <md-button class="md-raised md-primary" @click="toggleMap = !toggleMap">Nous trouver</md-button>
+    <md-button class="md-raised md-primary" @click="toggleEval = !toggleEval">Nos évaluations</md-button>
+    <md-button class="md-raised md-primary" @click="togglePlat = !togglePlat">Nos plats</md-button>
     <restaurant-map v-show="toggleMap" :borough="borough" :address="address"></restaurant-map>
     <restaurant-evaluation v-show="toggleEval" :evals="grades"></restaurant-evaluation>
 
