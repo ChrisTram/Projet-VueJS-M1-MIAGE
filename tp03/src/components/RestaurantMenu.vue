@@ -70,7 +70,7 @@
         </md-button>
       </md-list>
     </div>
-    <restaurant-panier :toCartMenus="toCart"></restaurant-panier>
+    <restaurant-panier ref="panier" :toCartMenus="toCart"></restaurant-panier>
   </div>
 </template>
 
@@ -150,7 +150,6 @@ export default {
     },
     checking() {
       console.log(this.checked);
-      console.log(this.menus[0].desserts[0][4]);
       if (this.checked.horsdoeuvres.length & this.checked.desserts.length)
         if (this.checked.horsdoeuvres[0] != this.checked.desserts[0]) {
           this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
@@ -183,6 +182,7 @@ export default {
         };
         this.toCart.push(addedMenuToCart);
         console.log(this.toCart);
+        this.$refs.panier.updateCartMenus();
       }
     }
   }

@@ -1,12 +1,11 @@
 <template>
   <div>
-      <div v-if="typeof this.toCart !== 'undefined'">
-        <h1>Panier</h1>
+    <div v-if="typeof this.toCart !== 'undefined'">
+      <h1>Panier</h1>
       <button v-on:click="showCard()">show Card In RestaurantPanier</button>
 
-    <h1>{{ toCart }}</h1>
-      </div>
-
+      <h1>{{ toCart }}</h1>
+    </div>
   </div>
 </template>
 <script>
@@ -20,7 +19,7 @@ export default {
   watch: {
     total: {
       handler() {
-        this.updateCart();
+        //this.updateCart();
       }
     }
   },
@@ -37,23 +36,22 @@ export default {
   },
   methods: {
     calculTotal() {
-      console.log("CalculTotal")
+      console.log("CalculTotal");
       let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
       let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
       return totalPlats + totalMenus;
     },
-    updateCart() {
+    updateCartMenus() {
       console.log("Update");
-      if (typeof this.toCartPlats != undefined) {
-        let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
-        this.toCart.totalPlats = totalPlats;
-        this.toCart.plats = this.toCartPlats;
-      }
-      if (typeof this.toCartMenus != undefined) {
-        let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
-        this.toCart.totalMenus = totalMenus;
-        this.toCart.menus = this.toCartMenus;
-      }
+      let totalMenus = this.toCarteMenus.reduce((a, b) => a.prix + b.prix, 0);
+      this.toCart.totalMenus += totalMenus;
+      this.toCart.menus.push(this.toCartMenus);
+    },
+    updateCartPlats() {
+      console.log("Update");
+      let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
+      this.toCart.totalPlats += totalPlats;
+      this.toCart.plats.push(this.toCartPlats);
     },
     showCard() {
       console.log(this.toCart);

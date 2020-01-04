@@ -78,7 +78,7 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
-    <restaurant-panier v-show="false" :toCartPlats="toCart"></restaurant-panier>
+    <restaurant-panier ref="panier" v-show="false" :toCartPlats="toCart"></restaurant-panier>
   </div>
 </template>
 
@@ -113,6 +113,7 @@ export default {
       this.toCart.push(p);
       console.log(this.toCart);
       console.log("adding plat to cart");
+      this.$refs.panier.updateCartPlats();
     }
   }
 };
