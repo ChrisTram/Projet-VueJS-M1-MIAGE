@@ -1,20 +1,18 @@
 <template>
   <div>
       <div v-if="typeof this.toCart !== 'undefined'">
+        <h1>Panier</h1>
+      <button v-on:click="showCard()">show Card In RestaurantPanier</button>
 
-    <restaurant-render-panier :toCartObj="toCart"></restaurant-render-panier>
-    {{this.toCart}}
+    <h1>{{ toCart }}</h1>
       </div>
 
   </div>
 </template>
 <script>
-import RestaurantRenderPanier from "./RestaurantRenderPanier";
 export default {
   nom: "restaurant-panier",
-  components: {
-    RestaurantRenderPanier
-  },
+
   props: {
     toCartPlats: Array,
     toCartMenus: Array
@@ -56,6 +54,9 @@ export default {
         this.toCart.totalMenus = totalMenus;
         this.toCart.menus = this.toCartMenus;
       }
+    },
+    showCard() {
+      console.log(this.toCart);
     }
   }
 };
