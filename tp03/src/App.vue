@@ -3,9 +3,12 @@
     <md-button class="md-raised md-primary">
       <router-link style="color:white" to="/restaurants">Restaurants</router-link>
     </md-button>
-    <md-button class="md-raised md-primary">
-      <router-link style="color:white" to="/panier">Panier</router-link>
-    </md-button>
+    <md-badge md-content="0" md-position="bottom" md-dense>
+      <md-button class="md-raised md-primary">
+        <md-icon>shopping_cart</md-icon>
+        <router-link style="color:white" to="/panier"></router-link>
+      </md-button>
+    </md-badge>
     <router-view></router-view>
   </div>
 </template>
