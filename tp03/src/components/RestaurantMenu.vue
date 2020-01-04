@@ -70,7 +70,7 @@
         </md-button>
       </md-list>
     </div>
-    <restaurant-panier :toCartMenus="toCart"></restaurant-panier>
+    <restaurant-panier v-show="false" :toCartMenus="toCart"></restaurant-panier>
   </div>
 </template>
 
@@ -90,6 +90,7 @@ export default {
     plats: {
       immediate: true,
       handler() {
+        this.toCart = [];
         this.menus = this.createMenus(this.plats, 3);
         this.cuisines = [this.cuisine, "Authentique", "Classique"];
       }

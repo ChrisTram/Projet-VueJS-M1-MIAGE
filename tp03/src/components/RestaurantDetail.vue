@@ -41,7 +41,7 @@ export default {
     return {
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant: {},
-      togglePlat: false,
+      togglePlat: true,
       toggleMap: false,
       toggleEval: false
     };

@@ -78,7 +78,7 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
-    <restaurant-panier :toCartPlats="toCart"></restaurant-panier>
+    <restaurant-panier v-show="false" :toCartPlats="toCart"></restaurant-panier>
   </div>
 </template>
 
