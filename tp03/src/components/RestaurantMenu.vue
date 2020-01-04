@@ -64,7 +64,7 @@
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
-        {{ getMenuPrice(menu) }}
+        {{ getMenuPrice(menu) + "€" }}
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon>shopping_cart</md-icon>
         </md-button>
@@ -139,7 +139,7 @@ export default {
         0
       );
       let total = (totalHD + totalPlats + totalDesserts) / 3;
-      return (total - (total * 10) / 100).toFixed(2) + "€";
+      return (total - (total * 10) / 100).toFixed(2);
     },
     shuffle(tab) {
       for (let i = 0; i < tab.length - 1; i++) {
@@ -178,7 +178,7 @@ export default {
           horsdoeuvre: [menu.horsdoeuvres[this.checked.horsdoeuvres[1]]],
           dessert: [menu.desserts[this.checked.desserts[1]]],
           plat: [menu.plats[this.checked.plats[1]]],
-          prix: this.getMenuPrice(menu)
+          prix: parseFloat(this.getMenuPrice(menu))
         };
         this.toCart.push(addedMenuToCart);
         console.log(this.toCart);
