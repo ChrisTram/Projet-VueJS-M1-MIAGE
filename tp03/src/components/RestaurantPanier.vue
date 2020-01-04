@@ -1,6 +1,11 @@
 <template>
   <div>
+      <div v-if="typeof this.toCart !== 'undefined'">
+
     <restaurant-render-panier :toCartObj="toCart"></restaurant-render-panier>
+    {{this.toCart}}
+      </div>
+
   </div>
 </template>
 <script>
@@ -34,11 +39,13 @@ export default {
   },
   methods: {
     calculTotal() {
+      console.log("CalculTotal")
       let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
       let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
       return totalPlats + totalMenus;
     },
     updateCart() {
+      console.log("Update");
       if (typeof this.toCartPlats != undefined) {
         let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
         this.toCart.totalPlats = totalPlats;

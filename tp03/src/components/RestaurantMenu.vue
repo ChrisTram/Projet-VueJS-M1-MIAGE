@@ -70,7 +70,7 @@
         </md-button>
       </md-list>
     </div>
-    <restaurant-panier v-show="false" :toCartMenus="toCart"></restaurant-panier>
+    <restaurant-panier :toCartMenus="toCart"></restaurant-panier>
   </div>
 </template>
 
