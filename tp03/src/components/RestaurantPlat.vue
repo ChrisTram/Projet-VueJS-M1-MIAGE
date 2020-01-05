@@ -30,7 +30,7 @@
     ></restaurant-plats>
 
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
-      <restaurant-panier ref="panier"></restaurant-panier>
+      <restaurant-panier @resetBadge="resetBadge" ref="panier"></restaurant-panier>
     </md-drawer>
   </div>
 </template>
