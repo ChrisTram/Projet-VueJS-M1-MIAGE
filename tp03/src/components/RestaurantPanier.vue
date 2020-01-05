@@ -2,94 +2,94 @@
   <div>
     <div v-if="typeof this.toCart !== 'undefined'">
       <h1>Panier</h1>
-<div
-      v-for="(menu, index) in toCart.menus"
-      :key="`${index}-${menu[0]}`"
-      class="viewport md-elevation-9"
-    >
-      <md-toolbar :md-elevation="1">
-        <span class="md-title">Menu</span>
-      </md-toolbar>
-      <md-list class="md-double-line">
-        <md-subheader>Hors d'oeuvres</md-subheader>
+      <div
+        v-for="(menu, index) in toCart.menus"
+        :key="`${index}-${menu[0]}`"
+        class="viewport md-elevation-9"
+      >
+        <md-toolbar :md-elevation="1">
+          <span class="md-title">Menu</span>
+        </md-toolbar>
+        <md-list class="md-double-line">
+          <md-subheader>Hors d'oeuvres</md-subheader>
 
-        <md-list-item>
-          <md-icon class="md-primary">restaurant</md-icon>
+          <md-list-item>
+            <md-icon class="md-primary">restaurant</md-icon>
 
-          <div class="md-list-item-text">
-            <span>{{ menu.horsdoeuvre[0][0] }}</span>
-            <span>Délicieux !</span>
-          </div>
+            <div class="md-list-item-text">
+              <span>{{ menu.horsdoeuvre[0][0] }}</span>
+              <span>Délicieux !</span>
+            </div>
+          </md-list-item>
 
-        </md-list-item>
+          <md-divider></md-divider>
+          <md-subheader>Plat</md-subheader>
+          <md-list-item>
+            <md-icon class="md-primary">restaurant_menu</md-icon>
 
-        <md-divider></md-divider>
-        <md-subheader>Plat</md-subheader>
-        <md-list-item >
-          <md-icon class="md-primary">restaurant_menu</md-icon>
+            <div class="md-list-item-text">
+              <span>{{ menu.plat[0][0] }}</span>
+              <span>Délicieux !</span>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-subheader>Dessert</md-subheader>
+          <md-list-item>
+            <md-icon class="md-primary">ac_unit</md-icon>
 
-          <div class="md-list-item-text">
-            <span>{{ menu.plat[0][0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Dessert</md-subheader>
-        <md-list-item >
-          <md-icon class="md-primary">ac_unit</md-icon>
+            <div class="md-list-item-text">
+              <span>{{ menu.dessert[0][0] }}</span>
+              <span>Délicieux !</span>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-subheader>Prix total</md-subheader>
+          {{ menu.prix + "€"}}
+        </md-list>
+      </div>
+      <div
+        v-for="(plat, index) in toCart.plats"
+        :key="`${index}-${plat[0]}`"
+        class="viewport md-elevation-9"
+      >
+        <md-toolbar :md-elevation="1">
+          <span class="md-title">Plat</span>
+        </md-toolbar>
+        <md-list class="md-double-line">
+          <md-subheader>A la carte</md-subheader>
 
-          <div class="md-list-item-text">
-            <span>{{ menu.dessert[0][0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-        </md-list-item>
-        <md-divider></md-divider>
-        <md-subheader>Prix total</md-subheader>
-        {{ menu.prix}}
-      </md-list>
+          <md-list-item>
+            <md-icon class="md-primary">restaurant</md-icon>
+
+            <div class="md-list-item-text">
+              <span>{{ plat[0] }}</span>
+              <span>Délicieux !</span>
+            </div>
+          </md-list-item>
+
+          <md-divider></md-divider>
+          <md-subheader>Prix</md-subheader>
+
+          <md-list-item>
+            <md-icon class="md-primary">restaurant</md-icon>
+
+            <div class="md-list-item-text">
+              <span>{{ plat[4] }}</span>
+            </div>
+          </md-list-item>
+        </md-list>
+      </div>
+      <div>Total : {{total}}€</div>
+
+      <md-button class="md-dense md-raised md-primary">Passer commande</md-button>
     </div>
-    <div
-      v-for="(plat, index) in toCart.plats"
-      :key="`${index}-${plat[0]}`"
-      class="viewport md-elevation-9"
-    >
-      <md-toolbar :md-elevation="1">
-        <span class="md-title">Plat</span>
-      </md-toolbar>
-      <md-list class="md-double-line">
-        <md-subheader>A la carte</md-subheader>
-
-        <md-list-item>
-          <md-icon class="md-primary">restaurant</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ plat[0] }}</span>
-            <span>Délicieux !</span>
-          </div>
-        </md-list-item>
-
-        <md-divider></md-divider>
-        <md-subheader>Prix</md-subheader>
-
-        <md-list-item>
-          <md-icon class="md-primary">restaurant</md-icon>
-
-          <div class="md-list-item-text">
-            <span>{{ plat[4] }}</span>
-          </div>
-
-        </md-list-item>
-      </md-list>
-   </div>
-   </div>
   </div>
 </template>
 <script>
 export default {
   nom: "restaurant-panier",
 
-  props: {
-  },
+  props: {},
   watch: {
     total: {
       immediate: true,
@@ -111,10 +111,7 @@ export default {
   },
   methods: {
     calculTotal() {
-      console.log("CalculTotal");
-      let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
-      let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
-      return totalPlats + totalMenus;
+      this.total = this.toCart.totalMenus + this.toCart.totalPlats;
     },
     updateCartMenus(value) {
       console.log("Update du panier");
@@ -122,12 +119,18 @@ export default {
       let totalMenus = value.reduce((a, b) => a + b.prix, 0);
       this.toCart.totalMenus = totalMenus;
       this.toCart.menus = value;
+      this.calculTotal();
     },
     updateCartPlats(value) {
       console.log("Update du panier");
-      let totalPlats = value.reduce((a, b) => a + b[4], 0);
+      let totalPlats = value.reduce(
+        (a, b) => a + parseFloat(b[4].slice(0, -1).replace(",", ".")),
+        0
+      );
       this.toCart.totalPlats = totalPlats;
+      console.log(totalPlats);
       this.toCart.plats = value;
+      this.calculTotal();
     }
   }
 };

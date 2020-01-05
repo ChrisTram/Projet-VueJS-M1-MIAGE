@@ -72,20 +72,27 @@
           <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
         <md-table-cell>
-          <md-button @click="addPlatToCart(p)">
+          <md-button @click="addPlatToCart(p), showSnackbar=true">
             <md-icon>shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
     </md-table>
+    <md-snackbar
+      :md-position="position"
+      :md-duration="duration"
+      :md-active.sync="showSnackbar"
+      v-model="showSnackbar"
+    >
+      <span>Plat ajouté au panier</span>
+    </md-snackbar>
   </div>
 </template>
 
 <script>
 export default {
   name: "restaurant-plats",
-  components: {
-  },
+  components: {},
   props: {
     randomPlats: Object
   },
@@ -99,7 +106,10 @@ export default {
   },
   data() {
     return {
-      toCart: []
+      toCart: [],
+      showSnackbar: false,
+      position: "center",
+      duration: 4000
     };
   },
   methods: {
@@ -110,8 +120,7 @@ export default {
       this.toCart.push(p);
       console.log(this.toCart);
       console.log("adding plat to cart");
-      this.$emit('updateCart', this.toCart);
-
+      this.$emit("updateCart", this.toCart);
     }
   }
 };

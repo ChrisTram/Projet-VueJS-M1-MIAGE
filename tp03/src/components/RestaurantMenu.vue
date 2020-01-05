@@ -63,11 +63,19 @@
         </md-list-item>
         <md-divider></md-divider>
         <md-subheader>Prix total</md-subheader>
-        {{ getMenuPrice(menu) + "€" }}
+        {{ getMenuPrice(menu) + "€"}}
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon>shopping_cart</md-icon>
         </md-button>
       </md-list>
+      <md-snackbar
+        :md-position="position"
+        :md-duration="duration"
+        :md-active.sync="showSnackbar"
+        v-model="showSnackbar"
+      >
+        <span>Menu ajouté au panier</span>
+      </md-snackbar>
     </div>
   </div>
 </template>
@@ -96,7 +104,10 @@ export default {
       value: "",
       cuisines: [],
       toCart: [],
-      checked: { horsdoeuvres: [], plats: [], desserts: [] }
+      checked: { horsdoeuvres: [], plats: [], desserts: [] },
+      showSnackbar: false,
+      position: "center",
+      duration: 4000
     };
   },
   methods: {
@@ -184,8 +195,12 @@ export default {
           console.log(this.toCart);
 
           this.$emit("updateCart", this.toCart);
+          this.showS();
         }
       }
+    },
+    showS() {
+      this.showSnackbar = !this.showSnackbar;
     }
   }
 };
