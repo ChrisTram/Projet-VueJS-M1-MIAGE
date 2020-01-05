@@ -79,9 +79,23 @@
           </md-list-item>
         </md-list>
       </div>
-      <div>Total : {{total}}€</div>
+      <md-content md-theme="selection-black">
+        <p>Total : {{total | fixed}}€</p>
+      </md-content>
 
-      <md-button class="md-dense md-raised md-primary">Passer commande</md-button>
+      <md-button
+        class="md-dense md-raised md-primary"
+        @click="panierSnackbar=true, passOrder()"
+        v-show="toCart.plats.length | toCart.menus.length"
+      >Passer la commande</md-button>
+      <md-snackbar
+        :md-position="position"
+        :md-duration="duration"
+        :md-active.sync="panierSnackbar"
+        v-model="panierSnackbar"
+      >
+        <span>Commande passée</span>
+      </md-snackbar>
     </div>
   </div>
 </template>
@@ -106,7 +120,10 @@ export default {
         totalPlats: 0,
         totalMenus: 0
       },
-      total: 0
+      total: 0,
+      panierSnackbar: false,
+      position: "center",
+      duration: 4000
     };
   },
   methods: {
@@ -131,6 +148,20 @@ export default {
       console.log(totalPlats);
       this.toCart.plats = value;
       this.calculTotal();
+    },
+    passOrder() {
+      this.toCart = {
+        plats: [],
+        menus: [],
+        totalPlats: 0,
+        totalMenus: 0
+      };
+      this.total = 0;
+    }
+  },
+  filters: {
+    fixed(value) {
+      return value.toFixed(2);
     }
   }
 };
