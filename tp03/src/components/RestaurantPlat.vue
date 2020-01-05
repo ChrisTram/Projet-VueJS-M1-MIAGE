@@ -2,7 +2,7 @@
   <div>
     
     <md-button class="md-raised md-primary" @click="showCart = !showCart">Notre Carte</md-button>
-    <md-badge md-content="0" md-position="bottom" md-dense>
+    <md-badge :md-content="choiceNb" md-position="bottom" md-dense>
         <md-button class="md-raised md-primary" @click="showCart = !showCart">
           <md-icon>shopping_cart</md-icon>
         </md-button>
@@ -12,13 +12,13 @@
 
     <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
     <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
-    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="test"></restaurant-menu>
+    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="updateCartFromMenu"></restaurant-menu>
     <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats"></restaurant-plats>
     </div>
 
     
     <div v-show="showCart"> 
-    <restaurant-panier ref="panier" :toCartMenus="toCart"></restaurant-panier> 
+    <restaurant-panier ref="panier"></restaurant-panier> 
     </div>
 
 
@@ -61,7 +61,8 @@ export default {
       toggleMenu: false,
       togglePlats: false,
       showCart: false,
-      toCart: Object
+      choiceNb : 0,
+      toCart: []
 
     };
   },
@@ -115,11 +116,14 @@ export default {
         obj.desserts[i][3] = randDesserts[i];
       }
     },
-    test(value) {
+    updateCartFromMenu(value) {
       console.log("data to parent");
       console.log(value);
       this.toCart = value;
-      this.$refs.panier.updateCartMenus();
+      ++this.choiceNb;
+      console.log(this.toCart);
+
+      this.$refs.panier.updateCartMenus(value);
     }
   }
 };

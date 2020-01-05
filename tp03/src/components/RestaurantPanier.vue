@@ -2,8 +2,6 @@
   <div>
     <div v-if="typeof this.toCart !== 'undefined'">
       <h1>Panier</h1>
-      <button v-on:click="showCard()">show Card In RestaurantPanier</button>
-
       <h1>{{ toCart }}</h1>
     </div>
   </div>
@@ -13,8 +11,6 @@ export default {
   nom: "restaurant-panier",
 
   props: {
-    toCartPlats: Array,
-    toCartMenus: Array
   },
   watch: {
     total: {
@@ -42,25 +38,23 @@ export default {
       let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
       return totalPlats + totalMenus;
     },
-    updateCartMenus() {
-      console.log("Update");
-      let totalMenus = this.toCartMenus.reduce((a, b) => a + b.prix, 0);
+    updateCartMenus(value) {
+      console.log("Update du panier");
+      console.log(value);
+      let totalMenus = value.reduce((a, b) => a + b.prix, 0);
       this.toCart.totalMenus = totalMenus;
-      this.toCart.menus = this.toCartMenus;
+      this.toCart.menus = value;
       this.updateCart();
     },
-    updateCartPlats() {
-      console.log("Update");
-      let totalPlats = this.toCartPlats.reduce((a, b) => a + b[4], 0);
+    updateCartPlats(value) {
+      console.log("Update du panier");
+      let totalPlats = value.reduce((a, b) => a + b[4], 0);
       this.toCart.totalPlats = totalPlats;
-      this.toCart.plats = this.toCartPlats;
+      this.toCart.plats = value;
       this.updateCart();
     },
     updateCart() {
-      
-    },
-    showCard() {
-      console.log(this.toCart);
+
     }
   }
 };

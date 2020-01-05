@@ -179,6 +179,7 @@ export default {
           prix: parseFloat(this.getMenuPrice(menu))
         };
         this.toCart.push(addedMenuToCart);
+        console.log("On emit depuis depuis menu :");
         console.log(this.toCart);
 
         this.$emit('updateCart', this.toCart);
