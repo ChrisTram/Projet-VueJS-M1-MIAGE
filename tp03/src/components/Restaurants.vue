@@ -51,12 +51,8 @@
           <md-table-cell md-label="Cuisine" md-sort-by="cuisine">{{ item.cuisine }}</md-table-cell>
 
           <md-table-cell md-label="Details">
-            <md-button
-        class="md-raised md-primary">
-            <router-link style="color:white" v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
-            </md-button>
+            <router-link v-bind:to="'/restaurant/details/' + item._id">Details</router-link>
           </md-table-cell>
-
         </md-table-row>
       </md-table>
     </div>
@@ -80,7 +76,6 @@ export default {
 
       nbPagesDeResultats: 0,
       restaurant: {}
-
     };
   },
   props: {

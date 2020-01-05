@@ -8,7 +8,7 @@ import Restaurants from "./components/Restaurants.vue";
 import RestaurantDetail from "./components/RestaurantDetail.vue";
 import RestaurantMap from "./components/RestaurantMap.vue";
 import RestaurantEvaluation from "./components/RestaurantEvaluation.vue";
-import RestaurantRenderPanier from "./components/RestaurantRenderPanier";
+import RestaurantPanier from "./components/RestaurantPanier";
 
 // configs...
 Vue.use(VueMaterial);
@@ -41,7 +41,7 @@ const router = new VueRouter({
     {
       path: "/panier",
       name: "Panier",
-      component: RestaurantRenderPanier
+      component: RestaurantPanier
     }
   ],
   mode: "history"

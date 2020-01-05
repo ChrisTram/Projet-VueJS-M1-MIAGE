@@ -1,14 +1,17 @@
 <template>
   <div v-if="typeof this.restaurant.address !== 'undefined'">
+
+
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
 
     <md-button class="md-raised md-primary" @click="toggleMap = !toggleMap">Nous trouver</md-button>
     <md-button class="md-raised md-primary" @click="toggleEval = !toggleEval">Nos évaluations</md-button>
-    <md-button class="md-raised md-primary" @click="togglePlat = !togglePlat">Nos plats</md-button>
+    <md-button class="md-raised md-primary" @click="togglePlat = !togglePlat">Commander</md-button>
     <restaurant-map v-show="toggleMap" :borough="borough" :address="address"></restaurant-map>
     <restaurant-evaluation v-show="toggleEval" :evals="grades"></restaurant-evaluation>
 
     <restaurant-plat v-show="togglePlat" :cuisine="cuisine"></restaurant-plat>
+
   </div>
 </template>
 <script>

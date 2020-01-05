@@ -1,44 +1,66 @@
 <template>
   <div>
-    <restaurant-render-panier :toCart="toCart"></restaurant-render-panier>
+    <div v-if="typeof this.toCart !== 'undefined'">
+      <h1>Panier</h1>
+      <button v-on:click="showCard()">show Card In RestaurantPanier</button>
+
+      <h1>{{ toCart }}</h1>
+    </div>
   </div>
 </template>
 <script>
-import RestaurantRenderPanier from "./RestaurantRenderPanier";
 export default {
   nom: "restaurant-panier",
-  components: {
-    RestaurantRenderPanier
-  },
+
   props: {
     toCartPlats: Array,
     toCartMenus: Array
   },
   watch: {
     total: {
+      immediate: true,
       handler() {
-        this.total = this.calculTotal();
-        this.toCart = {
-          plats: this.toCartPlats,
-          menus: this.toCartMenus,
-          total: this.total
-        };
+        //this.toCartMenus = [];
       }
     }
   },
   data() {
     return {
-      toCart: {},
-      total: 0,
-      plats: {},
-      menus: {}
+      toCart: {
+        plats: [],
+        menus: [],
+        totalPlats: 0,
+        totalMenus: 0
+      },
+      total: 0
     };
   },
   methods: {
     calculTotal() {
+      console.log("CalculTotal");
       let totalPlats = this.toCartPlats.reduce((a, b) => a[4] + b[4], 0);
       let totalMenus = this.toCartMenus.reduce((a, b) => a.prix + b.prix, 0);
       return totalPlats + totalMenus;
+    },
+    updateCartMenus() {
+      console.log("Update");
+      let totalMenus = this.toCartMenus.reduce((a, b) => a + b.prix, 0);
+      this.toCart.totalMenus = totalMenus;
+      this.toCart.menus = this.toCartMenus;
+      this.updateCart();
+    },
+    updateCartPlats() {
+      console.log("Update");
+      let totalPlats = this.toCartPlats.reduce((a, b) => a + b[4], 0);
+      this.toCart.totalPlats = totalPlats;
+      this.toCart.plats = this.toCartPlats;
+      this.updateCart();
+    },
+    updateCart() {
+      
+    },
+    showCard() {
+      console.log(this.toCart);
     }
   }
 };
