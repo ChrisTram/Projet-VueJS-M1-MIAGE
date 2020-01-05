@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- PREMIER MENU -->
     <div
       v-for="(menu, index) in menus"
       :key="`${index}-${menu[0]}`"
