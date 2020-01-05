@@ -30,7 +30,7 @@
     ></restaurant-plats>
 
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
-      <restaurant-panier @resetBadge="resetBadge" ref="panier"></restaurant-panier>
+      <restaurant-panier @resetBadge="resetBadgeToZero" ref="panier"></restaurant-panier>
     </md-drawer>
   </div>
 </template>
@@ -143,7 +143,7 @@ export default {
 
       this.$refs.panier.updateCartPlats(value);
     },
-    resetBadge() {
+    resetBadgeToZero() {
       this.choiceNb = 0;
     }
   }
