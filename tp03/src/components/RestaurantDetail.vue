@@ -3,14 +3,17 @@
 
 
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
+    <md-button class="md-raised md-primary" @click="showInfos = true"> Infos </md-button>
 
-    <md-button class="md-raised md-primary" @click="toggleMap = !toggleMap">Nous trouver</md-button>
-    <md-button class="md-raised md-primary" @click="toggleEval = !toggleEval">Nos évaluations</md-button>
-    <md-button class="md-raised md-primary" @click="togglePlat = !togglePlat">Commander</md-button>
-    <restaurant-map v-show="toggleMap" :borough="borough" :address="address"></restaurant-map>
-    <restaurant-evaluation v-show="toggleEval" :evals="grades"></restaurant-evaluation>
 
-    <restaurant-plat v-show="togglePlat" :cuisine="cuisine"></restaurant-plat>
+    <md-drawer class="md-right" :md-active.sync="showInfos" md-swipeable>
+      <restaurant-map  :borough="borough" :address="address"></restaurant-map>
+      <restaurant-evaluation :evals="grades"></restaurant-evaluation>
+    </md-drawer>
+
+
+
+    <restaurant-plat :cuisine="cuisine"></restaurant-plat>
 
   </div>
 </template>
@@ -44,9 +47,7 @@ export default {
     return {
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant: {},
-      togglePlat: true,
-      toggleMap: false,
-      toggleEval: false
+      showInfos : false,
     };
   },
   mounted() {

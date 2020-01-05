@@ -1,34 +1,28 @@
 <template>
   <div>
     
-    <md-button class="md-raised md-primary" @click="showCart = !showCart">Notre Carte</md-button>
     <md-badge :md-content="choiceNb" md-position="bottom" md-dense>
-        <md-button class="md-raised md-primary" @click="showCart = !showCart; showNavigation = true">
+        <md-button class="md-raised md-primary" @click="showNavigation = true">
           <md-icon>shopping_cart</md-icon>
         </md-button>
-
     </md-badge>
 
-    <div v-show="!showCart">
-
+<div>
     <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
     <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
     <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="updateCartFromMenu"></restaurant-menu>
-    
-    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats" @updateCart="updateCartFromPlat"></restaurant-plats>
     </div>
 
-    
+    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats" @updateCart="updateCartFromPlat"></restaurant-plats>
+
 
 
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
-      <div v-show="showCart"> 
       <restaurant-panier ref="panier"></restaurant-panier> 
-      </div>
     </md-drawer>
 
+    </div>
 
-  </div>
 </template>
 
 
@@ -66,7 +60,6 @@ export default {
       menus: [],
       toggleMenu: false,
       togglePlats: false,
-      showCart: false,
       choiceNb : 0,
       toCart: [],
       showNavigation: false,
