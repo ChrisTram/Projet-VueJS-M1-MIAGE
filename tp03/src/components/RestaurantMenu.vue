@@ -76,9 +76,7 @@
 <script>
 export default {
   name: "restaurant-menu",
-  components: {
-
-  },
+  components: {},
   props: {
     plats: Object,
     cuisine: String
@@ -146,7 +144,7 @@ export default {
       return tab;
     },
     checking() {
-      console.log(this.checked);
+      /* console.log(this.checked);
       if (this.checked.horsdoeuvres.length & this.checked.desserts.length)
         if (this.checked.horsdoeuvres[0] != this.checked.desserts[0]) {
           this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
@@ -158,7 +156,7 @@ export default {
       if (this.checked.desserts.length & this.checked.plats.length)
         if (this.checked.desserts[0] != this.checked.plats[0]) {
           this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
-        }
+        } */
     },
     addMenuToCart(menu, index) {
       console.log("adding to cart");
@@ -170,18 +168,23 @@ export default {
         this.checked.plats.length &&
         this.checked.desserts.length
       ) {
-        let addedMenuToCart = {
-          name: this.cuisines[index],
-          horsdoeuvre: [menu.horsdoeuvres[this.checked.horsdoeuvres[1]]],
-          dessert: [menu.desserts[this.checked.desserts[1]]],
-          plat: [menu.plats[this.checked.plats[1]]],
-          prix: parseFloat(this.getMenuPrice(menu))
-        };
-        this.toCart.push(addedMenuToCart);
-        console.log("On emit depuis depuis menu :");
-        console.log(this.toCart);
+        if (
+          this.checked.horsdoeuvres[0] == this.checked.plats[0] &&
+          this.checked.desserts[0] == this.checked.plats[0]
+        ) {
+          let addedMenuToCart = {
+            name: this.cuisines[index],
+            horsdoeuvre: [menu.horsdoeuvres[this.checked.horsdoeuvres[1]]],
+            dessert: [menu.desserts[this.checked.desserts[1]]],
+            plat: [menu.plats[this.checked.plats[1]]],
+            prix: parseFloat(this.getMenuPrice(menu))
+          };
+          this.toCart.push(addedMenuToCart);
+          console.log("On emit depuis depuis menu :");
+          console.log(this.toCart);
 
-        this.$emit('updateCart', this.toCart);
+          this.$emit("updateCart", this.toCart);
+        }
       }
     }
   }
