@@ -70,17 +70,15 @@
         </md-button>
       </md-list>
     </div>
-    <restaurant-panier ref="panier" :toCartMenus="toCart"></restaurant-panier>
   </div>
 </template>
 
 
 <script>
-import RestaurantPanier from "./RestaurantPanier";
 export default {
   name: "restaurant-menu",
   components: {
-    RestaurantPanier
+
   },
   props: {
     plats: Object,
@@ -182,7 +180,8 @@ export default {
         };
         this.toCart.push(addedMenuToCart);
         console.log(this.toCart);
-        this.$refs.panier.updateCartMenus();
+
+        this.$emit('updateCart', this.toCart);
       }
     }
   }

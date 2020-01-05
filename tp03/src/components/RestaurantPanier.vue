@@ -47,12 +47,17 @@ export default {
       let totalMenus = this.toCartMenus.reduce((a, b) => a + b.prix, 0);
       this.toCart.totalMenus = totalMenus;
       this.toCart.menus = this.toCartMenus;
+      this.updateCart();
     },
     updateCartPlats() {
       console.log("Update");
       let totalPlats = this.toCartPlats.reduce((a, b) => a + b[4], 0);
       this.toCart.totalPlats = totalPlats;
       this.toCart.plats = this.toCartPlats;
+      this.updateCart();
+    },
+    updateCart() {
+      
     },
     showCard() {
       console.log(this.toCart);

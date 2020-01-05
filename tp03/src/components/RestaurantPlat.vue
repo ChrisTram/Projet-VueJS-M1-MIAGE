@@ -1,9 +1,27 @@
 <template>
   <div>
+    
+    <md-button class="md-raised md-primary" @click="showCart = !showCart">Notre Carte</md-button>
+    <md-badge md-content="0" md-position="bottom" md-dense>
+        <md-button class="md-raised md-primary" @click="showCart = !showCart">
+          <md-icon>shopping_cart</md-icon>
+        </md-button>
+    </md-badge>
+
+    <div v-show="!showCart">
+
     <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
     <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
-    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine"></restaurant-menu>
+    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="test"></restaurant-menu>
     <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats"></restaurant-plats>
+    </div>
+
+    
+    <div v-show="showCart"> 
+    <restaurant-panier ref="panier" :toCartMenus="toCart"></restaurant-panier> 
+    </div>
+
+
   </div>
 </template>
 
@@ -12,11 +30,14 @@
 import data from "@/data/plats";
 import RestaurantMenu from "./RestaurantMenu";
 import RestaurantPlats from "./RestaurantPlats";
+import RestaurantPanier from "./RestaurantPanier";
+
 export default {
   name: "restaurant-plat",
   components: {
     RestaurantMenu,
-    RestaurantPlats
+    RestaurantPlats,
+    RestaurantPanier
   },
   props: {
     cuisine: String
@@ -38,7 +59,10 @@ export default {
       randomPlats: {},
       menus: [],
       toggleMenu: false,
-      togglePlats: false
+      togglePlats: false,
+      showCart: false,
+      toCart: Object
+
     };
   },
   mounted() {
@@ -90,6 +114,12 @@ export default {
         obj.plats[i][3] = randPlats[i];
         obj.desserts[i][3] = randDesserts[i];
       }
+    },
+    test(value) {
+      console.log("data to parent");
+      console.log(value);
+      this.toCart = value;
+      this.$refs.panier.updateCartMenus();
     }
   }
 };
