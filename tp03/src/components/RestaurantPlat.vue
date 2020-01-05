@@ -1,28 +1,38 @@
 <template>
   <div>
-    
     <md-badge :md-content="choiceNb" md-position="bottom" md-dense>
-        <md-button class="md-raised md-primary" @click="showNavigation = true">
-          <md-icon>shopping_cart</md-icon>
-        </md-button>
+      <md-button class="md-raised md-primary" @click="showNavigation = true">
+        <md-icon>shopping_cart</md-icon>
+      </md-button>
     </md-badge>
 
-<div>
-    <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
-    <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
-    <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="updateCartFromMenu"></restaurant-menu>
+    <div>
+      <md-button
+        class="md-raised md-primary"
+        @click="toggleMenu = !toggleMenu; togglePlats = false"
+      >Nos Menus</md-button>
+      <md-button
+        class="md-raised md-primary"
+        @click="togglePlats = !togglePlats; toggleMenu = false"
+      >A la Carte</md-button>
+      <restaurant-menu
+        v-show="toggleMenu & !togglePlats"
+        :plats="randomPlats"
+        :cuisine="cuisine"
+        @updateCart="updateCartFromMenu"
+      ></restaurant-menu>
     </div>
 
-    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats" @updateCart="updateCartFromPlat"></restaurant-plats>
-
-
+    <restaurant-plats
+      v-show="togglePlats & !toggleMenu"
+      :randomPlats="randomPlats"
+      @updateCart="updateCartFromPlat"
+    ></restaurant-plats>
 
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
-      <restaurant-panier ref="panier"></restaurant-panier> 
+      <restaurant-panier ref="panier"></restaurant-panier>
     </md-drawer>
-
-    </div>
-
+  </div>
 </template>
 
 
@@ -60,11 +70,9 @@ export default {
       menus: [],
       toggleMenu: false,
       togglePlats: false,
-      choiceNb : 0,
+      choiceNb: 0,
       toCart: [],
-      showNavigation: false,
-
-
+      showNavigation: false
     };
   },
   mounted() {
@@ -134,6 +142,9 @@ export default {
       console.log(this.toCart);
 
       this.$refs.panier.updateCartPlats(value);
+    },
+    resetBadge() {
+      this.choiceNb = 0;
     }
   }
 };

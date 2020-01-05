@@ -157,6 +157,7 @@ export default {
         totalMenus: 0
       };
       this.total = 0;
+      this.$emit("resetBadge", this.choiceNb);
     }
   },
   filters: {
