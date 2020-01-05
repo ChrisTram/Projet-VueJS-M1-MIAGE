@@ -144,5 +144,6 @@ export default {
   overflow: auto;
   border: 1px solid rgba(#000, 0.12);
   margin-right: 2%;
+  margin-bottom: 20px;
 }
 </style>
