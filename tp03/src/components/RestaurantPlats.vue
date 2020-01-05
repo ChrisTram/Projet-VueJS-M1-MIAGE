@@ -78,16 +78,13 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
-    <restaurant-panier ref="panier" v-show="false" :toCartPlats="toCart"></restaurant-panier>
   </div>
 </template>
 
 <script>
-import RestaurantPanier from "./RestaurantPanier";
 export default {
   name: "restaurant-plats",
   components: {
-    RestaurantPanier
   },
   props: {
     randomPlats: Object
@@ -113,7 +110,8 @@ export default {
       this.toCart.push(p);
       console.log(this.toCart);
       console.log("adding plat to cart");
-      this.$refs.panier.updateCartPlats();
+      this.$emit('updateCart', this.toCart);
+
     }
   }
 };

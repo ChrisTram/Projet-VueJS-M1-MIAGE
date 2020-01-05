@@ -13,7 +13,8 @@
     <md-button class="md-raised md-primary" @click="toggleMenu = !toggleMenu; togglePlats = false">Nos Menus</md-button >
     <md-button class="md-raised md-primary" @click="togglePlats = !togglePlats; toggleMenu = false">A la Carte</md-button >
     <restaurant-menu v-show="toggleMenu & !togglePlats" :plats="randomPlats" :cuisine="cuisine" @updateCart="updateCartFromMenu"></restaurant-menu>
-    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats"></restaurant-plats>
+    
+    <restaurant-plats v-show="togglePlats & !toggleMenu" :randomPlats="randomPlats" @updateCart="updateCartFromPlat"></restaurant-plats>
     </div>
 
     
@@ -124,6 +125,15 @@ export default {
       console.log(this.toCart);
 
       this.$refs.panier.updateCartMenus(value);
+    },
+    updateCartFromPlat(value) {
+      console.log("data to parent");
+      console.log(value);
+      this.toCart = value;
+      ++this.choiceNb;
+      console.log(this.toCart);
+
+      this.$refs.panier.updateCartPlats(value);
     }
   }
 };
