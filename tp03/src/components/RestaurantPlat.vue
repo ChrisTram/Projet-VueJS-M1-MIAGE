@@ -3,9 +3,10 @@
     
     <md-button class="md-raised md-primary" @click="showCart = !showCart">Notre Carte</md-button>
     <md-badge :md-content="choiceNb" md-position="bottom" md-dense>
-        <md-button class="md-raised md-primary" @click="showCart = !showCart">
+        <md-button class="md-raised md-primary" @click="showCart = !showCart; showNavigation = true">
           <md-icon>shopping_cart</md-icon>
         </md-button>
+
     </md-badge>
 
     <div v-show="!showCart">
@@ -18,9 +19,13 @@
     </div>
 
     
-    <div v-show="showCart"> 
-    <restaurant-panier ref="panier"></restaurant-panier> 
-    </div>
+
+
+    <md-drawer :md-active.sync="showNavigation" md-swipeable>
+      <div v-show="showCart"> 
+      <restaurant-panier ref="panier"></restaurant-panier> 
+      </div>
+    </md-drawer>
 
 
   </div>
@@ -63,7 +68,9 @@ export default {
       togglePlats: false,
       showCart: false,
       choiceNb : 0,
-      toCart: []
+      toCart: [],
+      showNavigation: false,
+
 
     };
   },

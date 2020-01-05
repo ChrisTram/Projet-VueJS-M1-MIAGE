@@ -2,7 +2,6 @@
   <div>
     <div v-if="typeof this.toCart !== 'undefined'">
       <h1>Panier</h1>
-      <h2>{{toCart}}</h2>
 <div
       v-for="(menu, index) in toCart.menus"
       :key="`${index}-${menu[0]}`"
