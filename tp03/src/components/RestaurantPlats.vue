@@ -25,7 +25,7 @@
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
-          <md-button>
+          <md-button @click="deletePlat(0, index)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
@@ -58,7 +58,7 @@
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
-          <md-button>
+          <md-button @click="deletePlat(1, index)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
@@ -90,7 +90,7 @@
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
-          <md-button>
+          <md-button @click="deletePlat(2, index)">
             <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
@@ -156,6 +156,20 @@ export default {
     },
     forceRerender() {
       this.componentKey += 1;
+    },
+    deletePlat(n, index) {
+      switch (n) {
+        case 0:
+          this.randomPlats.horsdoeuvres.splice(index, 1);
+          break;
+        case 1:
+          this.randomPlats.plats.splice(index, 1);
+          break;
+        case 2:
+          this.randomPlats.desserts.splice(index, 1);
+          break;
+      }
+      this.forceRerender();
     }
   }
 };
