@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="page-container">
+  <div id="app">
     <md-button class="md-raised md-primary">
       <router-link style="color:white" to="/restaurants">Liste des restaurants</router-link>
     </md-button>
@@ -29,15 +29,9 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  min-height: 100%;
   color: #2c3e50;
 }
-
-  .page-container {
-    height: 100%;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(#000, .12);
-  }
 
 
 
