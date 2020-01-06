@@ -39,8 +39,4 @@ export default {
     border: 1px solid rgba(#000, .12);
   }
 
-  html, body, #app, #app>div {
-  height: 100%
-}
-
 </style>
