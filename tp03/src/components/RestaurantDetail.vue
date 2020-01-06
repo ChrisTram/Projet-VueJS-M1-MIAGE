@@ -22,6 +22,14 @@ export default {
     RestaurantEvaluation,
     RestaurantPlat
   },
+  watch: {
+    mode: {
+      immediate: true,
+      render() {
+        this.modeAdmin = this.$root.$data.getMode();
+      }
+    }
+  },
   computed: {
     grades() {
       return this.restaurant.grades;

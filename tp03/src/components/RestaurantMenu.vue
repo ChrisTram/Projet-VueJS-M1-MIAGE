@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="componentKey">
     <div
       v-for="(menu, index) in menus"
       :key="`${index}-${menu[0]}`"
@@ -67,6 +67,10 @@
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon>shopping_cart</md-icon>
         </md-button>
+
+        <md-button v-show="modeAdmin">
+          <md-icon>delete</md-icon>
+        </md-button>
       </md-list>
       <md-snackbar
         :md-position="position"
@@ -89,6 +93,11 @@ export default {
     plats: Object,
     cuisine: String
   },
+  computed: {
+    mode() {
+      return this.$root.$data.getMode();
+    }
+  },
   watch: {
     plats: {
       immediate: true,
@@ -96,6 +105,13 @@ export default {
         this.toCart = [];
         this.menus = this.createMenus(this.plats, 3);
         this.cuisines = [this.cuisine, "Authentique", "Classique"];
+      }
+    },
+    mode: {
+      immediate: true,
+      handler() {
+        this.modeAdmin = this.$root.$data.getMode();
+        this.forceRerender();
       }
     }
   },
@@ -108,7 +124,8 @@ export default {
       showSnackbar: false,
       position: "center",
       duration: 4000,
-      modeAdmin: this.$root.$data.getMode()
+      modeAdmin: this.$root.$data.getMode(),
+      componentKey: 0
     };
   },
   methods: {
@@ -202,6 +219,9 @@ export default {
     },
     showS() {
       this.showSnackbar = !this.showSnackbar;
+    },
+    forceRerender() {
+      this.componentKey += 1;
     }
   }
 };

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <md-table md-card>
+    <md-table md-card :key="componentKey">
       <md-table-toolbar>
         <h1 class="md-title">Hors d'oeuvres</h1>
       </md-table-toolbar>
@@ -10,6 +10,7 @@
         <md-table-head>Description</md-table-head>
         <md-table-head>Photo</md-table-head>
         <md-table-head></md-table-head>
+        <md-table-head v-show="modeAdmin"></md-table-head>
       </md-table-row>
       <md-table-row v-for="(p, index) in randomPlats.horsdoeuvres" :key="index">
         <md-table-cell md-label="Nom">{{ p[0] }}</md-table-cell>
@@ -21,6 +22,11 @@
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
             <md-icon>shopping_cart</md-icon>
+          </md-button>
+        </md-table-cell>
+        <md-table-cell v-show="modeAdmin">
+          <md-button>
+            <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -37,6 +43,7 @@
         <md-table-head>Description</md-table-head>
         <md-table-head>Photo</md-table-head>
         <md-table-head></md-table-head>
+        <md-table-head v-show="modeAdmin"></md-table-head>
       </md-table-row>
       <md-table-row v-for="(p, index) in randomPlats.plats" :key="index">
         <md-table-cell>{{ p[0] }}</md-table-cell>
@@ -48,6 +55,11 @@
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
             <md-icon>shopping_cart</md-icon>
+          </md-button>
+        </md-table-cell>
+        <md-table-cell v-show="modeAdmin">
+          <md-button>
+            <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -63,6 +75,7 @@
         <md-table-head>Description</md-table-head>
         <md-table-head>Photo</md-table-head>
         <md-table-head></md-table-head>
+        <md-table-head v-show="modeAdmin"></md-table-head>
       </md-table-row>
       <md-table-row v-for="(p, index) in randomPlats.desserts" :key="index">
         <md-table-cell>{{ p[0] }}</md-table-cell>
@@ -74,6 +87,11 @@
         <md-table-cell>
           <md-button @click="addPlatToCart(p), showSnackbar=true">
             <md-icon>shopping_cart</md-icon>
+          </md-button>
+        </md-table-cell>
+        <md-table-cell v-show="modeAdmin">
+          <md-button>
+            <md-icon>delete</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -96,11 +114,23 @@ export default {
   props: {
     randomPlats: Object
   },
+  computed: {
+    mode() {
+      return this.$root.$data.getMode();
+    }
+  },
   watch: {
     cart: {
       immediate: true,
       handler() {
         this.toCart = [];
+      }
+    },
+    mode: {
+      immediate: true,
+      handler() {
+        this.modeAdmin = this.$root.$data.getMode();
+        this.forceRerender();
       }
     }
   },
@@ -109,7 +139,9 @@ export default {
       toCart: [],
       showSnackbar: false,
       position: "center",
-      duration: 4000
+      duration: 4000,
+      modeAdmin: false,
+      componentKey: 0
     };
   },
   methods: {
@@ -121,6 +153,9 @@ export default {
       console.log(this.toCart);
       console.log("adding plat to cart");
       this.$emit("updateCart", this.toCart);
+    },
+    forceRerender() {
+      this.componentKey += 1;
     }
   }
 };
