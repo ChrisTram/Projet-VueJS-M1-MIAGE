@@ -1,18 +1,16 @@
 <template>
-  <div v-if="typeof this.restaurant.address !== 'undefined'">
+  <div v-if="typeof this.restaurant.address !== 'undefined'" >
 
 
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
     <md-button class="md-raised md-primary" @click="showInfos = true"> Infos </md-button>
 
 
-    <md-drawer class="md-right" :md-active.sync="showInfos" md-swipeable>
+    <md-drawer class="md-right" :md-active.sync="showInfos" >
+
       <restaurant-map  :borough="borough" :address="address"></restaurant-map>
       <restaurant-evaluation :evals="grades"></restaurant-evaluation>
     </md-drawer>
-
-
-
     <restaurant-plat :cuisine="cuisine"></restaurant-plat>
 
   </div>
@@ -82,4 +80,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+
 </style>
