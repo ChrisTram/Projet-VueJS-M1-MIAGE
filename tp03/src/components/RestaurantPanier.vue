@@ -158,6 +158,7 @@ export default {
       };
       this.total = 0;
       this.$emit("resetBadge", null);
+      this.$emit("resetCart", null);
     }
   },
   filters: {
