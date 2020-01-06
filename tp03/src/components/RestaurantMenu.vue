@@ -68,7 +68,7 @@
           <md-icon>shopping_cart</md-icon>
         </md-button>
 
-        <md-button v-show="modeAdmin">
+        <md-button v-show="modeAdmin" @click="deleteMenu(index)">
           <md-icon>delete</md-icon>
         </md-button>
       </md-list>
@@ -222,6 +222,10 @@ export default {
     },
     forceRerender() {
       this.componentKey += 1;
+    },
+    deleteMenu(index) {
+      this.menus.splice(index, 1);
+      this.forceRerender();
     }
   }
 };
