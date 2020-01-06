@@ -72,7 +72,8 @@ export default {
       togglePlats: false,
       choiceNb: 0,
       toCart: [],
-      showNavigation: false
+      showNavigation: false,
+      modeAdmin: this.$root.$data.getMode()
     };
   },
   mounted() {

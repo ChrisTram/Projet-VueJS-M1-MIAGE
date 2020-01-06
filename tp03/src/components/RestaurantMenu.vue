@@ -107,7 +107,8 @@ export default {
       checked: { horsdoeuvres: [], plats: [], desserts: [] },
       showSnackbar: false,
       position: "center",
-      duration: 4000
+      duration: 4000,
+      modeAdmin: this.$root.$data.getMode()
     };
   },
   methods: {

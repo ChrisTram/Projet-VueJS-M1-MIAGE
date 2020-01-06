@@ -1,18 +1,14 @@
 <template>
-  <div v-if="typeof this.restaurant.address !== 'undefined'" >
-
-
+  <div v-if="typeof this.restaurant.address !== 'undefined'">
+    <md-switch v-model="modeAdmin" @change="changeModeAdmin()">Mode Admin</md-switch>
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
-    <md-button class="md-raised md-primary" @click="showInfos = true"> Infos </md-button>
+    <md-button class="md-raised md-primary" @click="showInfos = true">Infos</md-button>
 
-
-    <md-drawer class="md-right" :md-active.sync="showInfos" >
-
-      <restaurant-map  :borough="borough" :address="address"></restaurant-map>
+    <md-drawer class="md-right" :md-active.sync="showInfos">
+      <restaurant-map :borough="borough" :address="address"></restaurant-map>
       <restaurant-evaluation :evals="grades"></restaurant-evaluation>
     </md-drawer>
     <restaurant-plat :cuisine="cuisine"></restaurant-plat>
-
   </div>
 </template>
 <script>
@@ -45,7 +41,8 @@ export default {
     return {
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant: {},
-      showInfos : false,
+      showInfos: false,
+      modeAdmin: false
     };
   },
   mounted() {
@@ -73,6 +70,10 @@ export default {
           console.log(reponseJS.restaurant);
           this.restaurant = reponseJS.restaurant;
         });
+    },
+    changeModeAdmin() {
+      this.$root.$data.changeMode();
+      console.log(this.$root.$data.modeAdmin);
     }
   }
 };
@@ -80,5 +81,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-
 </style>

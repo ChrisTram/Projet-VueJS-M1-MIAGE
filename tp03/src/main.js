@@ -47,7 +47,18 @@ const router = new VueRouter({
   mode: "history"
 });
 
+var mA = {
+  modeAdmin: false,
+  changeMode() {
+    this.modeAdmin = !this.modeAdmin;
+  },
+  getMode() {
+    return this.modeAdmin;
+  }
+};
+
 new Vue({
+  data: mA,
   router,
   render: h => h(App) // si router pas de rendu de composant
 }).$mount("#app");
