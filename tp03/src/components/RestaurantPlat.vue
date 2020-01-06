@@ -20,6 +20,7 @@
         :plats="randomPlats"
         :cuisine="cuisine"
         @updateCart="updateCartFromMenu"
+        ref="menu"
       ></restaurant-menu>
     </div>
 
@@ -148,7 +149,9 @@ export default {
     },
     resetCartToZero() {
       console.log("reseting cart");
-      this.toCart = [];
+      this.$refs.menu.resetCart();
+
+      console.log(this.toCart);
     }
   }
 };

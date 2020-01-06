@@ -226,6 +226,11 @@ export default {
     deleteMenu(index) {
       this.menus.splice(index, 1);
       this.forceRerender();
+    },
+    resetCart() {
+      console.log("resetCartMenu");
+      this.toCart = [];
+
     }
   }
 };

@@ -39,4 +39,6 @@ export default {
     border: 1px solid rgba(#000, .12);
   }
 
+
+
 </style>
