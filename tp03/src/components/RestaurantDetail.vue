@@ -1,5 +1,5 @@
 <template>
-  <div v-if="typeof this.restaurant.address !== 'undefined'">
+  <div v-if="typeof this.restaurant.address !== 'undefined'" >
     <md-switch v-model="modeAdmin" @change="changeModeAdmin()">Mode Admin</md-switch>
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
     <md-button class="md-raised md-primary" @click="showInfos = true">Infos</md-button>
