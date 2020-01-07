@@ -3,6 +3,19 @@
     <md-table md-card :key="componentKey">
       <md-table-toolbar>
         <h1 class="md-title">Hors d'oeuvres</h1>
+        <md-dialog :md-active.sync="activeHD"></md-dialog>
+        <!-- <md-dialog-prompt
+          :md-active.sync="activeHD"
+          v-model="value"
+          md-title="What's your name?"
+          md-input-maxlength="30"
+          md-input-placeholder="Type your name..."
+          md-confirm-text="Done"
+        />-->
+        <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeHD=true">
+          Ajouter un hors d'oeuvre
+          <md-icon>add_circle_outline</md-icon>
+        </md-button>
       </md-table-toolbar>
       <md-table-row>
         <md-table-head>Nom</md-table-head>
@@ -21,12 +34,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
-            <md-icon>shopping_cart</md-icon>
+            <md-icon>add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(0, index)">
-            <md-icon>delete</md-icon>
+            <md-icon>remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -36,6 +49,10 @@
     <md-table md-card>
       <md-table-toolbar>
         <h1 class="md-title">Plats</h1>
+        <md-button v-show="modeAdmin" @click="addPlat(1)">
+          Ajouter un plat
+          <md-icon>add_circle_outline</md-icon>
+        </md-button>
       </md-table-toolbar>
       <md-table-row>
         <md-table-head>Nom</md-table-head>
@@ -54,12 +71,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
-            <md-icon>shopping_cart</md-icon>
+            <md-icon>add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(1, index)">
-            <md-icon>delete</md-icon>
+            <md-icon>remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -68,6 +85,10 @@
     <md-table md-card>
       <md-table-toolbar>
         <h1 class="md-title">Desserts</h1>
+        <md-button v-show="modeAdmin" @click="addPlat(2)">
+          Ajouter un dessert
+          <md-icon>add_circle_outline</md-icon>
+        </md-button>
       </md-table-toolbar>
       <md-table-row>
         <md-table-head>Nom</md-table-head>
@@ -86,12 +107,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p), showSnackbar=true">
-            <md-icon>shopping_cart</md-icon>
+            <md-icon>add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(2, index)">
-            <md-icon>delete</md-icon>
+            <md-icon>remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -108,6 +129,7 @@
 </template>
 
 <script>
+//import formulairePlat from "./formulairePlat";
 export default {
   name: "restaurant-plats",
   components: {},
@@ -141,7 +163,10 @@ export default {
       position: "center",
       duration: 4000,
       modeAdmin: false,
-      componentKey: 0
+      componentKey: 0,
+      activeHD: false,
+      activePlats: false,
+      activeDessert: false
     };
   },
   methods: {
@@ -167,6 +192,20 @@ export default {
           break;
         case 2:
           this.randomPlats.desserts.splice(index, 1);
+          break;
+      }
+      this.forceRerender();
+    },
+    addPlat(n) {
+      switch (n) {
+        case 0:
+          this.randomPlats.horsdoeuvres.push();
+          break;
+        case 1:
+          this.randomPlats.plats.push();
+          break;
+        case 2:
+          this.randomPlats.desserts.push();
           break;
       }
       this.forceRerender();

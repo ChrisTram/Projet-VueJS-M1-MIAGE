@@ -65,7 +65,7 @@
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menu) + "€"}}
         <md-button @click="addMenuToCart(menu, index)">
-          <md-icon>shopping_cart</md-icon>
+          <md-icon>add_shopping_cart</md-icon>
         </md-button>
 
         <md-button v-show="modeAdmin" @click="deleteMenu(index)">
@@ -230,7 +230,6 @@ export default {
     resetCart() {
       console.log("resetCartMenu");
       this.toCart = [];
-
     }
   }
 };
