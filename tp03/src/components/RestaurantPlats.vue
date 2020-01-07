@@ -208,7 +208,6 @@
 </template>
 
 <script>
-//import formulairePlat from "./formulairePlat";
 export default {
   name: "restaurant-plats",
   components: {},

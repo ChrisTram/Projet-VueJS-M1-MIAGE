@@ -68,10 +68,38 @@
           <md-icon>add_shopping_cart</md-icon>
         </md-button>
         <md-contener>
-          <md-button class="md-primary" v-show="modeAdmin" @click="addMenu(index)">
+          <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
+            <md-dialog-title>Ajouter un menu</md-dialog-title>
+            <md-dialog-content>
+              <label for="hd">Choix des hors d'oeuvres</label>
+              <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
+                <md-list-option v-for="(p, i) in listPlats.horsdoeuvres" :key="i">
+                  <md-option value="i">{{p[0]}}</md-option>
+                </md-list-option>
+              </md-select>
+              <label for="pl">Choix des plats</label>
+              <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
+                <md-list-option v-for="(p, i) in listPlats.plats" :key="i">
+                  <md-option value="i">{{p[0]}}</md-option>
+                </md-list-option>
+              </md-select>
+              <label for="ds">Choix des desserts</label>
+              <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
+                <md-list-option v-for="(p, i) in listPlats.desserts" :key="i">
+                  <md-option value="i">{{p[0]}}</md-option>
+                </md-list-option>
+              </md-select>
+              <md-dialog-actions class="md-align-center">
+                <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
+              </md-dialog-actions>
+            </md-dialog-content>
+          </md-dialog>
+          <md-button class="md-primary" v-show="modeAdmin" @click="activeMenu=true">
             Ajouter menu
             <md-icon>add_circle_outline</md-icon>
           </md-button>
+        </md-contener>
+        <md-contener>
           <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
             Supprimer menu
             <md-icon>remove_circle_outline</md-icon>
@@ -111,6 +139,11 @@ export default {
         this.toCart = [];
         this.menus = this.createMenus(this.plats, 3);
         this.cuisines = [this.cuisine, "Authentique", "Classique"];
+        this.listPlats = {
+          horsdoeuvres: [...this.plats.horsdoeuvres],
+          plats: [...this.plats.plats],
+          desserts: [...this.plats.desserts]
+        };
       }
     },
     mode: {
@@ -131,7 +164,10 @@ export default {
       position: "center",
       duration: 4000,
       modeAdmin: this.$root.$data.getMode(),
-      componentKey: 0
+      componentKey: 0,
+      listPlats: {},
+      newMenu: { horsdoeuvres: {}, plats: {}, desserts: {} },
+      activeMenu: false
     };
   },
   methods: {
@@ -237,7 +273,11 @@ export default {
       console.log("resetCartMenu");
       this.toCart = [];
     },
-    addMenu() {}
+    addMenu() {},
+    closeForm() {
+      this.activeMenu = false;
+      this.forceRerender();
+    }
   }
 };
 </script>
