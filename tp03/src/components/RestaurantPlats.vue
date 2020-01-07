@@ -3,7 +3,30 @@
     <md-table md-card :key="componentKey">
       <md-table-toolbar>
         <h1 class="md-title">Hors d'oeuvres</h1>
-        <md-dialog :md-active.sync="activeHD"></md-dialog>
+        <md-dialog :md-active.sync="activeHD" ref="dialogForm">
+          <md-dialog-title>Ajouter un hors d'oeuvre</md-dialog-title>
+          <md-dialog-content>
+            <md-field>
+              <label>Nom</label>
+              <md-input v-model="initial"></md-input>
+            </md-field>
+            <md-field>
+              <label>Prix</label>
+              <md-input v-model="number" type="number"></md-input>
+            </md-field>
+            <md-field>
+              <label>Description</label>
+              <md-textarea v-model="textarea"></md-textarea>
+            </md-field>
+            <md-field>
+              <label>URL Image</label>
+              <md-input v-model="initial" readonly></md-input>
+            </md-field>
+            <md-dialog-actions class="md-align-center">
+              <md-button class="md-primary md-raised" @click="closeForm()">Soumettre</md-button>
+            </md-dialog-actions>
+          </md-dialog-content>
+        </md-dialog>
         <!-- <md-dialog-prompt
           :md-active.sync="activeHD"
           v-model="value"
@@ -209,6 +232,9 @@ export default {
           break;
       }
       this.forceRerender();
+    },
+    closeForm() {
+      this.$refs.dialogForm.close();
     }
   }
 };
