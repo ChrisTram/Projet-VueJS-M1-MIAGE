@@ -8,11 +8,12 @@
           <md-dialog-content>
             <md-field>
               <label>Nom</label>
-              <md-input v-model="form.nom"></md-input>
+              <md-input v-model="form.nom" required></md-input>
             </md-field>
             <md-field>
               <label>Prix</label>
-              <md-input v-model="form.prix" type="number"></md-input>
+              <span class="md-prefix">€</span>
+              <md-input v-model="form.prix" type="float" required></md-input>
             </md-field>
             <md-field>
               <label>Description</label>
@@ -74,11 +75,12 @@
           <md-dialog-content>
             <md-field>
               <label>Nom</label>
-              <md-input v-model="form.nom"></md-input>
+              <md-input v-model="form.nom" required></md-input>
             </md-field>
             <md-field>
               <label>Prix</label>
-              <md-input v-model="form.prix" type="number"></md-input>
+              <span class="md-prefix">€</span>
+              <md-input v-model="form.prix" type="float" required></md-input>
             </md-field>
             <md-field>
               <label>Description</label>
@@ -138,11 +140,12 @@
           <md-dialog-content>
             <md-field>
               <label>Nom</label>
-              <md-input v-model="form.nom"></md-input>
+              <md-input v-model="form.nom" required></md-input>
             </md-field>
             <md-field>
               <label>Prix</label>
-              <md-input v-model="form.prix" type="number"></md-input>
+              <span class="md-prefix">€</span>
+              <md-input v-model="form.prix" type="float" required></md-input>
             </md-field>
             <md-field>
               <label>Description</label>
@@ -274,6 +277,7 @@ export default {
       this.forceRerender();
     },
     addPlat(n) {
+      this.form.prix = this.form.prix.toString().replace(".", ",");
       switch (n) {
         case 0:
           this.randomPlats.horsdoeuvres.push([
