@@ -323,3 +323,8 @@ export default {
   }
 };
 </script>
+<style>
+.md-table-head {
+  text-align: center;
+}
+</style>

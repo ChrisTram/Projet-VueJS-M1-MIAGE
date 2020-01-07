@@ -67,10 +67,16 @@
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon>add_shopping_cart</md-icon>
         </md-button>
-
-        <md-button v-show="modeAdmin" @click="deleteMenu(index)">
-          <md-icon>delete</md-icon>
-        </md-button>
+        <md-contener>
+          <md-button class="md-primary" v-show="modeAdmin" @click="addMenu(index)">
+            Ajouter menu
+            <md-icon>add_circle_outline</md-icon>
+          </md-button>
+          <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
+            Supprimer menu
+            <md-icon>remove_circle_outline</md-icon>
+          </md-button>
+        </md-contener>
       </md-list>
       <md-snackbar
         :md-position="position"
@@ -230,7 +236,8 @@ export default {
     resetCart() {
       console.log("resetCartMenu");
       this.toCart = [];
-    }
+    },
+    addMenu() {}
   }
 };
 </script>
