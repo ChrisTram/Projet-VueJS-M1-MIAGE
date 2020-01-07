@@ -67,27 +67,29 @@
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon>add_shopping_cart</md-icon>
         </md-button>
-        <md-contener>
+        <md-content>
           <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
             <md-dialog-title>Ajouter un menu</md-dialog-title>
             <md-dialog-content>
               <label for="hd">Choix des hors d'oeuvres</label>
               <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
-                <md-list-option v-for="(p, i) in listPlats.horsdoeuvres" :key="i">
-                  <md-option value="i">{{p[0]}}</md-option>
-                </md-list-option>
+                <md-option
+                  v-for="(item, i) in listPlats.horsdoeuvres"
+                  :value="item"
+                  :key="i"
+                >{{item[0]}}</md-option>
               </md-select>
               <label for="pl">Choix des plats</label>
               <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
-                <md-list-option v-for="(p, i) in listPlats.plats" :key="i">
-                  <md-option value="i">{{p[0]}}</md-option>
-                </md-list-option>
+                <md-option v-for="(item, i) in listPlats.plats" :value="item" :key="i">{{item[0]}}</md-option>
               </md-select>
               <label for="ds">Choix des desserts</label>
               <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
-                <md-list-option v-for="(p, i) in listPlats.desserts" :key="i">
-                  <md-option value="i">{{p[0]}}</md-option>
-                </md-list-option>
+                <md-option
+                  v-for="(item, i) in listPlats.desserts"
+                  :value="item"
+                  :key="i"
+                >{{item[0]}}</md-option>
               </md-select>
               <md-dialog-actions class="md-align-center">
                 <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
@@ -98,13 +100,13 @@
             Ajouter menu
             <md-icon>add_circle_outline</md-icon>
           </md-button>
-        </md-contener>
-        <md-contener>
+        </md-content>
+        <md-content>
           <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
             Supprimer menu
             <md-icon>remove_circle_outline</md-icon>
           </md-button>
-        </md-contener>
+        </md-content>
       </md-list>
       <md-snackbar
         :md-position="position"
@@ -273,7 +275,12 @@ export default {
       console.log("resetCartMenu");
       this.toCart = [];
     },
-    addMenu() {},
+    addMenu() {
+      console.log(this.newMenu);
+      this.menus.push(this.newMenu);
+      this.newMenu = { horsdoeuvres: {}, plats: {}, desserts: {} };
+      this.forceRerender();
+    },
     closeForm() {
       this.activeMenu = false;
       this.forceRerender();
