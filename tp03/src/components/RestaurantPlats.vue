@@ -8,34 +8,31 @@
           <md-dialog-content>
             <md-field>
               <label>Nom</label>
-              <md-input v-model="initial"></md-input>
+              <md-input v-model="form.nom"></md-input>
             </md-field>
             <md-field>
               <label>Prix</label>
-              <md-input v-model="number" type="number"></md-input>
+              <md-input v-model="form.prix" type="number"></md-input>
             </md-field>
             <md-field>
               <label>Description</label>
-              <md-textarea v-model="textarea"></md-textarea>
+              <md-textarea v-model="form.description"></md-textarea>
             </md-field>
             <md-field>
               <label>URL Image</label>
-              <md-input v-model="initial" readonly></md-input>
+              <md-input v-model="form.url"></md-input>
             </md-field>
             <md-dialog-actions class="md-align-center">
-              <md-button class="md-primary md-raised" @click="closeForm()">Soumettre</md-button>
+              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(0)">Soumettre</md-button>
             </md-dialog-actions>
           </md-dialog-content>
         </md-dialog>
-        <!-- <md-dialog-prompt
-          :md-active.sync="activeHD"
-          v-model="value"
-          md-title="What's your name?"
-          md-input-maxlength="30"
-          md-input-placeholder="Type your name..."
-          md-confirm-text="Done"
-        />-->
-        <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeHD=true">
+
+        <md-button
+          class="md-primary md-raised"
+          v-show="modeAdmin"
+          @click="resetForm(), activeHD=true"
+        >
           Ajouter un hors d'oeuvre
           <md-icon>add_circle_outline</md-icon>
         </md-button>
@@ -72,7 +69,35 @@
     <md-table md-card>
       <md-table-toolbar>
         <h1 class="md-title">Plats</h1>
-        <md-button v-show="modeAdmin" @click="addPlat(1)">
+        <md-dialog :md-active.sync="activePlat" ref="dialogForm2">
+          <md-dialog-title>Ajouter un plat</md-dialog-title>
+          <md-dialog-content>
+            <md-field>
+              <label>Nom</label>
+              <md-input v-model="form.nom"></md-input>
+            </md-field>
+            <md-field>
+              <label>Prix</label>
+              <md-input v-model="form.prix" type="number"></md-input>
+            </md-field>
+            <md-field>
+              <label>Description</label>
+              <md-textarea v-model="form.description"></md-textarea>
+            </md-field>
+            <md-field>
+              <label>URL Image</label>
+              <md-input v-model="form.url"></md-input>
+            </md-field>
+            <md-dialog-actions class="md-align-center">
+              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(1)">Soumettre</md-button>
+            </md-dialog-actions>
+          </md-dialog-content>
+        </md-dialog>
+        <md-button
+          class="md-primary md-raised"
+          v-show="modeAdmin"
+          @click="resetForm(), activePlat=true"
+        >
           Ajouter un plat
           <md-icon>add_circle_outline</md-icon>
         </md-button>
@@ -108,7 +133,35 @@
     <md-table md-card>
       <md-table-toolbar>
         <h1 class="md-title">Desserts</h1>
-        <md-button v-show="modeAdmin" @click="addPlat(2)">
+        <md-dialog :md-active.sync="activeDessert" ref="dialogForm">
+          <md-dialog-title>Ajouter un dessert</md-dialog-title>
+          <md-dialog-content>
+            <md-field>
+              <label>Nom</label>
+              <md-input v-model="form.nom"></md-input>
+            </md-field>
+            <md-field>
+              <label>Prix</label>
+              <md-input v-model="form.prix" type="number"></md-input>
+            </md-field>
+            <md-field>
+              <label>Description</label>
+              <md-textarea v-model="form.description"></md-textarea>
+            </md-field>
+            <md-field>
+              <label>URL Image</label>
+              <md-input v-model="form.url"></md-input>
+            </md-field>
+            <md-dialog-actions class="md-align-center">
+              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(2)">Soumettre</md-button>
+            </md-dialog-actions>
+          </md-dialog-content>
+        </md-dialog>
+        <md-button
+          class="md-primary md-raised"
+          v-show="modeAdmin"
+          @click="resetForm(), activeDessert=true"
+        >
           Ajouter un dessert
           <md-icon>add_circle_outline</md-icon>
         </md-button>
@@ -188,8 +241,9 @@ export default {
       modeAdmin: false,
       componentKey: 0,
       activeHD: false,
-      activePlats: false,
-      activeDessert: false
+      activePlat: false,
+      activeDessert: false,
+      form: { nom: "", description: "", prix: 0.0, url: "", type: "" }
     };
   },
   methods: {
@@ -222,19 +276,43 @@ export default {
     addPlat(n) {
       switch (n) {
         case 0:
-          this.randomPlats.horsdoeuvres.push();
+          this.randomPlats.horsdoeuvres.push([
+            this.form.nom,
+            "hors d'oeuvre",
+            this.form.description,
+            this.form.url,
+            this.form.prix + "€"
+          ]);
           break;
         case 1:
-          this.randomPlats.plats.push();
+          this.randomPlats.plats.push([
+            this.form.nom,
+            "plat",
+            this.form.description,
+            this.form.url,
+            this.form.prix + "€"
+          ]);
           break;
         case 2:
-          this.randomPlats.desserts.push();
+          this.randomPlats.desserts.push([
+            this.form.nom,
+            "dessert",
+            this.form.description,
+            this.form.url,
+            this.form.prix + "€"
+          ]);
           break;
       }
+      this.resetForm();
       this.forceRerender();
     },
     closeForm() {
-      this.$refs.dialogForm.close();
+      this.activeHD = false;
+      this.activePlat = false;
+      this.activeDessert = false;
+    },
+    resetForm() {
+      this.form = { nom: "", description: "", prix: 0.0, url: "", type: "" };
     }
   }
 };
