@@ -251,7 +251,9 @@ export default {
   },
   methods: {
     createURL(num) {
-      return `https://www.restaurants.christramier.fr/resources/${num}.jpg`;
+      if (!isNaN(num))
+        return `https://www.restaurants.christramier.fr/resources/${num}.jpg`;
+      return num;
     },
     addPlatToCart(p) {
       this.toCart.push(p);
