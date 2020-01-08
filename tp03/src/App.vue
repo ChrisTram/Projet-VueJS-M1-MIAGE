@@ -5,6 +5,9 @@
     </md-button>
 
     <router-view></router-view>
+    <footer>
+      <p>© 2019 PROJET MIAGE</p>
+    </footer>
   </div>
 </template>
 
@@ -32,15 +35,11 @@ export default {
   color: #2c3e50;
 }
 
-    body {
-    min-height: 100%;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid rgba(#000, .12);
-        overflow-y: scroll;
-
-  }
-
-
-
+body {
+  min-height: 100%;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(#000, 0.12);
+  overflow-y: scroll;
+}
 </style>

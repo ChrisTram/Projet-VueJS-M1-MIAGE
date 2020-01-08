@@ -70,8 +70,7 @@
 
         <md-content>
           <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
-            Supprimer menu
-            <md-icon style="color:red">remove_circle_outline</md-icon>
+            <md-icon style="color:red">remove_circle_outline</md-icon>&nbsp;Supprimer menu
           </md-button>
         </md-content>
       </md-list>
