@@ -88,25 +88,34 @@
         <md-dialog-title>Ajouter un menu</md-dialog-title>
         <md-dialog-content>
           <label for="hd">Choix des hors d'oeuvres</label>
+          <md-field>
           <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
-            <md-option
-              v-for="(item, i) in listPlats.horsdoeuvres"
-              :value="item"
-              :key="i"
-            >{{item[0]}}</md-option>
+
+          <md-option v-for="item in listPlats.horsdoeuvres" :value="item[0]" :key="item[0]"> {{ item[0] }} </md-option>
+
           </md-select>
+          </md-field>
           <label for="pl">Choix des plats</label>
+          <md-field>
+
           <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
-            <md-option v-for="(item, i) in listPlats.plats" :value="item" :key="i">{{item[0]}}</md-option>
+            <md-option v-for="item in listPlats.plats" :value="item[0]" :key="item[0]">{{item[0]}}</md-option>
           </md-select>
+          </md-field>
+
           <label for="ds">Choix des desserts</label>
+           <md-field>
+
           <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
-            <md-option v-for="(item, i) in listPlats.desserts" :value="item" :key="i">{{item[0]}}</md-option>
+            <md-option v-for="item in listPlats.desserts" :value="item[0]" :key="item[0]">{{item[0]}}</md-option>
           </md-select>
+          </md-field>
           <md-dialog-actions class="md-align-center">
             <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
           </md-dialog-actions>
         </md-dialog-content>
+              {{getObjects}}
+
       </md-dialog>
       <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeMenu=true">
         <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter menu
@@ -163,7 +172,7 @@ export default {
       modeAdmin: this.$root.$data.getMode(),
       componentKey: 0,
       listPlats: {},
-      newMenu: { horsdoeuvres: {}, plats: {}, desserts: {} },
+      newMenu: { horsdoeuvres: [], plats: [], desserts: [] },
       activeMenu: false
     };
   },
@@ -185,6 +194,7 @@ export default {
         menu.plats = plats;
         menu.desserts = desserts;
         menus.push(menu);
+        console.log(menus);
       }
       return menus;
     },
@@ -212,19 +222,6 @@ export default {
       return tab;
     },
     checking() {
-      /* console.log(this.checked);
-      if (this.checked.horsdoeuvres.length & this.checked.desserts.length)
-        if (this.checked.horsdoeuvres[0] != this.checked.desserts[0]) {
-          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
-        }
-      if (this.checked.horsdoeuvres.length & this.checked.plats.length)
-        if (this.checked.horsdoeuvres[0] != this.checked.plats[0]) {
-          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
-        }
-      if (this.checked.desserts.length & this.checked.plats.length)
-        if (this.checked.desserts[0] != this.checked.plats[0]) {
-          this.checked = { horsdoeuvres: [], plats: [], desserts: [] };
-        } */
     },
     addMenuToCart(menu, index) {
       console.log("adding to cart");
@@ -272,14 +269,18 @@ export default {
       console.log("resetCartMenu " + this.toCart);
     },
     addMenu() {
-      console.log(this.newMenu);
+      console.log(this.newMenu); //Vide !!!
       this.menus.push(this.newMenu);
+      console.log(this.menus);
       this.newMenu = { horsdoeuvres: {}, plats: {}, desserts: {} };
       this.forceRerender();
     },
     closeForm() {
       this.activeMenu = false;
       this.forceRerender();
+    },
+    getObjects() {
+      return this.newMenu.horsdoeuvres.filter(item => this.newMenu.horsdoeuvres.includes(item.id));
     }
   }
 };
