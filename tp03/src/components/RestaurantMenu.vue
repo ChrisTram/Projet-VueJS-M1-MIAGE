@@ -272,7 +272,7 @@ export default {
       console.log(this.newMenu); //Vide !!!
       this.menus.push(this.newMenu);
       console.log(this.menus);
-      this.newMenu = { horsdoeuvres: {}, plats: {}, desserts: {} };
+      this.newMenu = { horsdoeuvres: [], plats: [], desserts: [] };
       this.forceRerender();
     },
     closeForm() {
