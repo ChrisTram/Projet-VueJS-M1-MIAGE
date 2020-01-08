@@ -24,7 +24,11 @@
               <md-input v-model="form.url"></md-input>
             </md-field>
             <md-dialog-actions class="md-align-center">
-              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(0)">Soumettre</md-button>
+              <md-button
+                class="md-primary md-raised"
+                @click="closeForm(), addPlat(0)"
+                >Soumettre</md-button
+              >
             </md-dialog-actions>
           </md-dialog-content>
         </md-dialog>
@@ -32,7 +36,7 @@
         <md-button
           class="md-primary md-raised"
           v-show="modeAdmin"
-          @click="resetForm(), activeHD=true"
+          @click="resetForm(), (activeHD = true)"
         >
           <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un hors d'oeuvre
         </md-button>
@@ -90,14 +94,18 @@
               <md-input v-model="form.url"></md-input>
             </md-field>
             <md-dialog-actions class="md-align-center">
-              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(1)">Soumettre</md-button>
+              <md-button
+                class="md-primary md-raised"
+                @click="closeForm(), addPlat(1)"
+                >Soumettre</md-button
+              >
             </md-dialog-actions>
           </md-dialog-content>
         </md-dialog>
         <md-button
           class="md-primary md-raised"
           v-show="modeAdmin"
-          @click="resetForm(), activePlat=true"
+          @click="resetForm(), (activePlat = true)"
         >
           <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un plat
         </md-button>
@@ -154,14 +162,18 @@
               <md-input v-model="form.url"></md-input>
             </md-field>
             <md-dialog-actions class="md-align-center">
-              <md-button class="md-primary md-raised" @click="closeForm(), addPlat(2)">Soumettre</md-button>
+              <md-button
+                class="md-primary md-raised"
+                @click="closeForm(), addPlat(2)"
+                >Soumettre</md-button
+              >
             </md-dialog-actions>
           </md-dialog-content>
         </md-dialog>
         <md-button
           class="md-primary md-raised"
           v-show="modeAdmin"
-          @click="resetForm(), activeDessert=true"
+          @click="resetForm(), (activeDessert = true)"
         >
           <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un dessert
         </md-button>
@@ -182,7 +194,7 @@
           <img width="200" heigh="100" :src="createURL(p[3])" />
         </md-table-cell>
         <md-table-cell>
-          <md-button @click="addPlatToCart(p), showSnackbar=true">
+          <md-button @click="addPlatToCart(p), (showSnackbar = true)">
             <md-icon style="color:blue">add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
@@ -262,9 +274,9 @@ export default {
       this.componentKey += 1;
     },
     deletePlat(n, index) {
-        let objPlat = {index : index, num: n};
-        this.$emit("delPlat", objPlat);
-        this.forceRerender();
+      let objPlat = { index: index, num: n };
+      this.$emit("delPlat", objPlat);
+      this.forceRerender();
     },
     addPlat(n) {
       this.form.prix = this.form.prix.toString().replace(".", ",");
@@ -278,7 +290,6 @@ export default {
             this.form.url,
             this.form.prix + "€"
           ];
-          //this.randomPlats.horsdoeuvres.push(plat);
           this.addPlatToMenus(plat, 0);
           break;
         case 1:
@@ -289,7 +300,6 @@ export default {
             this.form.url,
             this.form.prix + "€"
           ];
-          //this.randomPlats.plats.push(plat);
           this.addPlatToMenus(plat, 1);
           break;
         case 2:
@@ -300,7 +310,6 @@ export default {
             this.form.url,
             this.form.prix + "€"
           ];
-          //this.randomPlats.desserts.push(plat);
           this.addPlatToMenus(plat, 2);
           break;
       }
@@ -319,10 +328,10 @@ export default {
       this.toCart = [];
       console.log("restaurantpalt : " + this.toCart);
     },
-    addPlatToMenus(plat, n){
-        let objPlat = {num : n, plat : plat};
-        console.log(objPlat);
-        this.$emit("addPlatToMenus", objPlat);
+    addPlatToMenus(plat, n) {
+      let objPlat = { num: n, plat: plat };
+      console.log(objPlat);
+      this.$emit("addPlatToMenus", objPlat);
     }
   }
 };

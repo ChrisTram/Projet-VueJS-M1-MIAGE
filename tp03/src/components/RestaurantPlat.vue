@@ -173,15 +173,12 @@ export default {
       switch (obj.num) {
         case 0:
           this.randomPlats.horsdoeuvres.push(obj.plat);
-          this.$refs.menu.listPlats.horsdoeuvres.push(obj.plat);
           break;
         case 1:
           this.randomPlats.plats.push(obj.plat);
-          this.$refs.menu.listPlats.plats.push(obj.plat);
           break;
         case 2:
           this.randomPlats.desserts.push(obj.plat);
-          this.$refs.menu.listPlats.desserts.push(obj.plat);
           break;
       }
     },
@@ -189,15 +186,12 @@ export default {
       switch (obj.num) {
         case 0:
           this.randomPlats.horsdoeuvres.splice(obj.index, 1);
-          this.$refs.menu.listPlats.horsdoeuvres.splice(obj.index, 1);
           break;
         case 1:
           this.randomPlats.plats.splice(obj.index, 1);
-          this.$refs.menu.listPlats.plats.splice(obj.index, 1);
           break;
         case 2:
           this.randomPlats.desserts.splice(obj.index, 1);
-          this.$refs.menu.listPlats.desserts.splice(obj.index, 1);
           break;
       }
     }

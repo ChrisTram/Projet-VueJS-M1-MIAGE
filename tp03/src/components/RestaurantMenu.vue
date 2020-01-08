@@ -91,7 +91,7 @@
           <md-field>
           <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
 
-          <md-option v-for="item in listPlats.horsdoeuvres" :value="item" :key="item[0]"> {{ item[0] }} </md-option>
+          <md-option v-for="item in this.plats.horsdoeuvres" :value="item" :key="item[0]"> {{ item[0] }} </md-option>
 
           </md-select>
           </md-field>
@@ -99,7 +99,7 @@
           <md-field>
 
           <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
-            <md-option v-for="item in listPlats.plats" :value="item" :key="item[0]">{{item[0]}}</md-option>
+            <md-option v-for="item in this.plats.plats" :value="item" :key="item[0]">{{item[0]}}</md-option>
           </md-select>
           </md-field>
 
@@ -107,7 +107,7 @@
            <md-field>
 
           <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
-            <md-option v-for="item in listPlats.desserts" :value="item" :key="item[0]">{{item[0]}}</md-option>
+            <md-option v-for="item in this.plats.desserts" :value="item" :key="item[0]">{{item[0]}}</md-option>
           </md-select>
           </md-field>
           <md-dialog-actions class="md-align-center">
@@ -143,11 +143,6 @@ export default {
         this.toCart = [];
         this.menus = this.createMenus(this.plats, 3);
         this.cuisines = [this.cuisine, "Authentique", "Classique"];
-        this.listPlats = {
-          horsdoeuvres: [...this.plats.horsdoeuvres],
-          plats: [...this.plats.plats],
-          desserts: [...this.plats.desserts]
-        };
       }
     },
     mode: {
@@ -169,7 +164,6 @@ export default {
       duration: 4000,
       modeAdmin: this.$root.$data.getMode(),
       componentKey: 0,
-      listPlats: {},
       newMenu: { horsdoeuvres: [], plats: [], desserts: [] },
       activeMenu: false
     };
