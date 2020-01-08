@@ -67,40 +67,7 @@
         <md-button @click="addMenuToCart(menu, index)">
           <md-icon style="color:blue">add_shopping_cart</md-icon>
         </md-button>
-        <md-content>
-          <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
-            <md-dialog-title>Ajouter un menu</md-dialog-title>
-            <md-dialog-content>
-              <label for="hd">Choix des hors d'oeuvres</label>
-              <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
-                <md-option
-                  v-for="(item, i) in listPlats.horsdoeuvres"
-                  :value="item"
-                  :key="i"
-                >{{item[0]}}</md-option>
-              </md-select>
-              <label for="pl">Choix des plats</label>
-              <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
-                <md-option v-for="(item, i) in listPlats.plats" :value="item" :key="i">{{item[0]}}</md-option>
-              </md-select>
-              <label for="ds">Choix des desserts</label>
-              <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
-                <md-option
-                  v-for="(item, i) in listPlats.desserts"
-                  :value="item"
-                  :key="i"
-                >{{item[0]}}</md-option>
-              </md-select>
-              <md-dialog-actions class="md-align-center">
-                <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
-              </md-dialog-actions>
-            </md-dialog-content>
-          </md-dialog>
-          <md-button class="md-primary" v-show="modeAdmin" @click="activeMenu=true">
-            Ajouter menu
-            <md-icon>add_circle_outline</md-icon>
-          </md-button>
-        </md-content>
+
         <md-content>
           <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
             Supprimer menu
@@ -117,6 +84,36 @@
         <span>Menu ajouté au panier</span>
       </md-snackbar>
     </div>
+    <md-content>
+      <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
+        <md-dialog-title>Ajouter un menu</md-dialog-title>
+        <md-dialog-content>
+          <label for="hd">Choix des hors d'oeuvres</label>
+          <md-select v-model="newMenu.horsdoeuvres" name="hd" id="hd" multiple>
+            <md-option
+              v-for="(item, i) in listPlats.horsdoeuvres"
+              :value="item"
+              :key="i"
+            >{{item[0]}}</md-option>
+          </md-select>
+          <label for="pl">Choix des plats</label>
+          <md-select v-model="newMenu.plats" name="pl" id="pl" multiple>
+            <md-option v-for="(item, i) in listPlats.plats" :value="item" :key="i">{{item[0]}}</md-option>
+          </md-select>
+          <label for="ds">Choix des desserts</label>
+          <md-select v-model="newMenu.desserts" name="ds" id="ds" multiple>
+            <md-option v-for="(item, i) in listPlats.desserts" :value="item" :key="i">{{item[0]}}</md-option>
+          </md-select>
+          <md-dialog-actions class="md-align-center">
+            <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
+          </md-dialog-actions>
+        </md-dialog-content>
+      </md-dialog>
+      <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeMenu=true">
+        Ajouter menu
+        <md-icon>add_circle_outline</md-icon>
+      </md-button>
+    </md-content>
   </div>
 </template>
 
