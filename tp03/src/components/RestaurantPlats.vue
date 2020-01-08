@@ -55,12 +55,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
-            <md-icon>add_shopping_cart</md-icon>
+            <md-icon style="color:blue">add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(0, index)">
-            <md-icon>remove_circle_outline</md-icon>
+            <md-icon style="color:red">remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -121,12 +121,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p, index)">
-            <md-icon>add_shopping_cart</md-icon>
+            <md-icon style="color:blue">add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(1, index)">
-            <md-icon>remove_circle_outline</md-icon>
+            <md-icon style="color:red">remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -186,12 +186,12 @@
         </md-table-cell>
         <md-table-cell>
           <md-button @click="addPlatToCart(p), showSnackbar=true">
-            <md-icon>add_shopping_cart</md-icon>
+            <md-icon style="color:blue">add_shopping_cart</md-icon>
           </md-button>
         </md-table-cell>
         <md-table-cell v-show="modeAdmin">
           <md-button @click="deletePlat(2, index)">
-            <md-icon>remove_circle_outline</md-icon>
+            <md-icon style="color:red">remove_circle_outline</md-icon>
           </md-button>
         </md-table-cell>
       </md-table-row>
@@ -259,6 +259,7 @@ export default {
       console.log(this.toCart);
       console.log("adding plat to cart");
       this.$emit("updateCart", this.toCart);
+      this.$emit("incBadge", null);
     },
     forceRerender() {
       this.componentKey += 1;
@@ -318,6 +319,10 @@ export default {
     },
     resetForm() {
       this.form = { nom: "", description: "", prix: 0.0, url: "", type: "" };
+    },
+    deleteCart() {
+      this.toCart = [];
+      console.log("restaurantpalt : " + this.toCart);
     }
   }
 };

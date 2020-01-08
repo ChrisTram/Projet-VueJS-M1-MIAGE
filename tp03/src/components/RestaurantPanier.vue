@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :key="componentKey">
     <div v-if="typeof this.toCart !== 'undefined'">
       <h1>Panier</h1>
       <div
@@ -46,6 +46,12 @@
           <md-subheader>Prix total</md-subheader>
           {{ menu.prix + "€"}}
         </md-list>
+        <div>
+          <md-button class="md-primary" @click="deleteMenuFromCart(index)">
+            Supprimer
+            <md-icon style="color:red">remove_circle_outline</md-icon>
+          </md-button>
+        </div>
       </div>
       <div
         v-for="(plat, index) in toCart.plats"
@@ -69,7 +75,6 @@
 
           <md-divider></md-divider>
           <md-subheader>Prix</md-subheader>
-
           <md-list-item>
             <md-icon class="md-primary">restaurant</md-icon>
 
@@ -77,6 +82,12 @@
               <span>{{ plat[4] }}</span>
             </div>
           </md-list-item>
+          <div>
+            <md-button class="md-primary" @click="deletePlatFromCart(index)">
+              Supprimer
+              <md-icon style="color:red">remove_circle_outline</md-icon>
+            </md-button>
+          </div>
         </md-list>
       </div>
       <md-content md-theme="selection-black">
@@ -123,7 +134,8 @@ export default {
       total: 0,
       panierSnackbar: false,
       position: "center",
-      duration: 4000
+      duration: 4000,
+      componentKey: 0
     };
   },
   methods: {
@@ -158,7 +170,23 @@ export default {
       };
       this.total = 0;
       this.$emit("resetBadge", null);
-      this.$emit("resetCart", null);
+      this.$emit("delCart", null);
+      this.forceRerender();
+    },
+    deleteMenuFromCart(index) {
+      this.toCart.menus.splice(index, 1);
+      this.$emit("updateCartMenus", this.toCart.menus);
+      this.$emit("decBadge", null);
+      this.forceRerender();
+    },
+    deletePlatFromCart(index) {
+      this.toCart.plats.splice(index, 1);
+      this.$emit("updateCartPlats", this.toCart.plats);
+      this.$emit("decBadge", null);
+      this.forceRerender();
+    },
+    forceRerender() {
+      this.componentKey += 1;
     }
   },
   filters: {

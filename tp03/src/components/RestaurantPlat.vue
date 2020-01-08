@@ -20,6 +20,7 @@
         :plats="randomPlats"
         :cuisine="cuisine"
         @updateCart="updateCartFromMenu"
+        @incBadge="increaseBadge"
         ref="menu"
       ></restaurant-menu>
     </div>
@@ -28,10 +29,19 @@
       v-show="togglePlats & !toggleMenu"
       :randomPlats="randomPlats"
       @updateCart="updateCartFromPlat"
+      @incBadge="increaseBadge"
+      ref="plat"
     ></restaurant-plats>
 
     <md-drawer :md-active.sync="showNavigation" md-swipeable>
-      <restaurant-panier @resetCart="resetCartToZero" @resetBadge="resetBadgeToZero" ref="panier"></restaurant-panier>
+      <restaurant-panier
+        @decBadge="decreaseBadge"
+        @resetBadge="resetBadgeToZero"
+        @updateCartMenus="updateCartFromMenu"
+        @updateCartPlats="updateCartFromPlat"
+        @delCart="deleteCart"
+        ref="panier"
+      ></restaurant-panier>
     </md-drawer>
   </div>
 </template>
@@ -127,31 +137,26 @@ export default {
       }
     },
     updateCartFromMenu(value) {
-      console.log("data to parent");
-      console.log(value);
       this.toCart = value;
-      ++this.choiceNb;
-      console.log(this.toCart);
-
       this.$refs.panier.updateCartMenus(value);
     },
     updateCartFromPlat(value) {
-      console.log("data to parent");
-      console.log(value);
       this.toCart = value;
-      ++this.choiceNb;
-      console.log(this.toCart);
-
       this.$refs.panier.updateCartPlats(value);
     },
     resetBadgeToZero() {
       this.choiceNb = 0;
     },
-    resetCartToZero() {
-      console.log("reseting cart");
-      this.$refs.menu.resetCart();
-
-      console.log(this.toCart);
+    decreaseBadge() {
+      this.choiceNb--;
+    },
+    increaseBadge() {
+      this.choiceNb++;
+    },
+    deleteCart() {
+      this.toCart = [];
+      this.$refs.plat.deleteCart();
+      this.$refs.menu.deleteCart();
     }
   }
 };

@@ -65,7 +65,7 @@
         <md-subheader>Prix total</md-subheader>
         {{ getMenuPrice(menu) + "€"}}
         <md-button @click="addMenuToCart(menu, index)">
-          <md-icon>add_shopping_cart</md-icon>
+          <md-icon style="color:blue">add_shopping_cart</md-icon>
         </md-button>
         <md-content>
           <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
@@ -104,7 +104,7 @@
         <md-content>
           <md-button class="md-primary" v-show="modeAdmin" @click="deleteMenu(index)">
             Supprimer menu
-            <md-icon>remove_circle_outline</md-icon>
+            <md-icon style="color:red">remove_circle_outline</md-icon>
           </md-button>
         </md-content>
       </md-list>
@@ -257,6 +257,7 @@ export default {
           console.log(this.toCart);
 
           this.$emit("updateCart", this.toCart);
+          this.$emit("incBadge", null);
           this.showS();
         }
       }
@@ -271,9 +272,9 @@ export default {
       this.menus.splice(index, 1);
       this.forceRerender();
     },
-    resetCart() {
-      console.log("resetCartMenu");
+    deleteCart() {
       this.toCart = [];
+      console.log("resetCartMenu " + this.toCart);
     },
     addMenu() {
       console.log(this.newMenu);
