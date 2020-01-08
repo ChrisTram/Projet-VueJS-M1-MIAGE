@@ -79,7 +79,7 @@ export default {
       plats: {},
       randomPlats: {},
       menus: [],
-      toggleMenu: false,
+      toggleMenu: true,
       togglePlats: false,
       choiceNb: 0,
       toCart: [],

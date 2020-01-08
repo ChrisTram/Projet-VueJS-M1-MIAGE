@@ -1,6 +1,10 @@
 <template>
-  <div v-if="typeof this.restaurant.address !== 'undefined'" >
-    <md-switch v-model="modeAdmin" @change="changeModeAdmin()">Mode Admin</md-switch>
+  <div v-if="typeof this.restaurant.address !== 'undefined'">
+    <md-switch v-model="modeAdmin" @change="changeModeAdmin()">
+      <b>Mode Admin</b>
+      <b v-if="modeAdmin" style="color:green">&nbsp;ON</b>
+      <b v-if="!modeAdmin" style="color:red">&nbsp;OFF</b>
+    </md-switch>
     <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
     <md-button class="md-raised md-primary" @click="showInfos = true">Infos</md-button>
 

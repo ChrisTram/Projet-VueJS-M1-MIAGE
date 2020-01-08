@@ -91,7 +91,9 @@
         </md-list>
       </div>
       <md-content md-theme="selection-black">
-        <p>Total : {{total | fixed}}€</p>
+        <p>
+          <b style="font-size:18px">Total : {{total | fixed}}€</b>
+        </p>
       </md-content>
 
       <md-button
