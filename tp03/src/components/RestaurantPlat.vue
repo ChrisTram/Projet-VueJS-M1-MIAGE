@@ -9,12 +9,20 @@
     <div>
       <md-button
         class="md-raised md-primary"
-        @click="toggleMenu = !toggleMenu; togglePlats = false"
-      >Nos Menus</md-button>
+        @click="
+          toggleMenu = !toggleMenu;
+          togglePlats = false;
+        "
+        >Nos Menus</md-button
+      >
       <md-button
         class="md-raised md-primary"
-        @click="togglePlats = !togglePlats; toggleMenu = false"
-      >A la Carte</md-button>
+        @click="
+          togglePlats = !togglePlats;
+          toggleMenu = false;
+        "
+        >A la Carte</md-button
+      >
       <restaurant-menu
         v-show="toggleMenu & !togglePlats"
         :plats="randomPlats"
@@ -30,6 +38,7 @@
       :randomPlats="randomPlats"
       @updateCart="updateCartFromPlat"
       @incBadge="increaseBadge"
+      @addPlatToMenus="addPlatToMenu"
       ref="plat"
     ></restaurant-plats>
 
@@ -45,7 +54,6 @@
     </md-drawer>
   </div>
 </template>
-
 
 <script>
 import data from "@/data/plats";
@@ -157,11 +165,28 @@ export default {
       this.toCart = [];
       this.$refs.plat.deleteCart();
       this.$refs.menu.deleteCart();
+    },
+    addPlatToMenu(obj) {
+      console.log("plat " + obj.plat);
+      console.log("branche : " + obj.num);
+      switch (obj.num) {
+        case 0:
+          this.randomPlats.horsdoeuvres.push(obj.plat);
+          this.$refs.menu.listPlats.horsdoeuvres.push(obj.plat);
+          break;
+        case 1:
+          this.randomPlats.plats.push(obj.plat);
+          this.$refs.menu.listPlats.plats.push(obj.plat);
+          break;
+        case 2:
+          this.randomPlats.desserts.push(obj.plat);
+          this.$refs.menu.listPlats.desserts.push(obj.plat);
+          break;
+      }
     }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>

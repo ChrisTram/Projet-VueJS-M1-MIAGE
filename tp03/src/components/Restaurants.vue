@@ -26,7 +26,7 @@
         :disabled="page == nbPagesDeResultats"
       >Suivant</md-button>
 
-      <H1>TABLE VUE-MATERIAL</H1>
+      <H1>Liste des restaurants</H1>
       <md-table v-model="restaurants" md-sort="name" md-sort-order="asc" md-card md-fixed-header>
         <md-table-toolbar>
           <div class="md-toolbar-section-start">

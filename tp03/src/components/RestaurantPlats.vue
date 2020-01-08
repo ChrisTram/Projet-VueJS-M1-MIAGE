@@ -277,33 +277,40 @@ export default {
     },
     addPlat(n) {
       this.form.prix = this.form.prix.toString().replace(".", ",");
+      let plat = [];
       switch (n) {
         case 0:
-          this.randomPlats.horsdoeuvres.push([
+          plat = [
             this.form.nom,
             "hors d'oeuvre",
             this.form.description,
             this.form.url,
             this.form.prix + "€"
-          ]);
+          ];
+          //this.randomPlats.horsdoeuvres.push(plat);
+          this.addPlatToMenus(plat, 0);
           break;
         case 1:
-          this.randomPlats.plats.push([
+          plat = [
             this.form.nom,
             "plat",
             this.form.description,
             this.form.url,
             this.form.prix + "€"
-          ]);
+          ];
+          //this.randomPlats.plats.push(plat);
+          this.addPlatToMenus(plat, 1);
           break;
         case 2:
-          this.randomPlats.desserts.push([
+          plat = [
             this.form.nom,
             "dessert",
             this.form.description,
             this.form.url,
             this.form.prix + "€"
-          ]);
+          ];
+          //this.randomPlats.desserts.push(plat);
+          this.addPlatToMenus(plat, 2);
           break;
       }
       this.resetForm();
@@ -320,6 +327,11 @@ export default {
     deleteCart() {
       this.toCart = [];
       console.log("restaurantpalt : " + this.toCart);
+    },
+    addPlatToMenus(plat, n){
+        let objPlat = {num : n, plat : plat};
+        console.log(objPlat);
+        this.$emit("addPlatToMenus", objPlat);
     }
   }
 };
