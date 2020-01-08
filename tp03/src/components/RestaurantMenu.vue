@@ -16,7 +16,7 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
+            <span>{{randomComment()}}</span>
           </div>
           <input
             type="radio"
@@ -34,7 +34,7 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
+            <span>{{randomComment()}}</span>
           </div>
           <input
             type="radio"
@@ -51,7 +51,7 @@
 
           <div class="md-list-item-text">
             <span>{{ m[0] }}</span>
-            <span>Délicieux !</span>
+            <span>{{randomComment()}}</span>
           </div>
           <input
             type="radio"
@@ -74,14 +74,6 @@
           </md-button>
         </md-content>
       </md-list>
-      <md-snackbar
-        :md-position="position"
-        :md-duration="duration"
-        :md-active.sync="showSnackbar"
-        v-model="showSnackbar"
-      >
-        <span>Menu ajouté au panier</span>
-      </md-snackbar>
     </div>
     <md-content>
       <md-dialog :md-active.sync="activeMenu" ref="dialogForm">
@@ -119,6 +111,14 @@
         <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter menu
       </md-button>
     </md-content>
+    <md-snackbar
+        :md-position="position"
+        :md-duration="duration"
+        :md-active.sync="showSnackbar"
+        v-model="showSnackbar"
+      >
+        <span>Menu ajouté au panier</span>
+      </md-snackbar>
   </div>
 </template>
 
@@ -165,7 +165,8 @@ export default {
       modeAdmin: this.$root.$data.getMode(),
       componentKey: 0,
       newMenu: { horsdoeuvres: [], plats: [], desserts: [] },
-      activeMenu: false
+      activeMenu: false,
+      comments: ["Délicieux!", "Un classique!", "Que du bon!", "Un choix avisé!", "Succulent!", "Exquis!", "Du lourd!", "Mamamia!", "Tutti fruiti!", "Le goût de l'absolu!"]
     };
   },
   methods: {
@@ -267,6 +268,10 @@ export default {
     closeForm() {
       this.activeMenu = false;
       this.forceRerender();
+    },
+    randomComment(){
+      let randNum = Math.floor(Math.random() * Math.floor(this.comments.length));
+      return this.comments[randNum];
     }
   }
 };
