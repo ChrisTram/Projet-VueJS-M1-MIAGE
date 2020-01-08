@@ -114,8 +114,6 @@
             <md-button class="md-primary md-raised" @click="closeForm(), addMenu()">Soumettre</md-button>
           </md-dialog-actions>
         </md-dialog-content>
-              {{getObjects}}
-
       </md-dialog>
       <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeMenu=true">
         <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter menu
@@ -194,7 +192,6 @@ export default {
         menu.plats = plats;
         menu.desserts = desserts;
         menus.push(menu);
-        console.log(menus);
       }
       return menus;
     },
@@ -245,8 +242,6 @@ export default {
             prix: parseFloat(this.getMenuPrice(menu))
           };
           this.toCart.push(addedMenuToCart);
-          console.log("On emit depuis depuis menu :");
-          console.log(this.toCart);
 
           this.$emit("updateCart", this.toCart);
           this.$emit("incBadge", null);
@@ -278,9 +273,6 @@ export default {
     closeForm() {
       this.activeMenu = false;
       this.forceRerender();
-    },
-    getObjects() {
-      return this.newMenu.horsdoeuvres.filter(item => this.newMenu.horsdoeuvres.includes(item.id));
     }
   }
 };
