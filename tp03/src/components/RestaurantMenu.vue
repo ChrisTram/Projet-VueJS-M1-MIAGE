@@ -110,8 +110,7 @@
         </md-dialog-content>
       </md-dialog>
       <md-button class="md-primary md-raised" v-show="modeAdmin" @click="activeMenu=true">
-        Ajouter menu
-        <md-icon>add_circle_outline</md-icon>
+        <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter menu
       </md-button>
     </md-content>
   </div>

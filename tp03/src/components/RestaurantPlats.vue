@@ -34,8 +34,7 @@
           v-show="modeAdmin"
           @click="resetForm(), activeHD=true"
         >
-          Ajouter un hors d'oeuvre
-          <md-icon>add_circle_outline</md-icon>
+          <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un hors d'oeuvre
         </md-button>
       </md-table-toolbar>
       <md-table-row>
@@ -100,8 +99,7 @@
           v-show="modeAdmin"
           @click="resetForm(), activePlat=true"
         >
-          Ajouter un plat
-          <md-icon>add_circle_outline</md-icon>
+          <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un plat
         </md-button>
       </md-table-toolbar>
       <md-table-row>
@@ -165,8 +163,7 @@
           v-show="modeAdmin"
           @click="resetForm(), activeDessert=true"
         >
-          Ajouter un dessert
-          <md-icon>add_circle_outline</md-icon>
+          <md-icon>add_circle_outline</md-icon>&nbsp;Ajouter un dessert
         </md-button>
       </md-table-toolbar>
       <md-table-row>
