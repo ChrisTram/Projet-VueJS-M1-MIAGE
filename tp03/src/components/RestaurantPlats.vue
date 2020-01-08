@@ -262,18 +262,9 @@ export default {
       this.componentKey += 1;
     },
     deletePlat(n, index) {
-      switch (n) {
-        case 0:
-          this.randomPlats.horsdoeuvres.splice(index, 1);
-          break;
-        case 1:
-          this.randomPlats.plats.splice(index, 1);
-          break;
-        case 2:
-          this.randomPlats.desserts.splice(index, 1);
-          break;
-      }
-      this.forceRerender();
+        let objPlat = {index : index, num: n};
+        this.$emit("delPlat", objPlat);
+        this.forceRerender();
     },
     addPlat(n) {
       this.form.prix = this.form.prix.toString().replace(".", ",");

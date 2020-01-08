@@ -39,6 +39,7 @@
       @updateCart="updateCartFromPlat"
       @incBadge="increaseBadge"
       @addPlatToMenus="addPlatToMenu"
+      @delPlat="deletePlat"
       ref="plat"
     ></restaurant-plats>
 
@@ -181,6 +182,22 @@ export default {
         case 2:
           this.randomPlats.desserts.push(obj.plat);
           this.$refs.menu.listPlats.desserts.push(obj.plat);
+          break;
+      }
+    },
+    deletePlat(obj) {
+      switch (obj.num) {
+        case 0:
+          this.randomPlats.horsdoeuvres.splice(obj.index, 1);
+          this.$refs.menu.listPlats.horsdoeuvres.splice(obj.index, 1);
+          break;
+        case 1:
+          this.randomPlats.plats.splice(obj.index, 1);
+          this.$refs.menu.listPlats.plats.splice(obj.index, 1);
+          break;
+        case 2:
+          this.randomPlats.desserts.splice(obj.index, 1);
+          this.$refs.menu.listPlats.desserts.splice(obj.index, 1);
           break;
       }
     }
