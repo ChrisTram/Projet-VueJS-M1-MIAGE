@@ -29,7 +29,6 @@ Toutes les fonctionnalités demandées sont présentes, même les bonus ! Il est
 ## Arborescence
 
 
-
 ```text
 repo/
 ├── BD/
@@ -46,10 +45,10 @@ repo/
 
 ## Contributeurs
 
-**Creator 1**
 
 - Derek Samson <https://github.com/dex06>
 - Chris Tramier https://github.com/ChrisTram
+
 
 `Bon appétit !`
 
