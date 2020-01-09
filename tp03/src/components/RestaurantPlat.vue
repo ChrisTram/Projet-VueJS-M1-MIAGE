@@ -1,6 +1,6 @@
 <template>
   <div>
-    <md-badge :md-content="choiceNb" md-position="bottom" md-dense>
+    <md-badge :md-content="choiceNb" md-position="bottom">
       <md-button class="md-raised md-primary" @click="showNavigation = true">
         <md-icon>shopping_cart</md-icon>
       </md-button>
