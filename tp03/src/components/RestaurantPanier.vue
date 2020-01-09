@@ -44,7 +44,7 @@
           </md-list-item>
           <md-divider></md-divider>
           <md-subheader>Prix total</md-subheader>
-          {{ menu.prix + "€"}}
+          {{ menu.prix + "€" }}
         </md-list>
         <div>
           <md-button class="md-primary" @click="deleteMenuFromCart(index)">
@@ -92,15 +92,16 @@
       </div>
       <md-content md-theme="selection-black">
         <p>
-          <b style="font-size:18px">Total : {{total | fixed}}€</b>
+          <b style="font-size:18px">Total : {{ total | fixed }}€</b>
         </p>
       </md-content>
 
       <md-button
         class="md-dense md-raised md-primary"
-        @click="panierSnackbar=true, passOrder()"
+        @click="(panierSnackbar = true), passOrder()"
         v-show="toCart.plats.length | toCart.menus.length"
-      >Passer la commande</md-button>
+        >Passer la commande</md-button
+      >
       <md-snackbar
         :md-position="position"
         :md-duration="duration"
@@ -198,7 +199,6 @@ export default {
   }
 };
 </script>
-
 
 <style scoped>
 .viewport {

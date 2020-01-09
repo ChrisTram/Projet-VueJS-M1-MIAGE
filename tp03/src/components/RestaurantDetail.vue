@@ -5,11 +5,16 @@
       <b v-if="modeAdmin" style="color:green">&nbsp;ON</b>
       <b v-if="!modeAdmin" style="color:red">&nbsp;OFF</b>
     </md-switch>
-    <div class="md-display-2">Bienvenue chez {{restaurant.name}}</div>
-    <md-button class="md-raised md-primary" @click="showInfos = true">Infos</md-button>
+    <div class="md-display-2">Bienvenue chez {{ restaurant.name }}</div>
+    <md-button class="md-raised md-primary" @click="showInfos = true"
+      >Infos</md-button
+    >
 
     <md-drawer class="md-right" :md-active.sync="showInfos">
-      <restaurant-map :borough="borough" :address="address"></restaurant-map>
+      <restaurant-map
+        :borough="borough"
+        :address="address"
+      ></restaurant-map>
       <restaurant-evaluation :evals="grades"></restaurant-evaluation>
     </md-drawer>
     <restaurant-plat :cuisine="cuisine"></restaurant-plat>
@@ -54,7 +59,7 @@ export default {
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant: {},
       showInfos: false,
-      modeAdmin: false
+      modeAdmin: false,
     };
   },
   mounted() {
@@ -92,5 +97,4 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-</style>
+<style scoped></style>
