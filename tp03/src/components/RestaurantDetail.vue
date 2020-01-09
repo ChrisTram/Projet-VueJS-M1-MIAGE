@@ -11,10 +11,7 @@
     >
 
     <md-drawer class="md-right" :md-active.sync="showInfos">
-      <restaurant-map
-        :borough="borough"
-        :address="address"
-      ></restaurant-map>
+      <restaurant-map :borough="borough" :address="address"></restaurant-map>
       <restaurant-evaluation :evals="grades"></restaurant-evaluation>
     </md-drawer>
     <restaurant-plat :cuisine="cuisine"></restaurant-plat>
@@ -59,7 +56,7 @@ export default {
       apiURL: "http://localhost:8081/api/restaurants",
       restaurant: {},
       showInfos: false,
-      modeAdmin: false,
+      modeAdmin: false
     };
   },
   mounted() {
@@ -92,6 +89,9 @@ export default {
       this.$root.$data.changeMode();
       console.log(this.$root.$data.modeAdmin);
     }
+  },
+  destroyed() {
+    this.$root.$data.modeAdmin = false;
   }
 };
 </script>
