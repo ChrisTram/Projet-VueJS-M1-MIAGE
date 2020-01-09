@@ -50,10 +50,10 @@ repo/
 - Chris Tramier https://github.com/ChrisTram
 
 
-`Bon appétit !`
-
-
 ## Copyright & license
 
 Code and documentation copyright 2019. Code released under the [MIT License](https://reponame/blob/master/LICENSE).
 
+
+
+`Bon appétit !`
