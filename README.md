@@ -19,7 +19,7 @@ Dans le cadre de nos cours de WEB en M1 MIAGE à Nice Sophia-Antipolis, nous dev
 
 Les consignes du projet sont renseignées ici : http://miageprojet2.unice.fr/Intranet_de_Michel_Buffa/Technologies_Web_M1_Miage_2019-2020
 
-Projet réalisé par ** Derek SAMSON et Chris TRAMIER**.
+Projet réalisé par **Derek SAMSON et Chris TRAMIER**.
 
 ## A propos du rendu
 
