@@ -19,9 +19,6 @@ export default {
     return {
       nom: "buffa"
     };
-  },
-  mounted() {
-    console.log("avant affichage");
   }
 };
 </script>

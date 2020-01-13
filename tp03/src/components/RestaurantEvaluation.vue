@@ -30,9 +30,6 @@ export default {
     return {};
   },
 
-  mounted() {
-    console.log("AVANT AFFICHAGE EVALUATION !");
-  },
   filters: {
     datify(value) {
       let re = new RegExp("([\\d]{2})-([\\d]{2})-([\\d]{2})");

@@ -60,7 +60,6 @@ export default {
     };
   },
   mounted() {
-    console.log("AVANT AFFICHAGE DETAIL!");
     console.log(
       "On va chercher les détails du restaurant nommé = " +
         this.$route.params.id
@@ -79,15 +78,11 @@ export default {
         .then(reponseJS => {
           // ici on a la réponse sous la forme
           // d'un objet JS
-          console.log("fin du fetch");
-          console.log(url);
-          console.log(reponseJS.restaurant);
           this.restaurant = reponseJS.restaurant;
         });
     },
     changeModeAdmin() {
       this.$root.$data.changeMode();
-      console.log(this.$root.$data.modeAdmin);
     }
   },
   destroyed() {

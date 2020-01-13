@@ -95,9 +95,6 @@ export default {
       showNavigation: false
     };
   },
-  mounted() {
-    console.log("AVANT AFFICHAGE PLAT!");
-  },
   methods: {
     selectRandomPlats(tab, n) {
       let shuffledPlats = this.shuffle(tab);
@@ -168,8 +165,6 @@ export default {
       this.$refs.menu.deleteCart();
     },
     addPlatToMenu(obj) {
-      console.log("plat " + obj.plat);
-      console.log("branche : " + obj.num);
       switch (obj.num) {
         case 0:
           this.randomPlats.horsdoeuvres.push(obj.plat);

@@ -82,7 +82,6 @@ export default {
     msg: String
   },
   mounted() {
-    console.log("AVANT AFFICHAGE !");
     this.getDataFromServer();
   },
   methods: {
@@ -130,18 +129,14 @@ export default {
       return index % 2 ? "lightBlue" : "pink";
     },
     pageSuivante() {
-      console.log("Page suivante");
       this.page++;
       this.getDataFromServer();
     },
     pagePrecedente() {
-      console.log("Page precedente");
       this.page--;
       this.getDataFromServer();
     },
     getRestaurant(item) {
-      console.log("here's something");
-      console.log(item);
       this.restaurant = item;
     }
   }

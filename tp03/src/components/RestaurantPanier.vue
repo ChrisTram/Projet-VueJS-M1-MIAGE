@@ -146,21 +146,17 @@ export default {
       this.total = this.toCart.totalMenus + this.toCart.totalPlats;
     },
     updateCartMenus(value) {
-      console.log("Update du panier");
-      console.log(value);
       let totalMenus = value.reduce((a, b) => a + b.prix, 0);
       this.toCart.totalMenus = totalMenus;
       this.toCart.menus = value;
       this.calculTotal();
     },
     updateCartPlats(value) {
-      console.log("Update du panier");
       let totalPlats = value.reduce(
         (a, b) => a + parseFloat(b[4].slice(0, -1).replace(",", ".")),
         0
       );
       this.toCart.totalPlats = totalPlats;
-      console.log(totalPlats);
       this.toCart.plats = value;
       this.calculTotal();
     },

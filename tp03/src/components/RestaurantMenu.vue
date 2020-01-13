@@ -216,10 +216,7 @@ export default {
     checking() {
     },
     addMenuToCart(menu, index) {
-      console.log("adding to cart");
-      console.log(this.checked.horsdoeuvres);
-      console.log(this.checked.desserts);
-      console.log(this.checked.plats);
+
       if (
         this.checked.horsdoeuvres.length &&
         this.checked.plats.length &&
@@ -256,12 +253,9 @@ export default {
     },
     deleteCart() {
       this.toCart = [];
-      console.log("resetCartMenu " + this.toCart);
     },
     addMenu() {
-      console.log(this.newMenu); //Vide !!!
       this.menus.push(this.newMenu);
-      console.log(this.menus);
       this.newMenu = { horsdoeuvres: [], plats: [], desserts: [] };
       this.forceRerender();
     },

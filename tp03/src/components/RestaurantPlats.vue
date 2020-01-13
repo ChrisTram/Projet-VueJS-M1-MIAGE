@@ -265,8 +265,6 @@ export default {
     },
     addPlatToCart(p) {
       this.toCart.push(p);
-      console.log(this.toCart);
-      console.log("adding plat to cart");
       this.$emit("updateCart", this.toCart);
       this.$emit("incBadge", null);
     },
@@ -326,11 +324,9 @@ export default {
     },
     deleteCart() {
       this.toCart = [];
-      console.log("restaurantpalt : " + this.toCart);
     },
     addPlatToMenus(plat, n) {
       let objPlat = { num: n, plat: plat };
-      console.log(objPlat);
       this.$emit("addPlatToMenus", objPlat);
     }
   }
